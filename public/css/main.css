@@ -16,6 +16,7 @@ body, .jumbotron {
     pointer-events: none;
 }
 .text-left {
+    display: none;
     position: absolute;
     top: 30px;
     left: 30px;
@@ -103,4 +104,7 @@ body, .jumbotron {
     position: fixed;
     right: 20px;
     bottom: 20px;
+}
+form {
+    text-align: center;
 }

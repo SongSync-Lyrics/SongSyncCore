@@ -10,7 +10,7 @@
     <meta name="twitter:card" content="img/web-card.png">
     <meta property="og:image" content="img/web-card.png">
     <!-- Title -->
-    <title>The Internet Button</title>
+    <title>The Button</title>
     <!-- Links -->
     <link rel="shortcut icon" href="img/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
@@ -20,23 +20,18 @@
 </head>
 <body>
 <section>
+    <form id="form" action="">
+        <label for="fname">Room Code:</label>
+        <input type="text" id="input" name="input"><br><br>
+        <button type="submit" id="startButton" class="btn-start btn btn-lg">Start</button>
+      </form>
     <button type="button" id="crazyButton" class="btn-crazy btn btn-lg btn-danger">
     </button>
-    <button type="button" id="startButton" class="btn-start btn btn-lg">Start
-    </button>
-    <a href="#" class="nes-btn is-warning home-btn">Home</a>
+    <label id="leader" class="text-left">Leader</label>
+    <label id="follower" class="text-left">Follower</label>
 
-    <div class="starting-section">
-        <div class="text-left" style="border-bottom: 2px solid black; border-right: 2px solid black;">
-            <h3 class="game-title">The Internet Button</h3>
-            <p>beep...boop...beep...boop</p>
-            <p>...buup...brrm...boop</p>
-        </div>
-        <div class="text-right" style="border-bottom: 2px solid black; border-left: 2px solid black;">
-            <h3>What is this?</h3>
-            <p>Hey, this is a socket.io tutorial. Click with caution!</p>
-        </div>
-    </div>
+    <button type="listUsers" id="listUsers" class="nes-btn is-warning home-btn">List Users</a>
+
 </section>
     <!-- Socket.IO Javacript -->
     <script src="/socket.io/socket.io.js"></script>
