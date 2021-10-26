@@ -7,7 +7,7 @@ const socketIO = require('socket.io')
 // Path to public folder
 const publicPath = path.join(__dirname, '/../public')
 // Port
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 20411
 const roomMap = new Map()
 
 // Initialization of Express.JS
@@ -20,8 +20,8 @@ let io = socketIO(server)
 app.use(express.static(publicPath))
 
 // Start server on port
-server.listen(port, ()=> {
-    console.log('Server is up on port ' + port +'.')
+server.listen(port, () => {
+    console.log('Server is up on port ' + port + '.')
 })
 
 // Start Socket.IO connection with clients
@@ -54,21 +54,23 @@ io.on('connection', (socket) => {
         return leader == socketid
     }
 
-    async function checkLeaderDisconnect() {
-        const sockets = await io.fetchSockets()
-        let leaderMissing = true
+    function checkLeaderDisconnect() {
 
-        for (const socket of sockets){
-            roomMap.forEach((values, key) => {
-                if (isLeaderAction(socket.id, key)) {
-                    leaderMissing = false
-                }
-            })
-        }
+        let leaderMissing = false;
+        let rm;
+
+        roomMap.forEach((roomInfo, room) => {
+            if (isLeaderAction(socket.id, room)) {
+                leaderMissing = true
+                rm = room
+            }
+        })
 
         if (leaderMissing) {
             console.log("checkLeaderDisconnect| Leader Disconnected!")
-            io.emit('leaderDisconnect')
+            roomMap.delete(rm)
+            console.log(roomMap)
+            io.to(rm).emit('leaderDisconnect')
         }
     }
 
@@ -89,8 +91,8 @@ io.on('connection', (socket) => {
 
     socket.on('disconnect', () => {
         console.log("\ndisconnect| A user has disconnected")
-        removeEmptyRooms()
         checkLeaderDisconnect()
+        removeEmptyRooms()
     })
 
     // Action when client clicks startButton. Flow: Client Press -> Server Receive -> Server Response -> All Client Action
@@ -111,26 +113,27 @@ io.on('connection', (socket) => {
                 io.to(room).emit('crazyIsClicked', roomMap.get(room)[0])
             }
         }
-        checkLeaderDisconnect()
     })
 
     // Action when client clicks RedSquare
     socket.on('crazyIsClicked', (data, room) => {
         let posAndLeader = roomMap.get(room)
-        let leader = posAndLeader[1]
-        posAndLeader = [data, leader]
+        if (posAndLeader != undefined) {
+            let leader = posAndLeader[1]
+            posAndLeader = [data, leader]
 
-        roomMap.set(room, posAndLeader)
+            roomMap.set(room, posAndLeader)
 
-        if (isLeaderAction(socket.id, room)) {
-            console.log("\ncrazyIsClicked| Leader Action Accepted")
-            io.to(room).emit('crazyIsClicked', data)
-        } else {
-            console.log("\ncrazyIsClicked| Not Leader, Action Rejected")
+            if (isLeaderAction(socket.id, room)) {
+                console.log("\ncrazyIsClicked| Leader Action Accepted")
+                io.to(room).emit('crazyIsClicked', data)
+            } else {
+                console.log("\ncrazyIsClicked| Not Leader, Action Rejected")
+            }
         }
 
     })
-    
+
     socket.on('listConnectedUsers', () => {
         console.log("\nlistConnectedUsers| User " + socket.id + " requested list of users")
         console.log("listConnectedUsers| List of users and rooms: ")
@@ -139,7 +142,7 @@ io.on('connection', (socket) => {
         console.log(roomMap)
     })
 
-    socket.on('leaderStatus', (room) => {        
+    socket.on('leaderStatus', (room) => {
         io.to(socket.id).emit('leaderStatus', isLeaderAction(socket.id, room))
     })
 
