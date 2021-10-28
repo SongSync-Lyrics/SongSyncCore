@@ -10,6 +10,7 @@
   "author": "David Tao",
   "license": "ISC",
   "dependencies": {
+    "chordsheetjs": "^4.10.0",
     "expressjs": "^1.0.1",
     "socket.io": "^4.3.1",
     "socketio": "^1.0.0"
