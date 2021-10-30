@@ -1,5 +1,11 @@
-# example-multiplayer-game
-Example Multiplayer Game built using Socket.IO
+# SongSync Core
+Share lyrics with friends. Featuring online rooms.
 
-## Based on the following tutorial
+## Built upon on the following
 [Link](https://devdojo.com/dennis/use-socketio-to-build-a-game)
+
+### Using the following libraries
+
+* Socket.io
+* Express.js
+* Node.js
