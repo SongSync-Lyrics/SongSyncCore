@@ -4,11 +4,14 @@ const http = require('http')
 const express = require('express')
 const socketIO = require('socket.io')
 
+const ChordSheetJS = require('chordsheetjs').default;
+
 // Path to public folder
 const publicPath = path.join(__dirname, '/../public')
 // Port
 const port = process.env.PORT || 20411
 const roomMap = new Map()
+const lyricsMap = new Map()
 
 // Initialization of Express.JS
 let app = express()
@@ -43,6 +46,7 @@ io.on('connection', (socket) => {
             if (isRoomEmpty(key)) {
                 console.log("removeEmptyRooms| Empty Room Found " + key)
                 roomMap.delete(key)
+                lyricsMap.delete(key)
                 console.log("removeEmptyRooms| Empty Room Removed " + key)
             }
         })
@@ -69,8 +73,9 @@ io.on('connection', (socket) => {
         if (leaderMissing) {
             console.log("checkLeaderDisconnect| Leader Disconnected!")
             roomMap.delete(rm)
+            lyricsMap.delete(rm)
             console.log(roomMap)
-            io.to(rm).emit('leaderDisconnect')
+            //io.to(rm).emit('leaderDisconnect')
         }
     }
 
@@ -95,20 +100,49 @@ io.on('connection', (socket) => {
         removeEmptyRooms()
     })
 
+    function chordproFormat(input) {
+        const chordSheet = input;
+        const parser = new ChordSheetJS.ChordProParser();
+        const song = parser.parse(chordSheet);
+        const formatter = new ChordSheetJS.HtmlTableFormatter();
+        const disp = formatter.format(song);
+        return disp;
+    }
+
+    socket.on('startLyricsDisplay', (room, song) => {
+        let lyrics = chordproFormat(song['lyrics']);
+        lyricsMap.set(room,lyrics);
+        console.log(chordproFormat(song['lyrics']));
+        console.log(song);
+
+        io.to(room).emit('displayLyrics', lyrics);     
+    })
+
+    socket.on('followerLyricsDisplay', (room) => {
+        console.log(lyricsMap.get(room))
+        io.to(room).emit('displayLyrics', lyricsMap.get(room));     
+    })
+
     // Action when client clicks startButton. Flow: Client Press -> Server Receive -> Server Response -> All Client Action
     socket.on('startGame', (room) => {
         if (!roomMapHasRoom(room)) {
             console.log("\nstartGame| New Room Detected")
             let posAndLeader = [undefined, socket.id]
             roomMap.set(room, posAndLeader)
+
             socket.join(room)
             console.log("startGame| Leader " + socket.id + " joining room " + room)
+
             io.to(room).emit('startGame')
         } else {
             console.log("\nstartGame| Follower joining existing room")
+
             socket.join(room)
+
             console.log("startGame| Follower " + socket.id + " joining room " + room)
+
             io.to(room).emit('startGame')
+
             if (roomMap.get(room)[0] != undefined) {
                 io.to(room).emit('crazyIsClicked', roomMap.get(room)[0])
             }
@@ -131,7 +165,6 @@ io.on('connection', (socket) => {
                 console.log("\ncrazyIsClicked| Not Leader, Action Rejected")
             }
         }
-
     })
 
     socket.on('listConnectedUsers', () => {
@@ -147,5 +180,3 @@ io.on('connection', (socket) => {
     })
 
 })
-
-
