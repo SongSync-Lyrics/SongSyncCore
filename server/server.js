@@ -92,7 +92,7 @@ io.on('connection', (socket) => {
     }
 
     // Action when client clicks startButton. Flow: Client Press -> Server Receive -> Server Response -> All Client Action
-    socket.on('startGame', (room, song) => {
+    socket.on('startGame', (room) => {
         if (!roomMapHasRoom(room)) {
             let posAndLeader = [undefined, socket.id]
             roomMap.set(room, posAndLeader)
