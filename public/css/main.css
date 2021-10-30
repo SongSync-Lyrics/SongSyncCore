@@ -1,39 +1,12 @@
 html, body {
     font-family: sans-serif;
 }
-body, .jumbotron {
+body {
     padding: 30px;
     background-color: rgb(255, 255, 255);
 }
-.text-giant {
-    font-size: 40px;
-}
-.text-right {
-    position: absolute;
-    top: 30px;
-    right: 30px;
-    width: 550px;
-    pointer-events: none;
-}
-.text-left {
-    display: none;
-    position: absolute;
-    top: 30px;
-    left: 30px;
-    width: 550px;
-    pointer-events: none;
-}
-.btn-crazy {
-    display: none;
-    position: absolute;
-    top: 43%;
-    left: 46%;
-    transition: 0.1s ease all;
-
-    width: 100px;
-    height: 100px;
-}
 .btn-start {
+    font-family: "Press Start 2P";
     display: block;
     position: absolute;
     top: 40%;
@@ -47,60 +20,11 @@ body, .jumbotron {
     height: 150px;
 
 }
-.time {
-    font-size: 60px;
-    position: absolute;
-    top: 30px;
-    left: 46%;
-    pointer-events: none;
-}
-.score {
-    font-size: 60px;
-    pointer-events: none;
-    border-bottom: 2px solid black;
-    padding-left: 10px;
-    padding-top: 10px;
-    padding-right: 10px;
-}
-.high-score {
-    font-size: 60px;
-    position: absolute;
-    bottom: 30px;
-    left: 2%;
-    pointer-events: none;
-    border-top: 2px solid black;
-    border-right: 2px solid black;
-    padding-left: 10px;
-    padding-top: 10px;
-    padding-right: 10px;
-    -webkit-text-stroke: 2px rgb(0, 0, 0);
-    -webkit-text-fill-color: rgb(255, 255, 255);
-}
-.my-time-text {
-    font-size: 30px;
-    pointer-events: none;
-    -webkit-text-stroke: 1px rgb(0, 0, 0);
-    -webkit-text-fill-color: rgb(255, 255, 255);
-    animation: shake .2s infinite;
-}
-@keyframes shake {
-10%, 90% {
-    transform: translate3d(-1px, 0, 0);
-}
-
-20%, 80% {
-    transform: translate3d(1px, 1px, 0);
-}
-
-30%, 50%, 70% {
-    transform: translate3d(-3px, -1px, 0);
-}
-
-40%, 60% {
-    transform: translate3d(3px, 0, 0);
-}
+.chord {
+    font-weight: bold;
 }
 .home-btn {
+    font-family: "Press Start 2P";
     position: fixed;
     right: 20px;
     bottom: 20px;

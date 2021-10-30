@@ -6,12 +6,9 @@ const socketIO = require('socket.io')
 
 const ChordSheetJS = require('chordsheetjs').default;
 
-// Path to public folder
 const publicPath = path.join(__dirname, '/../public')
-// Port
 const port = process.env.PORT || 20411
 const roomMap = new Map()
-const lyricsMap = new Map()
 
 // Initialization of Express.JS
 let app = express()
@@ -29,16 +26,15 @@ server.listen(port, () => {
 
 // Start Socket.IO connection with clients
 io.on('connection', (socket) => {
-    function roomMapHasRoom(room) {
-        return roomMap.has(room)
-    }
 
-    function isRoomEmpty(room) {
-        const arr = Array.from(io.sockets.adapter.rooms)
-        const filtered = arr.filter(room => !room[1].has(room[0]))
-        // ==> ['room1', 'room2']
-        const rooms = filtered.map(i => i[0])
-        return !rooms.includes(room)
+    // Message on user join and exit
+    console.log("\nconnection| A user just connected")
+    io.to(socket.id).emit('clearForm')
+
+    function isLeaderAction(socketid, room) {
+        let leader = roomMap.get(room)[1]
+
+        return leader == socketid
     }
 
     function removeEmptyRooms() {
@@ -46,16 +42,8 @@ io.on('connection', (socket) => {
             if (isRoomEmpty(key)) {
                 console.log("removeEmptyRooms| Empty Room Found " + key)
                 roomMap.delete(key)
-                lyricsMap.delete(key)
-                console.log("removeEmptyRooms| Empty Room Removed " + key)
             }
         })
-    }
-
-    function isLeaderAction(socketid, room) {
-        let leader = roomMap.get(room)[1]
-
-        return leader == socketid
     }
 
     function checkLeaderDisconnect() {
@@ -71,13 +59,70 @@ io.on('connection', (socket) => {
         })
 
         if (leaderMissing) {
-            console.log("checkLeaderDisconnect| Leader Disconnected!")
+            console.log("checkLeaderDisconnect| Leader Disconnected! Room deleted")
             roomMap.delete(rm)
-            lyricsMap.delete(rm)
-            console.log(roomMap)
-            //io.to(rm).emit('leaderDisconnect')
         }
     }
+
+    function isRoomEmpty(room) {
+        const arr = Array.from(io.sockets.adapter.rooms)
+        const filtered = arr.filter(room => !room[1].has(room[0]))
+        // ==> ['room1', 'room2']
+        const rooms = filtered.map(i => i[0])
+        return !rooms.includes(room)
+    }
+
+    socket.on('disconnect', () => {
+        console.log("\ndisconnect| A user has disconnected")
+        checkLeaderDisconnect()
+        removeEmptyRooms()
+    })
+
+    function roomMapHasRoom(room) {
+        return roomMap.has(room)
+    }
+
+    function chordproFormat(input) {
+        const chordSheet = input;
+        const parser = new ChordSheetJS.ChordProParser();
+        const song = parser.parse(chordSheet);
+        const formatter = new ChordSheetJS.HtmlTableFormatter();
+        const disp = formatter.format(song);
+        return disp;
+    }
+
+    // Action when client clicks startButton. Flow: Client Press -> Server Receive -> Server Response -> All Client Action
+    socket.on('startGame', (room, song) => {
+        if (!roomMapHasRoom(room)) {
+            let posAndLeader = [undefined, socket.id]
+            roomMap.set(room, posAndLeader)
+
+            socket.join(room)
+            console.log("startGame| Leader " + socket.id + " joining room " + room)
+
+            io.to(room).emit('startGame')
+        } else {
+            socket.join(room)
+
+            console.log("startGame| Follower " + socket.id + " joining room " + room)
+
+            io.to(room).emit('startGame')
+        }
+    })
+
+    socket.on('displayLeaderLyrics', (room, song) => {
+        let lyrics = chordproFormat(song['lyrics']);
+        let posAndLeader = [lyrics, socket.id]
+        roomMap.set(room, posAndLeader)
+
+        io.to(room).emit('displayLyrics', lyrics);     
+    })
+
+    socket.on('displayFollowerLyrics', (room) => {
+        let lyrics = roomMap.get(room)[0];
+
+        io.to(room).emit('displayLyrics', lyrics);     
+    })
 
     function getActiveRooms(io) {
         // Convert map into 2D list:
@@ -91,92 +136,11 @@ io.on('connection', (socket) => {
         return filtered
     }
 
-    // Message on user join and exit
-    console.log("\nconnection| A user just connected")
-
-    socket.on('disconnect', () => {
-        console.log("\ndisconnect| A user has disconnected")
-        checkLeaderDisconnect()
-        removeEmptyRooms()
-    })
-
-    function chordproFormat(input) {
-        const chordSheet = input;
-        const parser = new ChordSheetJS.ChordProParser();
-        const song = parser.parse(chordSheet);
-        const formatter = new ChordSheetJS.HtmlTableFormatter();
-        const disp = formatter.format(song);
-        return disp;
-    }
-
-    socket.on('startLyricsDisplay', (room, song) => {
-        let lyrics = chordproFormat(song['lyrics']);
-        lyricsMap.set(room,lyrics);
-        console.log(chordproFormat(song['lyrics']));
-        console.log(song);
-
-        io.to(room).emit('displayLyrics', lyrics);     
-    })
-
-    socket.on('followerLyricsDisplay', (room) => {
-        console.log(lyricsMap.get(room))
-        io.to(room).emit('displayLyrics', lyricsMap.get(room));     
-    })
-
-    // Action when client clicks startButton. Flow: Client Press -> Server Receive -> Server Response -> All Client Action
-    socket.on('startGame', (room) => {
-        if (!roomMapHasRoom(room)) {
-            console.log("\nstartGame| New Room Detected")
-            let posAndLeader = [undefined, socket.id]
-            roomMap.set(room, posAndLeader)
-
-            socket.join(room)
-            console.log("startGame| Leader " + socket.id + " joining room " + room)
-
-            io.to(room).emit('startGame')
-        } else {
-            console.log("\nstartGame| Follower joining existing room")
-
-            socket.join(room)
-
-            console.log("startGame| Follower " + socket.id + " joining room " + room)
-
-            io.to(room).emit('startGame')
-
-            if (roomMap.get(room)[0] != undefined) {
-                io.to(room).emit('crazyIsClicked', roomMap.get(room)[0])
-            }
-        }
-    })
-
-    // Action when client clicks RedSquare
-    socket.on('crazyIsClicked', (data, room) => {
-        let posAndLeader = roomMap.get(room)
-        if (posAndLeader != undefined) {
-            let leader = posAndLeader[1]
-            posAndLeader = [data, leader]
-
-            roomMap.set(room, posAndLeader)
-
-            if (isLeaderAction(socket.id, room)) {
-                console.log("\ncrazyIsClicked| Leader Action Accepted")
-                io.to(room).emit('crazyIsClicked', data)
-            } else {
-                console.log("\ncrazyIsClicked| Not Leader, Action Rejected")
-            }
-        }
-    })
-
     socket.on('listConnectedUsers', () => {
         console.log("\nlistConnectedUsers| User " + socket.id + " requested list of users")
         console.log("listConnectedUsers| List of users and rooms: ")
 
         console.log(getActiveRooms(io))
-        console.log(roomMap)
-    })
-
-    socket.on('leaderStatus', (room) => {
-        io.to(socket.id).emit('leaderStatus', isLeaderAction(socket.id, room))
     })
 
 })

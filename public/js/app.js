@@ -1,7 +1,11 @@
 // Initialize Socket.IO
 let socket = io()
-
 let room
+
+// References to HTML file
+//const startingSection = document.querySelector('.starting-section')
+const homeBtn = document.querySelector('.home-btn')
+
 let form = document.getElementById('form')
 let input = document.getElementById('input')
 let inputcp = document.getElementById('chordproInput')
@@ -11,6 +15,7 @@ document.getElementById('chordproInput')
     .addEventListener('change', function () {
         let fr = new FileReader();
         fr.onload = function () {
+            console.log(inputcp)
             inputcp = fr.result;
             let title = getTitle(inputcp);
             let subtitle = getSubtitle(inputcp);
@@ -45,15 +50,6 @@ document.getElementById('chordproInput')
         fr.readAsText(this.files[0]);
     });
 
-
-// References to HTML file
-const startingSection = document.querySelector('.starting-section')
-const homeBtn = document.querySelector('.home-btn')
-const crazyButton = document.getElementById('crazyButton')
-//const leaderLabel = document.getElementById('leader')
-//const followerLabel = document.getElementById('follower')
-
-
 // When startButton is clicked, send response to server
 //startButton.addEventListener('click', () => {
 form.addEventListener('submit', function (e) {
@@ -61,15 +57,18 @@ form.addEventListener('submit', function (e) {
     if (input.value) {
         room = input.value
 
+        console.log("Room found")
+
         if (song != undefined){
+            console.log("ChordPro File found")
             socket.emit('startGame', input.value)
-            socket.emit('startLyricsDisplay', input.value, song)
+            socket.emit('displayLeaderLyrics', input.value, song)
         } else{
             console.log("Running follower code")
             socket.emit('startGame', input.value)
-            socket.emit('followerLyricsDisplay', input.value)
+            socket.emit('displayFollowerLyrics', input.value)
         }
-
+        
         console.log("Joining room: " + input.value)
     }
 })
@@ -78,63 +77,30 @@ homeBtn.addEventListener('click', () => {
     socket.emit('listConnectedUsers')
 })
 
-// When redSquare is clicked, send response to server containing a randomized movement command with it. Movement command is based on screen size
-crazyButton.addEventListener('click', () => {
-    socket.emit('crazyIsClicked', {
-        offsetLeft: Math.random() * ((window.innerWidth - crazyButton.clientWidth) - 100),
-        offsetTop: Math.random() * ((window.innerHeight - crazyButton.clientHeight) - 50)
-    }, room)
-})
-
-
-// When socket.io receives 'startGame' response from server, run hideStartButton
-socket.on('startGame', () => {
-    hideStartButton()
-    socket.emit('leaderStatus', room)
-})
-
-/*socket.on('leaderStatus', (leaderStatus) => {
-    if (leaderStatus) {
-        leaderLabel.style.display = "block"
-    } else {
-        followerLabel.style.display = "block"
-    }
-})*/
-
-/*socket.on('leaderDisconnect', () => {
-    followerLabel.innerHTML = "Leader has disconnected"
-})*/
-
-// When socket.io receives 'crazyIsClicked' response from server, run goCrazy. Data contains values given from first client response
-socket.on('crazyIsClicked', (data) => {
-    goCrazy(data.offsetLeft, data.offsetTop)
-})
-
-//
-socket.on('displayLyrics', (lyrics) => {
-    document.getElementById('display').innerHTML = lyrics;
-})
-
-// Based on values given, set new redSquare location
-function goCrazy(offLeft, offTop) {
-    let top, left
-
-    left = offLeft
-    top = offTop
-
-    crazyButton.style.top = top + 'px'
-    crazyButton.style.left = left + 'px'
-    crazyButton.style.animation = "none"
+function clearForms() {
+    input.value = ''
+    inputcp.value = ''
 }
 
 // Function that hides startButton, displays redSquare
 function hideStartButton() {
-    //startButton.style.display = "none"
-    input.value = ''
+    clearForms()
     form.style.display = "none"
-    crazyButton.style.display = "block"
 }
 
+socket.on('clearForm', () => {
+    console.log('clearing forms')
+    clearForms()
+})
+
+// When socket.io receives 'startGame' response from server, run hideStartButton
+socket.on('startGame', () => {
+    hideStartButton()
+})
+
+socket.on('displayLyrics', (lyrics) => {
+    document.getElementById('display').innerHTML = lyrics;
+})
 
 //CHORDPRO STUFF
 function formatLine(line) {
