@@ -7,18 +7,30 @@ let initialJoinButton = document.getElementById('initialJoinButton');
 let enterSession = document.getElementById('enterSession');
 
 
-startButton.forEach((startButton) => startButton.addEventListener('click', function(){
-    document.body.style.background = '#fff';}));
+startButton.forEach((startButton) => startButton.addEventListener('click', function () {
+    document.body.style.background = '#fff';
+}));
 
- initialCreateButton.addEventListener('click', function(){
+
+
+
+initialCreateButton.addEventListener('click', function () {
     subInputs.style.display = 'none';
     sessionCode.style.display = 'flex';
-    chordProContainer.style.display='flex';
+    chordProContainer.style.display = 'flex';
 
 });
-initialJoinButton.addEventListener('click', function(){
-    sessionCode.style.display='flex';
-    subInputs.style.display='none';
-    enterSession.style.display = 'flex';
 
-}); 
+initialJoinButton.addEventListener('click', function () {
+    console.log("a;lskdf");
+    sessionCode.style.display = 'flex';
+    subInputs.style.display = 'none';
+    enterSession.style.display = 'flex';
+    document.addEventListener("keyup", function (event) {
+        if (event.code === 'Enter') {
+            document.body.style.background = '#fff';
+        }
+
+    })
+});
+
