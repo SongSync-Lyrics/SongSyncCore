@@ -1,18 +1,21 @@
 {
-  "name": "Sample Multiplayer Sync WebApp",
-  "version": "1.0.0",
-  "description": "Test case for multi-user online lobbies",
+  "name": "SongSync WebApp",
+  "version": "0.1.1",
+  "description": "Multilobby Lyrics Sharing",
   "main": "app.js",
   "scripts": {
     "start": "node server/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha unittests/server.js --require mocha-steps"
   },
   "author": "David Tao",
   "license": "ISC",
   "dependencies": {
+    "chai": "^4.3.4",
     "chordsheetjs": "^4.10.0",
-    "expressjs": "^1.0.1",
+    "express": "^4.17.1",
+    "http": "^0.0.1-security",
+    "path": "^0.12.7",
     "socket.io": "^4.3.1",
-    "socketio": "^1.0.0"
+    "socket.io-client": "^4.3.2"
   }
 }
