@@ -1,41 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- My meta tags -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Denislav Gavrilov">
-    <meta name="keywords" content="internet's crazy button">
-    <meta name="description" content="The internet button - a button available to the entire internet! Hey, give it a click!"/>
-    <meta name="twitter:card" content="img/web-card.png">
-    <meta property="og:image" content="img/web-card.png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="jquery-3.5.1.min.js"></script>
+
     <!-- Title -->
     <title>Song Sync Alpha</title>
     <!-- Links -->
-    <link rel="shortcut icon" href="img/favicon.ico">
-    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-    <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/main.css" />
 </head>
+
 <body>
-<section>
-    <form id="form" action="">
-        <label for="fname">Room Code:</label>
-        <input type="text" id="input" name="input"><br><br>
-        <label for="fname">Chordpro:</label>
-        <input type="file" id="chordproInput" name="chordproInput"><br><br>
-        <button type="submit" id="startButton" class="btn-start btn btn-lg">Start</button>
-      </form>
-    </button>
+    <div id='display'></div>
+    <section class='container'>
+        <div class='background-image'>
+            <form id='form' action=''>
+                <div class='main-text'>
+                    <p>Song Sync App</p>
+                    <div class='centering-card'>
+                        <div class='inputs' id='inputs'>
+                            <div class='sub-inputs' id='subInputs'>
+                                <button type='submit' id='initialCreateButton' class='btn-start home-btn enter-button'>
+                                    Create Session
+                                </button>
 
-    <div id="display"></div>
+                                <button type='submit' id='initialJoinButton' class='btn-start home-btn enter-button'>
+                                    Join Session
+                                </button>
 
-    <button type="listUsers" id="listUsers" class="nes-btn is-warning home-btn">List Users</a>
+                            </div>
 
-</section>
+                            <input type='text' id='input' name='input' class='input-code'
+                                placeholder='Enter Session Code' />
+                            <div class='enter-session' id='enterSession'>
+                                <button type='submit' id='startButton' class='btn-start home-btn enter-button'>
+                                    Join Session
+                                </button>
+                            </div>
+
+                            <div class='chord-pro-container' id='chordProContainer'>
+                                <label class='chord-pro-text'>To create a session please upload a chord pro file:</label>
+                                <div class='sub-chord-pro-container'>
+                                    <input type='file' id='chordproInput' name='chordproInput' class='chord-pro-file' />
+                                    <button type='submit' id='startButton' class='btn-start home-btn enter-button'>
+                                        Create Session
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- Front End Javscript reference-->
+        <script src='/js/frontEndScripts.js'></script>
+    </section>
+
     <!-- Socket.IO Javacript -->
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/app.js" charset="utf-8"></script>
+    <script src='/socket.io/socket.io.js'></script>
+    <script src='/js/app.js' charset='utf-8'></script>
 </body>
+
 </html>

@@ -1,34 +1,162 @@
-html, body {
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin:0;
+    font-family: Montserrat;
+    font-size:12px;
+
+}
+body{
+    background: linear-gradient(rgba(255, 255, 255, 0.2),
+              rgba(255, 255, 255, 0.2),
+              rgba(255, 255, 255, 0.2),
+              rgba(255, 255, 255, 0.2)),
+              url("pictures/Ukelele.jpg") no-repeat center;
+    background-size: 100%;
+
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width:100%;
+
+}
+.centering-card{
+    width:30vw;
+    height:18vh;
+    display: flex;
+    justify-content: center;
+    border-radius: 1.25rem;
+    flex-direction: column;
+    background-color: #dadada;
+    align-content: center;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .50), 0 12px 20px 0 rgba(0, 0, 0, 0.50);
+    
+    
+}
+.main-text{
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100%;
+
+}
+.inputs{
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    padding-right: 50px;
+    padding-left: 50px;
+    justify-content: space-between;
+    align-content: center;
+
+}
+.main-text > p {
+    font-size: 3.5rem;
+    vertical-align: top;
+    margin-bottom: 20px;
+    font-style: italic;
+    color: #f2f2f2;
+    font-weight: 600;
+    width: 30vw;
+    text-align: center;
+
+}
+.input-code{
+    color: gray;
+    background-color: #ffff;
+    width: 100%;
+    align-self: center;
+    height: 5vh;
+    text-align: center;
+    border-radius: .50rem;
+    vertical-align: middle;
+    font-size: 1.75rem;
+    font-weight: 600;
+    border: 1px solid black;
+    margin-top: 5px;
+    display:none;
+    
+}
+::placeholder{
+    color: gray;
+    opacity: 1;
+    font-size: 1.25rem;
+
+}
+.enter-button{
+    color: #FFFFFF;
+    margin-top: 5px;
+    width:49%;
+    align-self: center;
+    cursor: pointer;
+    border-radius: .50rem;
+    height:7vh;
+    font-size: 1.5rem;
+    border: 1px solid black;
+    transition: all .35s;
+    background-color: #2b6777;
+
+    
+}
+.enter-button:hover{
+    background-color: #56abc2;
+}
+.enter-button:active{
+    background-color: #1b414b;
+}
+#display{
+    margin-left:20px;
+    font-size: 1.5rem;
     font-family: sans-serif;
 }
-body {
-    padding: 30px;
-    background-color: rgb(255, 255, 255);
+.sub-inputs{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;   
 }
-.btn-start {
-    font-family: "Press Start 2P";
-    display: block;
-    position: absolute;
-    top: 40%;
-    left: 45%;
-    transition: 0.1s ease all;
-    background: white;
-    color: black;
-    border: 3px solid black;
+.chord-pro-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    display: none;
+    
+}
 
-    width: 150px;
-    height: 150px;
+.chord-pro-text{
+    text-align: left;
+    font-size: 1.3rem;
 
 }
-.chord {
-    font-weight: bold;
+.chord-pro-file{
+    font-size: 1.3rem;
+    text-align: left;
+
 }
-.home-btn {
-    font-family: "Press Start 2P";
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
+.sub-chord-pro-container{
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
 }
-form {
-    text-align: center;
+.sub-chord-pro-container > .chord-pro-file {
+    align-content: center;
+    align-self: center;
+
+}
+.sub-chord-pro-container > .enter-button{
+    height: inherit;
+    
+}
+.enter-session{
+    display: none;
+    width: 100%;
+}
+.enter-session > .enter-button{
+    width: 100%;
+    height: 5vh;
 }
