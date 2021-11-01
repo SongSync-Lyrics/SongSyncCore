@@ -3,23 +3,16 @@ const path = require('path')
 const http = require('http')
 const express = require('express')
 const socketIO = require('socket.io')
-
-const ChordSheetJS = require('chordsheetjs').default;
-
+const app = express()
+const server = http.createServer(app)
+const io = socketIO(server)
 const publicPath = path.join(__dirname, '/../public')
 const port = process.env.PORT || 20411
+
+const ChordSheetJS = require('chordsheetjs').default;
 const roomMap = new Map()
 
-// Initialization of Express.JS
-let app = express()
-let server = http.createServer(app)
-// Initialization of Socket.IO Server
-let io = socketIO(server)
-
-// Let Express.JS know of public path
 app.use(express.static(publicPath))
-
-// Start server on port
 server.listen(port, () => {
     console.log('Server is up on port ' + port + '.')
 })
@@ -137,9 +130,7 @@ io.on('connection', (socket) => {
     }
 
     socket.on('listConnectedUsers', () => {
-        console.log("\nlistConnectedUsers| User " + socket.id + " requested list of users")
-        console.log("listConnectedUsers| List of users and rooms: ")
-
+        console.log("\nlistConnectedUsers| List of users and rooms: ")
         console.log(getActiveRooms(io))
     })
 
