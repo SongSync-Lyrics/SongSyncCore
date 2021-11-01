@@ -19,63 +19,92 @@ server.listen(port, () => {
 
 // Start Socket.IO connection with clients
 io.on('connection', (socket) => {
-
-    // Message on user join and exit
-    console.log("\nconnection| A user just connected")
-    io.to(socket.id).emit('clearForm')
+    console.log("\nconnection| A user just connected");
+    // Prevents crashes due to preexisting file upload
+    io.to(socket.id).emit('clearForm');
 
     function isLeaderAction(socketid, room) {
-        let leader = roomMap.get(room)[1]
+        let leader = roomMap.get(room)[1];
 
-        return leader == socketid
+        return leader == socketid;
+    }
+
+    function isLeaderDisconnected() {
+        let savedRoom;
+
+        roomMap.forEach((roomInfo, room) => {
+            if (isLeaderAction(socket.id, room)) {
+                savedRoom = room;
+            }
+        })
+
+        return savedRoom;
+    }
+
+    function removeLeaderIfDisconnected() {
+        let room = isLeaderDisconnected();
+
+        if (room != undefined) {
+            console.log("checkLeaderDisconnect| Leader Disconnected! Room deleted");
+            roomMap.delete(room);
+        }   
+    }
+
+    function isRoomEmpty(room) {
+        const arr = Array.from(io.sockets.adapter.rooms);
+        const filtered = arr.filter(room => !room[1].has(room[0]));
+        // ==> ['room1', 'room2']
+        const rooms = filtered.map(i => i[0]);
+        return !rooms.includes(room);
     }
 
     function removeEmptyRooms() {
         roomMap.forEach((values, key) => {
             if (isRoomEmpty(key)) {
-                console.log("removeEmptyRooms| Empty Room Found " + key)
-                roomMap.delete(key)
+                console.log("removeEmptyRooms| Empty Room Found " + key);
+                roomMap.delete(key);
             }
-        })
-    }
-
-    function checkLeaderDisconnect() {
-
-        let leaderMissing = false;
-        let rm;
-
-        roomMap.forEach((roomInfo, room) => {
-            if (isLeaderAction(socket.id, room)) {
-                leaderMissing = true
-                rm = room
-            }
-        })
-
-        if (leaderMissing) {
-            console.log("checkLeaderDisconnect| Leader Disconnected! Room deleted")
-            roomMap.delete(rm)
-        }
-    }
-
-    function isRoomEmpty(room) {
-        const arr = Array.from(io.sockets.adapter.rooms)
-        const filtered = arr.filter(room => !room[1].has(room[0]))
-        // ==> ['room1', 'room2']
-        const rooms = filtered.map(i => i[0])
-        return !rooms.includes(room)
+        });
     }
 
     socket.on('disconnect', () => {
-        console.log("\ndisconnect| A user has disconnected")
-        checkLeaderDisconnect()
-        removeEmptyRooms()
-    })
+        console.log("\ndisconnect| A user has disconnected");
+        removeLeaderIfDisconnected();
+        removeEmptyRooms();
+    });
 
     function roomMapHasRoom(room) {
-        return roomMap.has(room)
+        return roomMap.has(room);
     }
 
-    function chordproFormat(input) {
+    function leaderJoinAction(room) {
+        let posAndLeader = [undefined, socket.id];
+        roomMap.set(room, posAndLeader);
+
+        socket.join(room);
+        console.log("startGame| Leader " + socket.id + " joining room " + room);
+
+        io.to(room).emit('startGame');
+    }
+
+    function followerJoinAction(room) {
+        socket.join(room);
+
+        console.log("startGame| Follower " + socket.id + " joining room " + room);
+
+        io.to(room).emit('startGame');
+    }
+
+    // Action when client clicks startButton. Flow: Client Press -> Server Receive -> Server Response -> All Client Action
+    socket.on('startGame', (room) => {
+        if (!roomMapHasRoom(room)) {
+            leaderJoinAction(room);
+        } else {
+            followerJoinAction(room);
+        }
+    });
+
+    function chordProFormat(input) {
         const chordSheet = input;
         const parser = new ChordSheetJS.ChordProParser();
         const song = parser.parse(chordSheet);
@@ -84,54 +113,29 @@ io.on('connection', (socket) => {
         return disp;
     }
 
-    // Action when client clicks startButton. Flow: Client Press -> Server Receive -> Server Response -> All Client Action
-    socket.on('startGame', (room) => {
-        if (!roomMapHasRoom(room)) {
-            let posAndLeader = [undefined, socket.id]
-            roomMap.set(room, posAndLeader)
-
-            socket.join(room)
-            console.log("startGame| Leader " + socket.id + " joining room " + room)
-
-            io.to(room).emit('startGame')
-        } else {
-            socket.join(room)
-
-            console.log("startGame| Follower " + socket.id + " joining room " + room)
-
-            io.to(room).emit('startGame')
-        }
-    })
-
     socket.on('displayLeaderLyrics', (room, song) => {
-        let lyrics = chordproFormat(song['lyrics']);
-        let posAndLeader = [lyrics, socket.id]
-        roomMap.set(room, posAndLeader)
+        let lyrics = chordProFormat(song['lyrics']);
+        let posAndLeader = [lyrics, socket.id];
+        roomMap.set(room, posAndLeader);
 
-        io.to(room).emit('displayLyrics', lyrics);     
-    })
+        io.to(room).emit('displayLyrics', lyrics);
+    });
 
     socket.on('displayFollowerLyrics', (room) => {
         let lyrics = roomMap.get(room)[0];
 
         io.to(room).emit('displayLyrics', lyrics);     
-    })
+    });
 
     function getActiveRooms(io) {
         // Convert map into 2D list:
         // ==> [['4ziBKG9XFS06NdtVAAAH', Set(1)], ['room1', Set(2)], ...]
-        const arr = Array.from(io.sockets.adapter.rooms)
+        const arrayOfRoomObjects = Array.from(io.sockets.adapter.rooms);
 
         // Filter rooms whose name exist in set:
         // ==> [['room1', Set(2)], ['room2', Set(2)]]
-        const filtered = arr.filter(room => !room[1].has(room[0]))
+        const filteredRooms = arrayOfRoomObjects.filter(room => !room[1].has(room[0]));
 
-        return filtered
+        return filteredRooms;
     }
-
-    socket.on('listConnectedUsers', () => {
-        console.log("\nlistConnectedUsers| List of users and rooms: ")
-        console.log(getActiveRooms(io))
-    })
-
-})
+});

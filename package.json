@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node server/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha unittests/unittests.js"
   },
   "author": "David Tao",
   "license": "ISC",
@@ -14,9 +14,9 @@
     "express": "^4.17.1",
     "http": "^0.0.1-security",
     "path": "^0.12.7",
-    "socket.io": "^4.3.1"
+    "socket-tester": "^1.2.1",
+    "socket.io": "^4.3.1",
+    "socket.io-client": "^4.3.2"
   },
-  "devDependencies": {
-    "jest": "^27.3.1"
-  }
+  "type": "module"
 }
