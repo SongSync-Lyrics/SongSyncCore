@@ -9,3 +9,7 @@ Share lyrics with friends. Featuring online rooms.
 * Socket.io
 * Express.js
 * Node.js
+* ChordSheetJs
+* Mocha & Chai
+
+## Released under GPL 2.0 License
