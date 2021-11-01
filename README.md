@@ -12,4 +12,4 @@ Share lyrics with friends. Featuring online rooms.
 * ChordSheetJs
 * Mocha & Chai
 
-## Released under GPL 2.0 License
+## Releasing under the GPL 2.0 License
