@@ -15,7 +15,7 @@ document.getElementById('chordproInput')
     .addEventListener('change', function () {
         let fr = new FileReader();
         fr.onload = function () {
-            console.log(inputcp)
+            //console.log(inputcp)
             inputcp = fr.result;
             let title = getTitle(inputcp);
             let subtitle = getSubtitle(inputcp);
@@ -45,7 +45,6 @@ document.getElementById('chordproInput')
             song["tempo"] = tempo;
             song["duration"] = duration;
             song["lyrics"] = lyrics;
-            //songJSON = JSON.stringify(obj);
         }
         fr.readAsText(this.files[0]);
     });
@@ -56,8 +55,6 @@ form.addEventListener('submit', function (e) {
     e.preventDefault()
     if (input.value) {
         room = input.value
-
-        console.log("Room found")
 
         if (song != undefined){
             console.log("ChordPro File found")
@@ -89,7 +86,6 @@ function hideStartButton() {
 }
 
 socket.on('clearForm', () => {
-    console.log('clearing forms')
     clearForms()
 })
 
@@ -109,7 +105,6 @@ function formatLine(line) {
     const song = parser.parse(chordSheet);
     const formatter = new ChordSheetJS.HtmlTableFormatter();
     const disp = formatter.format(song);
-    //console.log(disp);
     return disp;
 }
 
