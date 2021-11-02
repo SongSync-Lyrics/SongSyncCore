@@ -16,24 +16,21 @@
 
 <body>
     <div id='display'></div>
-    <section class='container'>
+    <section class='container' id="container">
         <div class='background-image'>
-            <form id='form' action=''>
-                <div class='main-text'>
-                    <p>Song Sync App</p>
-                    <div class='centering-card'>
-                        <div class='inputs' id='inputs'>
-                            <div class='sub-inputs' id='subInputs'>
-                                <button type='submit' id='initialCreateButton' class='btn-start home-btn enter-button'>
-                                    Create Session
-                                </button>
-
-                                <button type='submit' id='initialJoinButton' class='btn-start home-btn enter-button'>
-                                    Join Session
-                                </button>
-
-                            </div>
-
+            <div class='main-text'>
+                <p>Song Sync App</p>
+                <div class='centering-card'>
+                    <div class='inputs' id='inputs'>
+                        <div class='sub-inputs' id='subInputs'>
+                            <button type='submit' id='initialCreateButton' class='btn-start home-btn enter-button'>
+                                Create Session
+                            </button>
+                            <button type='submit' id='initialJoinButton' class='btn-start home-btn enter-button'>
+                                Join Session
+                            </button>
+                        </div>
+                        <form id="followerJoinForm">
                             <input type='text' id='input' name='input' class='input-code'
                                 placeholder='Enter Session Code' />
                             <div class='enter-session' id='enterSession'>
@@ -41,9 +38,11 @@
                                     Join Session
                                 </button>
                             </div>
-
+                        </form>
+                        <form id="leaderCreateForm">
                             <div class='chord-pro-container' id='chordProContainer'>
-                                <label class='chord-pro-text'>To create a session please upload a chord pro file:</label>
+                                <label class='chord-pro-text'>To create a session please upload a chord pro
+                                    file:</label>
                                 <div class='sub-chord-pro-container'>
                                     <input type='file' id='chordproInput' name='chordproInput' class='chord-pro-file' />
                                     <button type='submit' id='startButton' class='btn-start home-btn enter-button'>
@@ -51,10 +50,10 @@
                                     </button>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
         <!-- Front End Javscript reference-->
         <script src='/js/frontEndScripts.js'></script>

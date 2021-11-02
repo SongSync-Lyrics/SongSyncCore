@@ -6,10 +6,11 @@ let room
 //const startingSection = document.querySelector('.starting-section')
 const homeBtn = document.querySelector('.home-btn')
 
-let form = document.getElementById('form')
+let leaderCreateForm = document.getElementById('leaderCreateForm')
+let followerCreateForm = document.getElementById('followerJoinForm')
 let input = document.getElementById('input')
 let inputcp = document.getElementById('chordproInput')
-let song
+let song;
 
 document.getElementById('chordproInput')
     .addEventListener('change', function () {
@@ -51,7 +52,25 @@ document.getElementById('chordproInput')
 
 // When startButton is clicked, send response to server
 //startButton.addEventListener('click', () => {
-form.addEventListener('submit', function (e) {
+leaderCreateForm.addEventListener('submit', function (e) {
+    e.preventDefault()
+    if (input.value) {
+        room = input.value
+
+        if (song != undefined){
+            console.log("ChordPro File found")
+            socket.emit('startGame', input.value)
+            socket.emit('displayLeaderLyrics', input.value, song)
+        } else{
+            console.log("Running follower code")
+            socket.emit('startGame', input.value)
+            socket.emit('displayFollowerLyrics', input.value)
+        }
+        
+        console.log("Joining room: " + input.value)
+    }
+})
+followerCreateForm.addEventListener('submit', function (e) {
     e.preventDefault()
     if (input.value) {
         room = input.value
@@ -70,6 +89,7 @@ form.addEventListener('submit', function (e) {
     }
 })
 
+
 homeBtn.addEventListener('click', () => {
     socket.emit('listConnectedUsers')
 })
@@ -82,7 +102,7 @@ function clearForms() {
 // Function that hides startButton, displays redSquare
 function hideStartButton() {
     clearForms()
-    form.style.display = "none"
+    leaderCreateForm.style.display = "none"
 }
 
 socket.on('clearForm', () => {

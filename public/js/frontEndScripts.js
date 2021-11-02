@@ -5,10 +5,13 @@ let sessionCode = document.getElementById('input');
 let chordProContainer = document.getElementById('chordProContainer');
 let initialJoinButton = document.getElementById('initialJoinButton');
 let enterSession = document.getElementById('enterSession');
+let container = document.getElementById('container');
+
 
 
 startButton.forEach((startButton) => startButton.addEventListener('click', function () {
     document.body.style.background = '#fff';
+    container.style.display = 'none';
 }));
 
 
