@@ -1,73 +1,91 @@
 // Initialize Socket.IO
-let socket = io()
-let room
+let socket = io();
+let room;
 
 // References to HTML file
 //const startingSection = document.querySelector('.starting-section')
-const homeBtn = document.querySelector('.home-btn')
+const homeBtn = document.querySelector('.home-btn');
 
 let leaderCreateForm = document.getElementById('leaderCreateForm')
 let followerCreateForm = document.getElementById('followerJoinForm')
 let input = document.getElementById('input')
 let inputcp = document.getElementById('chordproInput')
 let song;
+let input = document.getElementById('input');
+let inputcp = document.getElementById('chordproInput');
+let song;
+let validFile = true;
+
+const filetypes = ['cho', 'crd', 'chopro', 'chord', 'pro'];
 
 document.getElementById('chordproInput')
     .addEventListener('change', function () {
-        let fr = new FileReader();
-        fr.onload = function () {
-            //console.log(inputcp)
-            inputcp = fr.result;
-            let title = getTitle(inputcp);
-            let subtitle = getSubtitle(inputcp);
-            let artist = getArtist(inputcp);
-            let composer = getComposer(inputcp);
-            let lyricist = getLyricist(inputcp);
-            let copyright = getCopyright(inputcp);
-            let album = getAlbum(inputcp);
-            let year = getYear(inputcp);
-            let key = getKey(inputcp);
-            let time = getTime(inputcp);
-            let tempo = getTempo(inputcp);
-            let duration = getDuration(inputcp);
-            lyrics = getLyrics(inputcp);
+        let fileName = this.files[0].name;
+        if (fileName.includes('.cho') || fileName.includes('.crd') ||
+            fileName.includes('.chopro') || fileName.includes('.chord') ||
+            fileName.includes('.pro')) {
+            let fr = new FileReader();
+            fr.onload = function () {
+                inputcp = fr.result;
+                let title = getTitle(inputcp);
+                let subtitle = getSubtitle(inputcp);
+                let artist = getArtist(inputcp);
+                let composer = getComposer(inputcp);
+                let lyricist = getLyricist(inputcp);
+                let copyright = getCopyright(inputcp);
+                let album = getAlbum(inputcp);
+                let year = getYear(inputcp);
+                let key = getKey(inputcp);
+                let time = getTime(inputcp);
+                let tempo = getTempo(inputcp);
+                let duration = getDuration(inputcp);
+                lyrics = getLyrics(inputcp);
 
-            song = {};
-            song["title"] = title;
-            song["subtitle"] = subtitle;
-            song["artist"] = artist;
-            song["composer"] = composer;
-            song["lyricist"] = lyricist;
-            song["copyright"] = copyright;
-            song["album"] = album;
-            song["year"] = year;
-            song["key"] = key;
-            song["time"] = time;
-            song["tempo"] = tempo;
-            song["duration"] = duration;
-            song["lyrics"] = lyrics;
+                song = {};
+                song["title"] = title;
+                song["subtitle"] = subtitle;
+                song["artist"] = artist;
+                song["composer"] = composer;
+                song["lyricist"] = lyricist;
+                song["copyright"] = copyright;
+                song["album"] = album;
+                song["year"] = year;
+                song["key"] = key;
+                song["time"] = time;
+                song["tempo"] = tempo;
+                song["duration"] = duration;
+                song["lyrics"] = lyrics;
+            }
+            fr.readAsText(this.files[0]);
+            validFile = true;
+        } else {
+            alert("This is not a valid ChordPro file");
+            validFile = false;
         }
-        fr.readAsText(this.files[0]);
     });
 
 // When startButton is clicked, send response to server
 //startButton.addEventListener('click', () => {
 leaderCreateForm.addEventListener('submit', function (e) {
     e.preventDefault()
-    if (input.value) {
-        room = input.value
+    if (validFile == false) {
+        inputcp.value = null;
+    } else {
+        if (input.value) {
+            room = input.value
 
-        if (song != undefined){
-            console.log("ChordPro File found")
-            socket.emit('startGame', input.value)
-            socket.emit('displayLeaderLyrics', input.value, song)
-        } else{
-            console.log("Running follower code")
-            socket.emit('startGame', input.value)
-            socket.emit('displayFollowerLyrics', input.value)
+            if (song != undefined) {
+                console.log("ChordPro File found")
+                socket.emit('startGame', input.value)
+                socket.emit('displayLeaderLyrics', input.value, song)
+            } else {
+                console.log("Running follower code")
+                socket.emit('startGame', input.value)
+                socket.emit('displayFollowerLyrics', input.value)
+            }
+
+            console.log("Joining room: " + input.value)
         }
-        
-        console.log("Joining room: " + input.value)
     }
 })
 followerCreateForm.addEventListener('submit', function (e) {
@@ -96,7 +114,7 @@ homeBtn.addEventListener('click', () => {
 
 function clearForms() {
     input.value = ''
-    inputcp.value = ''
+    inputcp.value = null;
 }
 
 // Function that hides startButton, displays redSquare
