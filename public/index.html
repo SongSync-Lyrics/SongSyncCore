@@ -11,6 +11,9 @@
     <!-- Links -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+        <script src="https://kit.fontawesome.com/d09eed82ec.js" crossorigin="anonymous"></script>
+
+
     <link rel="stylesheet" href="css/main.css" />
 </head>
 
@@ -20,10 +23,15 @@
         <div class='background-image'>
             <div class='main-text'>
                 <p>Song Sync App</p>
-                <div class='centering-card'>
+
+                <div class='centering-card' id="centeringCard">
+                    <div class="back-arrow">
+                        <a href="javascript:window.location.href=window.location.href" class="left-arrow"> <i class="fas fa-chevron-left left-arrow"></i></a>
+                    </div>
+
                     <div class='inputs' id='inputs'>
                         <div class='sub-inputs' id='subInputs'>
-                            <button type='submit' id='initialCreateButton' class='btn-start home-btn enter-button'>
+                            <button id='initialCreateButton' class='btn-start home-btn enter-button'>
                                 Create Session
                             </button>
                             <button type='submit' id='initialJoinButton' class='btn-start home-btn enter-button'>
