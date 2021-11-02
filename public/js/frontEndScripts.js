@@ -5,10 +5,18 @@ let sessionCode = document.getElementById('input');
 let chordProContainer = document.getElementById('chordProContainer');
 let initialJoinButton = document.getElementById('initialJoinButton');
 let enterSession = document.getElementById('enterSession');
+let container = document.getElementById('container');
+let centeringCard = document.getElementById('centeringCard');
 
+
+
+if(initialCreateButton.click = true){
+    centeringCard.style.height = '24vh';
+}
 
 startButton.forEach((startButton) => startButton.addEventListener('click', function () {
     document.body.style.background = '#fff';
+    container.style.display = 'none';
 }));
 
 
