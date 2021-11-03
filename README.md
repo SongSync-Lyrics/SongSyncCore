@@ -7,9 +7,11 @@ Share lyrics with friends. Featuring online rooms.
 ### Using the following libraries
 
 * Socket.io
+* Socket.io-client
 * Express.js
 * Node.js
 * ChordSheetJs
 * Mocha & Chai
+* Http & Path
 
 ## Releasing under the GPL 2.0 License
