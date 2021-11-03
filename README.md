@@ -13,5 +13,6 @@ Share lyrics with friends. Featuring online rooms.
 * ChordSheetJs
 * Mocha & Chai
 * Http & Path
+* Cucumber.io
 
 ## Releasing under the GPL 2.0 License
