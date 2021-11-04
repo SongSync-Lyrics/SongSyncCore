@@ -200,7 +200,9 @@ body {
     flex-direction: column;
     width: 100%;
 }
-
+.main-text > img{
+    text-align: center;
+}
 .inputs {
     display: flex;
     flex-direction: column;
@@ -335,7 +337,7 @@ body {
 }
 
 .logo {
-    width: 60%;
+    width: 50%;
     display: flex;
     align-self: center;
     padding-bottom: 20px;
