@@ -1,169 +1,185 @@
 * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  font-family: Montserrat;
-  font-size: 12px;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: Montserrat;
+    font-size: 12px;
 }
+
 body {
-  background: linear-gradient(
-      rgba(255, 255, 255, 0.2),
-      rgba(255, 255, 255, 0.2),
-      rgba(255, 255, 255, 0.2),
-      rgba(255, 255, 255, 0.2)
-    ),
-    url("pictures/Ukelele.jpg") no-repeat center;
-  background-size: cover;
-  background-attachment: fixed;
-  height: 100vh;
+    background: linear-gradient( rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url("pictures/Ukelele.jpg") no-repeat center;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100vh;
 }
+
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
 }
+
 .centering-card {
-  width: 30vw;
-  height: 20vh;
-  display: flex;
-  justify-content: center;
-  border-radius: 1.25rem;
-  flex-direction: column;
-  background-color: #dadada;
-  align-content: center;
-  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.5), 0 12px 20px 0 rgba(0, 0, 0, 0.5);
-  object-fit: cover;
-  flex-wrap: wrap;
+    width: 30vw;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    border-radius: 1.25rem;
+    flex-direction: column;
+    background-color: #dadada;
+    align-content: center;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.5), 0 12px 20px 0 rgba(0, 0, 0, 0.5);
+    object-fit: cover;
+    flex-wrap: wrap;
 }
+
 .main-text {
-  display: flex;
-  align-content: center;
-  flex-wrap: wrap;
-  flex-direction: column;
-  width: 100%;
-  flex-shrink: 1;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100%;
+    flex-shrink: 1;
 }
+
 .inputs {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding-right: 50px;
-  padding-left: 50px;
-  justify-content: space-between;
-  align-content: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-right: 50px;
+    padding-left: 50px;
+    justify-content: space-between;
+    align-content: center;
 }
-.main-text > p {
-  font-size: 3.5rem;
-  vertical-align: top;
-  margin-bottom: 20px;
-  font-style: italic;
-  color: #f2f2f2;
-  font-weight: 600;
-  width: 30vw;
-  text-align: center;
+
+.main-text>p {
+    font-size: 3.5rem;
+    vertical-align: top;
+    margin-bottom: 20px;
+    font-style: italic;
+    color: #f2f2f2;
+    font-weight: 600;
+    width: 30vw;
+    text-align: center;
 }
+
 .input-code {
-  color: gray;
-  background-color: #ffff;
-  width: 100%;
-  align-self: center;
-  height: 5vh;
-  text-align: center;
-  border-radius: 0.5rem;
-  vertical-align: middle;
-  font-size: 1.75rem;
-  font-weight: 600;
-  border: 1px solid black;
-  margin-top: 5px;
-  display: none;
+    color: gray;
+    background-color: #ffff;
+    width: 100%;
+    align-self: center;
+    height: 5vh;
+    text-align: center;
+    border-radius: 0.5rem;
+    vertical-align: middle;
+    font-size: 1.75rem;
+    font-weight: 600;
+    border: 1px solid black;
+    margin-top: 5px;
+    display: none;
 }
+
 ::placeholder {
-  color: gray;
-  opacity: 1;
-  font-size: 1.25rem;
+    color: gray;
+    opacity: 1;
+    font-size: 1.25rem;
 }
+
 .enter-button {
-  color: #ffffff;
-  margin-top: 5px;
-  width: 49%;
-  align-self: center;
-  cursor: pointer;
-  border-radius: 0.5rem;
-  height: 9vh;
-  font-size: 1.5rem;
-  border: 1px solid black;
-  transition: all 0.35s;
-  background-color: #2b6777;
+    color: #ffffff;
+    margin-top: 5px;
+    width: 49%;
+    align-self: center;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    height: 9vh;
+    font-size: 1.5rem;
+    border: 1px solid black;
+    transition: all 0.35s;
+    background-color: #2b6777;
 }
+
 .enter-button:hover {
-  background-color: #56abc2;
+    background-color: #56abc2;
 }
+
 .enter-button:active {
-  background-color: #1b414b;
+    background-color: #1b414b;
 }
+
 #display {
-  margin-left: 20px;
-  font-size: 1.5rem;
-  font-family: sans-serif;
+    margin-left: 20px;
+    font-size: 1.5rem;
+    font-family: sans-serif;
 }
+
 .sub-inputs {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
+
 .chord-pro-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  display: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    display: none;
 }
 
 .chord-pro-text {
-  text-align: left;
-  font-size: 1.3rem;
-}
-.chord-pro-file {
-  font-size: 1.3rem;
-  text-align: left;
-}
-.sub-chord-pro-container {
-  display: flex;
-  align-content: center;
+    text-align: left;
+    font-size: 1.3rem;
 }
 
-.sub-chord-pro-container > .chord-pro-file {
-  align-content: center;
-  align-self: center;
+.chord-pro-file {
+    font-size: 1.3rem;
+    text-align: left;
 }
-.sub-chord-pro-container > .enter-button {
-  height: inherit;
+
+.sub-chord-pro-container {
+    display: flex;
+    align-content: center;
 }
+
+.sub-chord-pro-container>.chord-pro-file {
+    align-content: center;
+    align-self: center;
+}
+
+.sub-chord-pro-container>.enter-button {
+    height: inherit;
+}
+
 .enter-session {
-  display: none;
-  width: 100%;
+    display: none;
+    width: 100%;
 }
-.enter-session > .enter-button {
-  width: 100%;
-  height: 5vh;
+
+.enter-session>.enter-button {
+    width: 100%;
+    height: 5vh;
 }
+
 .lyrics {
-  font-weight: 600;
-  font-size: 1.3rem;
+    font-weight: 600;
+    font-size: 1.3rem;
 }
+
 .left-arrow {
-  max-width: min-content;
-  color: black;
-  align-self: flex-start;
+    max-width: min-content;
+    color: black;
+    align-self: flex-start;
 }
+
 .back-arrow {
-  align-self: flex-start;
-  position: fixed;
-  padding-bottom: 8%;
-  padding-left: 10px;
+    align-self: flex-start;
+    position: fixed;
+    padding-bottom: 8%;
+    padding-left: 10px;
 }
 
 body {
@@ -199,6 +215,10 @@ body {
     flex-wrap: wrap;
     flex-direction: column;
     width: 100%;
+}
+
+.main-text>img {
+    text-align: center;
 }
 
 .inputs {
@@ -321,7 +341,8 @@ body {
     height: 5vh;
 }
 
-.lyrics, .chord {
+.lyrics,
+.chord {
     padding-right: 5px;
 }
 
@@ -335,48 +356,50 @@ body {
 }
 
 .logo {
-    width: 60%;
+    width: 30vw;
     display: flex;
     align-self: center;
     padding-bottom: 20px;
 }
+
+
 /* Responsive css */
 
 @media screen and (max-width: 1250px) {
-  .sub-chord-pro-container {
-    flex-flow: wrap;
-  }
-  .centering-card {
-    width: 40vw;
-  }
-  .main-text > p {
-    width: auto;
-  }
+    .sub-chord-pro-container {
+        flex-flow: wrap;
+    }
+    .centering-card {
+        width: 40vw;
+    }
+    .main-text>p {
+        width: auto;
+    }
 }
-@media only screen and (min-device-width: 1000px)
-   and (max-device-width: 1366px)
-   and (-webkit-min-device-pixel-ratio: 2) {
+
+@media only screen and (min-device-width: 1000px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
     .back-arrow {
         padding-bottom: 25%;
     }
 }
 
 @media screen and (max-width: 1000px) {
-  .inputs {
-    padding-right: 25px;
-    padding-left: 25px;
-  }
-  .centering-card {
-    width: 40vw;
-  }
-  .main-text > p {
-    width: auto;
-  }
+    .inputs {
+        padding-right: 25px;
+        padding-left: 25px;
+    }
+    .centering-card {
+        width: 40vw;
+    }
+    .main-text>p {
+        width: auto;
+    }
 }
+
 @media screen and (max-width: 760px) {
-  .back-arrow {
-    padding-bottom: 12%;
-  }
+    .back-arrow {
+        padding-bottom: 12%;
+    }
     .sub-chord-pro-container {
         flex-flow: wrap;
     }
@@ -402,50 +425,6 @@ body {
 }
 
 @media screen and (max-width: 600px) {
-  .centering-card {
-    width: 60vw;
-    height: 22vh;
-  }
-  .main-text {
-    display: flex;
-    align-content: center;
-    flex-wrap: wrap;
-    flex-direction: column;
-    width: 100%;
-  }
-  .main-text > p {
-    font-size: 3rem;
-    width: auto;
-  }
-  .back-arrow {
-    padding-bottom: 15%;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .centering-card {
-    width: 80vw;
-    height: 22vh;
-  }
-  .main-text {
-    display: flex;
-    align-content: center;
-    flex-wrap: wrap;
-    flex-direction: column;
-    width: 100%;
-  }
-  .main-text > p {
-    font-size: 3rem;
-    width: auto;
-  }
-  .back-arrow {
-    padding-bottom: 18%;
-  }
-}
-@media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (-webkit-device-pixel-ratio: 3) { 
-    .back-arrow{
-      padding-bottom: 30%;
-  }
     .centering-card {
         width: 60vw;
         height: 22vh;
@@ -461,14 +440,57 @@ body {
         font-size: 3rem;
         width: auto;
     }
-
+    .back-arrow {
+        padding-bottom: 15%;
+    }
 }
 
-@media only screen and (min-device-width: 816px) and (max-device-height: 1350px) { 
-    .back-arrow{
+@media screen and (max-width: 400px) {
+    .centering-card {
+        width: 80vw;
+        height: 22vh;
+    }
+    .main-text {
+        display: flex;
+        align-content: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+        width: 100%;
+    }
+    .main-text>p {
+        font-size: 3rem;
+        width: auto;
+    }
+    .back-arrow {
+        padding-bottom: 18%;
+    }
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+    .back-arrow {
+        padding-bottom: 30%;
+    }
+    .centering-card {
+        width: 60vw;
+        height: 22vh;
+    }
+    .main-text {
+        display: flex;
+        align-content: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+        width: 100%;
+    }
+    .main-text>p {
+        font-size: 3rem;
+        width: auto;
+    }
+}
+
+@media only screen and (min-device-width: 816px) and (max-device-height: 1350px) {
+    .back-arrow {
         padding-bottom: 8%;
     }
-
 }
 
 @media screen and (max-width: 400px) {
@@ -488,4 +510,3 @@ body {
         width: auto;
     }
 }
-

@@ -4,9 +4,6 @@ let room;
 
 // References to HTML file
 //const startingSection = document.querySelector('.starting-section')
-const homeBtn = document.querySelector('.home-btn');
-
-
 let leaderCreateForm = document.getElementById('leaderCreateForm')
 let followerCreateForm = document.getElementById('followerJoinForm')
 let input = document.getElementById('input')
@@ -103,11 +100,6 @@ followerCreateForm.addEventListener('submit', function (e) {
         
         console.log("Joining room: " + input.value)
     }
-})
-
-
-homeBtn.addEventListener('click', () => {
-    socket.emit('listConnectedUsers')
 })
 
 function clearForms() {
