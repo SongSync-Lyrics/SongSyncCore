@@ -1,5 +1,5 @@
 // Initialize Socket.IO
-let socket = io();
+const socket = io();
 let room;
 
 // References to HTML file
@@ -14,13 +14,13 @@ let validFile = true;
 const filetypes = ['cho', 'crd', 'chopro', 'chord', 'pro'];
 
 document.getElementById('chordproInput')
-    .addEventListener('change', function () {
+    .addEventListener('change', function() {
         let fileName = this.files[0].name;
         if (fileName.includes('.cho') || fileName.includes('.crd') ||
             fileName.includes('.chopro') || fileName.includes('.chord') ||
             fileName.includes('.pro')) {
             let fr = new FileReader();
-            fr.onload = function () {
+            fr.onload = function() {
                 inputcp = fr.result;
                 let title = getTitle(inputcp);
                 let subtitle = getSubtitle(inputcp);
@@ -61,7 +61,7 @@ document.getElementById('chordproInput')
 
 // When startButton is clicked, send response to server
 //startButton.addEventListener('click', () => {
-leaderCreateForm.addEventListener('submit', function (e) {
+leaderCreateForm.addEventListener('submit', function(e) {
     e.preventDefault()
     if (validFile == false) {
         inputcp.value = null;
@@ -82,25 +82,26 @@ leaderCreateForm.addEventListener('submit', function (e) {
             console.log("Joining room: " + input.value)
         }
     }
-})
-followerCreateForm.addEventListener('submit', function (e) {
+});
+
+followerCreateForm.addEventListener('submit', function(e) {
     e.preventDefault()
     if (input.value) {
         room = input.value
 
-        if (song != undefined){
+        if (song != undefined) {
             console.log("ChordPro File found")
             socket.emit('startGame', input.value)
             socket.emit('displayLeaderLyrics', input.value, song)
-        } else{
+        } else {
             console.log("Running follower code")
             socket.emit('startGame', input.value)
             socket.emit('displayFollowerLyrics', input.value)
         }
-        
+
         console.log("Joining room: " + input.value)
     }
-})
+});
 
 function clearForms() {
     input.value = ''
@@ -115,16 +116,16 @@ function hideStartButton() {
 
 socket.on('clearForm', () => {
     clearForms()
-})
+});
 
 // When socket.io receives 'startGame' response from server, run hideStartButton
 socket.on('startGame', () => {
     hideStartButton()
-})
+});
 
 socket.on('displayLyrics', (lyrics) => {
     document.getElementById('display').innerHTML = lyrics;
-})
+});
 
 //CHORDPRO STUFF
 function formatLine(line) {

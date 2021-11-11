@@ -1,21 +1,23 @@
 // Initialization of backend
-const path = require('path')
-const http = require('http')
-const express = require('express')
-const socketIO = require('socket.io')
-const app = express()
-const server = http.createServer(app)
-const io = socketIO(server)
-const publicPath = path.join(__dirname, '/../public')
-const port = process.env.PORT || 20411
+const path = require('path');
+const http = require('http');
+const express = require('express');
+const socketIO = require('socket.io');
+const axios = require('axios');
+
+const app = express();
+const server = http.createServer(app);
+const io = socketIO(server);
+const publicPath = path.join(__dirname, '/../public');
+const port = process.env.PORT || 20411;
 
 const ChordSheetJS = require('chordsheetjs').default;
-const roomMap = new Map()
+const roomMap = new Map();
 
-app.use(express.static(publicPath))
+app.use(express.static(publicPath));
 server.listen(port, () => {
-    console.log('Server is up on port ' + port + '.')
-})
+    console.log('Server is up on port ' + port + '.');
+});
 
 // Start Socket.IO connection with clients
 io.on('connection', (socket) => {
@@ -47,9 +49,20 @@ io.on('connection', (socket) => {
     socket.on('displayFollowerLyrics', (room) => {
         let lyrics = roomMap.get(room)[0];
 
-        io.to(room).emit('displayLyrics', lyrics);     
+        io.to(room).emit('displayLyrics', lyrics);
     });
 });
+
+async function getChordProFromUrl(url) {
+    try {
+        const result = await axios.get(url)
+        console.log("result is = " + result.data);
+        return result.data;
+    } catch (err) {
+        console.log('Error ' + err.statusCode);
+        return undefined;
+    };
+}
 
 function isLeaderAction(socketid, room) {
     let leader = roomMap.get(room)[1];
@@ -74,7 +87,7 @@ function removeLeaderIfDisconnected(socketid) {
 
     if (room != undefined) {
         roomMap.delete(room);
-    }   
+    }
 }
 
 function isRoomEmpty(room) {
@@ -142,8 +155,7 @@ module.exports = {
     isRoomEmpty,
     removeEmptyRooms,
     roomMapHasRoom,
-    leaderJoinAction,
-    followerJoinAction,
+    getChordProFromUrl,
     chordProFormat,
     getActiveRooms
 }
