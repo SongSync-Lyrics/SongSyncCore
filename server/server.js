@@ -4,6 +4,7 @@ const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
 const axios = require('axios');
+const fs = require('fs');
 
 const app = express();
 const server = http.createServer(app);
@@ -21,9 +22,6 @@ server.listen(port, () => {
 
 // Start Socket.IO connection with clients
 io.on('connection', (socket) => {
-
-    // Prevents crashes due to preexisting file upload
-    io.to(socket.id).emit('clearForm');
 
     socket.on('disconnect', () => {
         removeLeaderIfDisconnected(socket.id);
@@ -51,6 +49,15 @@ io.on('connection', (socket) => {
 
         io.to(room).emit('displayLyrics', lyrics);
     });
+
+    socket.on('getChordProFromUrl', async(url) => {
+        console.log(url);
+        let result = await getChordProFromUrl(url);
+        // let blob = new Blob([result], { type: 'text/plain' });
+        // let file = new File([blob], "song.txt", { type: "text/plain" });
+
+        io.to(socket.id).emit('parseSongFile', result);
+    })
 });
 
 async function getChordProFromUrl(url) {
