@@ -4,8 +4,8 @@ let leaderCreateForm = document.getElementById('leaderCreateForm');
 let followerCreateForm = document.getElementById('followerJoinForm');
 let input = document.getElementById('input');
 let chordproFileInput = document.getElementById('chordproFile');
-let chordproUrlInput = document.getElementById('chordproLink');
-let uploadButton = document.getElementById('uploadButton');
+let chordproUrlInput = document.getElementById('chordProUrl');
+let uploadButton = document.getElementById('nextButton');
 
 let song;
 let validFile = true;
