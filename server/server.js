@@ -47,8 +47,21 @@ io.on('connection', (socket) => {
     socket.on('displayFollowerLyrics', (room) => {
         let lyrics = roomMap.get(room)[0];
 
-        io.to(room).emit('displayLyrics', lyrics);     
+        io.to(room).emit('displayLyrics', lyrics);
     });
+
+    socket.on('scroll', (room, visibleTables) => {
+        vt = visibleTables;
+        io.to(room).emit('move', vt);
+    });
+
+    /*socket.on('scrollDown', (room) => {
+        io.to(room).emit('moveDown');
+    });
+
+    socket.on('scrollUp', (room) => {
+        io.to(room).emit('moveUp');
+    });*/
 });
 
 function isLeaderAction(socketid, room) {
@@ -74,7 +87,7 @@ function removeLeaderIfDisconnected(socketid) {
 
     if (room != undefined) {
         roomMap.delete(room);
-    }   
+    }
 }
 
 function isRoomEmpty(room) {
@@ -104,6 +117,7 @@ function leaderJoinAction(room, socket) {
     socket.join(room);
 
     io.to(room).emit('startGame');
+    io.to(room).emit('enableScroll');
 }
 
 function followerJoinAction(room, socket) {

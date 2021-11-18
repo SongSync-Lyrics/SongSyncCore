@@ -15,7 +15,7 @@ if(initialCreateButton.click = true){
 }
 
 startButton.forEach((startButton) => startButton.addEventListener('click', function () {
-    document.body.style.background = '#fff';
+    document.body.style.background = "black";
     container.style.display = 'none';
 }));
 

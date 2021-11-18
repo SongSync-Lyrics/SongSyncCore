@@ -11,6 +11,19 @@ let inputcp = document.getElementById('chordproInput')
 let song;
 let validFile = true;
 
+/*// Display Variables
+var divPos;
+var screenHeight;
+var displayHeight;
+var rowHeight;
+var display;
+var scrollSpeed;
+var rows;
+//*/
+
+var visibleTables = [];
+var vtl;
+
 const filetypes = ['cho', 'crd', 'chopro', 'chord', 'pro'];
 
 document.getElementById('chordproInput')
@@ -88,16 +101,16 @@ followerCreateForm.addEventListener('submit', function (e) {
     if (input.value) {
         room = input.value
 
-        if (song != undefined){
+        if (song != undefined) {
             console.log("ChordPro File found")
             socket.emit('startGame', input.value)
             socket.emit('displayLeaderLyrics', input.value, song)
-        } else{
+        } else {
             console.log("Running follower code")
             socket.emit('startGame', input.value)
             socket.emit('displayFollowerLyrics', input.value)
         }
-        
+
         console.log("Joining room: " + input.value)
     }
 })
@@ -123,8 +136,109 @@ socket.on('startGame', () => {
 })
 
 socket.on('displayLyrics', (lyrics) => {
+    document.getElementById('screen').style.display = 'flex';
+    document.getElementById('display').style.display = 'block';
+    document.getElementById('song-info').style.display = 'flex';
     document.getElementById('display').innerHTML = lyrics;
+    document.getElementById('session-name').innerHTML = "Session: " + room;
+    //document.getElementById('song-title').innerHTML = song["title"];
+    var elements = document.querySelectorAll('.row');
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].id = i;
+        visibleTables.push(0);
+    }
+    for (let i = 0; i < 4; i++) {
+        visibleTables[i] = 1;
+    }
+    vtl = elements.length;
+    displayTables();
 })
+
+socket.on('enableScroll', () => {
+    console.log('scroll enabled');
+    document.addEventListener("keydown", keyDownScroll, false);
+})
+
+/*socket.on('moveDiv', (pos) => {
+    document.getElementById('display').style.top = pos + "%";
+})*/
+
+socket.on('move', (vt) => {
+    visibleTables = vt;
+    visibleTables.length = vtl;
+    displayTables();
+})
+
+function displayTables() {
+    console.log(visibleTables);
+    for (let i = 0; i < visibleTables.length; i++) {
+        if (visibleTables[i] == 0 && document.getElementById(i) != null) {
+            document.getElementById(i).style.display = "none";
+        } else if (visibleTables[i] == 1 && document.getElementById(i) != null) {
+            document.getElementById(i).style.display = "block";
+        }
+    }
+}
+
+function moveDown() {
+    if (visibleTables[visibleTables.length - 1] != 1) {
+        var temp = 0;
+        for (let i = 0; i < visibleTables.length; i++) {
+            if (visibleTables[i] == 1) {
+                temp = i;
+                break;
+            }
+        }
+        visibleTables[temp] = 0;
+        visibleTables[temp + 4] = 1;
+    }
+}
+
+function moveUp() {
+    if (visibleTables[0] != 1) {
+        var temp = 0;
+        for (let i = visibleTables.length - 1; i > 0; i--) {
+            if (visibleTables[i] == 1) {
+                temp = i;
+                break;
+            }
+        }
+        visibleTables[temp] = 0;
+        visibleTables[temp - 4] = 1;
+    }
+}
+
+function keyDownScroll(e) {
+    //speed = document.getElementsByClassName('row')[0].clientHeight;
+    console.log(visibleTables);
+    var keyCode = e.keyCode;
+    if (keyCode == 40 || keyCode == 34) {
+        console.log("down");
+        moveDown();
+        socket.emit('scroll', room, visibleTables);
+        /*console.log("DivPos: " + divPos);
+        let x = divPos - scrollSpeed;
+        console.log("x: " + x);
+        document.getElementById('display').style.top = x + "%";
+        divPos = x;
+        console.log("DivPos: " + divPos);
+        socket.emit('scroll', room, divPos);
+        //socket.emit('scrollDown', room);*/
+    } else if (keyCode == 38 || keyCode == 33) {
+        console.log("up");
+        moveUp();
+        socket.emit('scroll', room, visibleTables);
+        /*console.log("DivPos: " + divPos);
+        let x = divPos + scrollSpeed;
+        console.log("x: " + x);
+        display.style.top = x + "%";
+        divPos = x;
+        console.log("DivPos: " + divPos);
+        socket.emit('scroll', room, divPos);
+        //socket.emit('scrollUp', room);*/
+    }
+    //console.log("Div Position: " + divPos);
+}
 
 //CHORDPRO STUFF
 function formatLine(line) {
@@ -141,7 +255,9 @@ function getLyrics(song) {
     let finalSong = "";
     for (let i = 0; i < split.length; i++) {
         if ((!(split[i].includes('{') || split[i].includes('/')))) {
-            finalSong += split[i] + "\n";
+            if (split[i].trim().length != 0) {
+                finalSong += split[i] + "\n";
+            }
         }
     }
     split = finalSong.split('\n');
