@@ -1,70 +1,119 @@
-// Initialize Socket.IO
-let socket = io();
-let room;
+const socket = io();
 
-// References to HTML file
-//const startingSection = document.querySelector('.starting-section')
-let leaderCreateForm = document.getElementById('leaderCreateForm')
-let followerCreateForm = document.getElementById('followerJoinForm')
-let input = document.getElementById('input')
-let inputcp = document.getElementById('chordproInput')
+let leaderCreateForm = document.getElementById('leaderCreateForm');
+let followerCreateForm = document.getElementById('followerJoinForm');
+let input = document.getElementById('input');
+let chordproFileInput = document.getElementById('chordproFile');
+let chordproUrlInput = document.getElementById('chordproLink');
+let uploadButton = document.getElementById('uploadButton');
+
 let song;
 let validFile = true;
-
+let room;
 const filetypes = ['cho', 'crd', 'chopro', 'chord', 'pro'];
 
-document.getElementById('chordproInput')
-    .addEventListener('change', function () {
-        let fileName = this.files[0].name;
-        if (fileName.includes('.cho') || fileName.includes('.crd') ||
-            fileName.includes('.chopro') || fileName.includes('.chord') ||
-            fileName.includes('.pro')) {
-            let fr = new FileReader();
-            fr.onload = function () {
-                inputcp = fr.result;
-                let title = getTitle(inputcp);
-                let subtitle = getSubtitle(inputcp);
-                let artist = getArtist(inputcp);
-                let composer = getComposer(inputcp);
-                let lyricist = getLyricist(inputcp);
-                let copyright = getCopyright(inputcp);
-                let album = getAlbum(inputcp);
-                let year = getYear(inputcp);
-                let key = getKey(inputcp);
-                let time = getTime(inputcp);
-                let tempo = getTempo(inputcp);
-                let duration = getDuration(inputcp);
-                lyrics = getLyrics(inputcp);
+uploadButton.addEventListener('click', async() => {
+    console.log("Url upload")
+    await retrieveUrl();
+})
 
-                song = {};
-                song["title"] = title;
-                song["subtitle"] = subtitle;
-                song["artist"] = artist;
-                song["composer"] = composer;
-                song["lyricist"] = lyricist;
-                song["copyright"] = copyright;
-                song["album"] = album;
-                song["year"] = year;
-                song["key"] = key;
-                song["time"] = time;
-                song["tempo"] = tempo;
-                song["duration"] = duration;
-                song["lyrics"] = lyrics;
-            }
-            fr.readAsText(this.files[0]);
-            validFile = true;
-        } else {
-            alert("This is not a valid ChordPro file");
-            validFile = false;
+async function retrieveUrl() {
+    let url = chordproUrlInput.value;
+    if (url.includes('.cho') || url.includes('.crd') ||
+        url.includes('.chopro') || url.includes('.chord') ||
+        url.includes('.pro')) {
+        await socket.emit('getChordProFromUrl', (url));
+    } else {
+        alert("This is not a valid ChordPro file");
+        validFile = false;
+        chordproUrlInput.value = '';
+    }
+}
+
+socket.on('parseSongFile', (chordProInput) => {
+    let title = getTitle(chordProInput);
+    let subtitle = getSubtitle(chordProInput);
+    let artist = getArtist(chordProInput);
+    let composer = getComposer(chordProInput);
+    let lyricist = getLyricist(chordProInput);
+    let copyright = getCopyright(chordProInput);
+    let album = getAlbum(chordProInput);
+    let year = getYear(chordProInput);
+    let key = getKey(chordProInput);
+    let time = getTime(chordProInput);
+    let tempo = getTempo(chordProInput);
+    let duration = getDuration(chordProInput);
+    lyrics = getLyrics(chordProInput);
+
+    song = {};
+    song["title"] = title;
+    song["subtitle"] = subtitle;
+    song["artist"] = artist;
+    song["composer"] = composer;
+    song["lyricist"] = lyricist;
+    song["copyright"] = copyright;
+    song["album"] = album;
+    song["year"] = year;
+    song["key"] = key;
+    song["time"] = time;
+    song["tempo"] = tempo;
+    song["duration"] = duration;
+    song["lyrics"] = lyrics;
+
+    validFile = true;
+});
+
+chordproFileInput.addEventListener('change', function() {
+    console.log("file upload");
+    let fileName = this.files[0].name;
+    if (fileName.includes('.cho') || fileName.includes('.crd') ||
+        fileName.includes('.chopro') || fileName.includes('.chord') ||
+        fileName.includes('.pro')) {
+        let fr = new FileReader();
+        fr.onload = function() {
+            let chordProInput = fr.result;
+            let title = getTitle(chordProInput);
+            let subtitle = getSubtitle(chordProInput);
+            let artist = getArtist(chordProInput);
+            let composer = getComposer(chordProInput);
+            let lyricist = getLyricist(chordProInput);
+            let copyright = getCopyright(chordProInput);
+            let album = getAlbum(chordProInput);
+            let year = getYear(chordProInput);
+            let key = getKey(chordProInput);
+            let time = getTime(chordProInput);
+            let tempo = getTempo(chordProInput);
+            let duration = getDuration(chordProInput);
+            lyrics = getLyrics(chordProInput);
+
+            song = {};
+            song["title"] = title;
+            song["subtitle"] = subtitle;
+            song["artist"] = artist;
+            song["composer"] = composer;
+            song["lyricist"] = lyricist;
+            song["copyright"] = copyright;
+            song["album"] = album;
+            song["year"] = year;
+            song["key"] = key;
+            song["time"] = time;
+            song["tempo"] = tempo;
+            song["duration"] = duration;
+            song["lyrics"] = lyrics;
         }
-    });
+        fr.readAsText(this.files[0]);
+        validFile = true;
+    } else {
+        alert("This is not a valid ChordPro file");
+        validFile = false;
+        chordproFileInput.value = null;
+    }
+});
 
-// When startButton is clicked, send response to server
-//startButton.addEventListener('click', () => {
-leaderCreateForm.addEventListener('submit', function (e) {
+leaderCreateForm.addEventListener('submit', function(e) {
     e.preventDefault()
     if (validFile == false) {
-        inputcp.value = null;
+        chordproFileInput.value = null;
     } else {
         if (input.value) {
             room = input.value
@@ -82,49 +131,38 @@ leaderCreateForm.addEventListener('submit', function (e) {
             console.log("Joining room: " + input.value)
         }
     }
-})
-followerCreateForm.addEventListener('submit', function (e) {
+});
+
+followerCreateForm.addEventListener('submit', function(e) {
     e.preventDefault()
     if (input.value) {
         room = input.value
 
-        if (song != undefined){
+        if (song != undefined) {
             console.log("ChordPro File found")
             socket.emit('startGame', input.value)
             socket.emit('displayLeaderLyrics', input.value, song)
-        } else{
+        } else {
             console.log("Running follower code")
             socket.emit('startGame', input.value)
             socket.emit('displayFollowerLyrics', input.value)
         }
-        
+
         console.log("Joining room: " + input.value)
     }
-})
+});
 
-function clearForms() {
-    input.value = ''
-    inputcp.value = null;
-}
-
-// Function that hides startButton, displays redSquare
 function hideStartButton() {
-    clearForms()
     leaderCreateForm.style.display = "none"
 }
 
-socket.on('clearForm', () => {
-    clearForms()
-})
-
-// When socket.io receives 'startGame' response from server, run hideStartButton
 socket.on('startGame', () => {
     hideStartButton()
-})
+});
 
 socket.on('displayLyrics', (lyrics) => {
     document.getElementById('display').innerHTML = lyrics;
-})
+});
 
 //CHORDPRO STUFF
 function formatLine(line) {
@@ -161,7 +199,6 @@ function getTitle(song) {
     let title = "";
     for (let i = 0; i < split.length; i++) {
         if (split[i].includes("{title:") || split[i].includes('{ title:') || split[i].includes('{t:') || split[i].includes('{ t:')) {
-            //console.log(split[i]);
             title = split[i].replace("{title:", '');
             title = title.replace('{ title:', '');
             title = title.replace('{t:', '');
@@ -169,10 +206,10 @@ function getTitle(song) {
             title = title.replace('}', '');
             return title.trim();
         } else if (split[i].includes('{meta: title') || split[i].includes('{ meta: title') || split[i].includes('{meta: t') || split[i].includes('{ meta: t')) {
-            //console.log(split[i]);
             title = split[i].replace('{meta: title', '');
             title = title.replace('{ meta: title', '');
             title = title.replace('{meta: t', '');
+            chordproInput
             title = title.replace('{ meta: t', '');
             title = title.replace('}', '');
             return title.trim();
@@ -186,7 +223,6 @@ function getSubtitle(song) {
     let subtitle = "";
     for (let i = 0; i < split.length; i++) {
         if (split[i].includes("{subtitle:") || split[i].includes('{ subtitle:') || split[i].includes('{st:') || split[i].includes('{ st:')) {
-            //console.log(split[i]);
             subtitle = split[i].replace("{subtitle:", '');
             subtitle = subtitle.replace('{ subtitle:', '');
             subtitle = subtitle.replace('{st:', '');
@@ -194,7 +230,6 @@ function getSubtitle(song) {
             subtitle = subtitle.replace('}', '');
             return subtitle.trim();
         } else if (split[i].includes('{meta: subtitle') || split[i].includes('{ meta: subtitle') || split[i].includes('{meta: st') || split[i].includes('{ meta: st')) {
-            //console.log(split[i]);
             subtitle = split[i].replace('{meta: subtitle', '');
             subtitle = subtitle.replace('{ meta: subtitle', '');
             subtitle = subtitle.replace('{meta: st', '');
@@ -211,7 +246,6 @@ function getArtist(song) {
     let artist = "";
     for (let i = 0; i < split.length; i++) {
         if (split[i].includes("{artist:") || split[i].includes('{ artist:') || split[i].includes('{a:') || split[i].includes('{ a:')) {
-            //console.log(split[i]);
             artist = split[i].replace("{artist:", '');
             artist = artist.replace('{ artist:', '');
             artist = artist.replace('{a:', '');
@@ -219,7 +253,6 @@ function getArtist(song) {
             artist = artist.replace('}', '');
             return artist.trim();
         } else if (split[i].includes('{meta: artist') || split[i].includes('{ meta: artist') || split[i].includes('{meta: a') || split[i].includes('{ meta: a')) {
-            //console.log(split[i]);
             artist = split[i].replace('{meta: artist', '');
             artist = artist.replace('{ meta: artist', '');
             artist = artist.replace('{meta: a', '');
@@ -236,13 +269,11 @@ function getComposer(song) {
     let composer = "";
     for (let i = 0; i < split.length; i++) {
         if (split[i].includes("{composer:") || split[i].includes('{ composer:')) {
-            //console.log(split[i]);
             composer = split[i].replace("{composer:", '');
             composer = composer.replace('{ composer:', '');
             composer = composer.replace('}', '');
             return composer.trim();
         } else if (split[i].includes('{meta: composer') || split[i].includes('{ meta: composer')) {
-            //console.log(split[i]);
             composer = split[i].replace('{meta: composer', '');
             composer = composer.replace('{ meta: composer', '');
             composer = composer.replace('}', '');
@@ -257,13 +288,13 @@ function getLyricist(song) {
     let lyricist = "";
     for (let i = 0; i < split.length; i++) {
         if (split[i].includes("{lyricist:") || split[i].includes('{ lyricist:')) {
-            //console.log(split[i]);
+
             lyricist = split[i].replace("{lyricist:", '');
             lyricist = lyricist.replace('{ lyricist:', '');
             lyricist = lyricist.replace('}', '');
             return lyricist.trim();
         } else if (split[i].includes('{meta: lyricist') || split[i].includes('{ meta: lyricist')) {
-            //console.log(split[i]);
+
             lyricist = split[i].replace('{meta: lyricist', '');
             lyricist = lyricist.replace('{ meta: lyricist', '');
             lyricist = lyricist.replace('}', '');
@@ -278,13 +309,13 @@ function getCopyright(song) {
     let copyright = "";
     for (let i = 0; i < split.length; i++) {
         if (split[i].includes("{copyright:") || split[i].includes('{ copyright:')) {
-            //console.log(split[i]);
+
             copyright = split[i].replace("{copyright:", '');
             copyright = copyright.replace('{ copyright:', '');
             copyright = copyright.replace('}', '');
             return copyright.trim();
         } else if (split[i].includes('{meta: copyright') || split[i].includes('{ meta: copyright')) {
-            //console.log(split[i]);
+
             copyright = split[i].replace('{meta: copyright', '');
             copyright = copyright.replace('{ meta: copyright', '');
             copyright = copyright.replace('}', '');
@@ -299,13 +330,13 @@ function getAlbum(song) {
     let album = "";
     for (let i = 0; i < split.length; i++) {
         if (split[i].includes("{album:") || split[i].includes('{ album:')) {
-            //console.log(split[i]);
+
             album = split[i].replace("{album:", '');
             album = album.replace('{ album:', '');
             album = album.replace('}', '');
             return album.trim();
         } else if (split[i].includes('{meta: album') || split[i].includes('{ meta: album')) {
-            //console.log(split[i]);
+
             album = split[i].replace('{meta: album', '');
             album = album.replace('{ meta: album', '');
             album = album.replace('}', '');
@@ -320,7 +351,7 @@ function getYear(song) {
     let year = "";
     for (let i = 0; i < split.length; i++) {
         if (split[i].includes("{year:") || split[i].includes('{ year:') || split[i].includes('{y:') || split[i].includes('{ y:')) {
-            //console.log(split[i]);
+
             year = split[i].replace("{year:", '');
             year = year.replace('{ year:', '');
             year = year.replace('{y:', '');
@@ -328,7 +359,7 @@ function getYear(song) {
             year = year.replace('}', '');
             return year.trim();
         } else if (split[i].includes('{meta: year') || split[i].includes('{ meta: year') || split[i].includes('{meta: y') || split[i].includes('{ meta: y')) {
-            //console.log(split[i]);
+
             year = split[i].replace('{meta: year', '');
             year = year.replace('{ meta: year', '');
             year = year.replace('{meta: y', '');
@@ -345,13 +376,13 @@ function getKey(song) {
     let key = "";
     for (let i = 0; i < split.length; i++) {
         if (split[i].includes("{key:") || split[i].includes('{ key:')) {
-            //console.log(split[i]);
+
             key = split[i].replace("{key:", '');
             key = key.replace('{ key:', '');
             key = key.replace('}', '');
             return key.trim();
         } else if (split[i].includes('{meta: key') || split[i].includes('{ meta: key')) {
-            //console.log(split[i]);
+
             key = split[i].replace('{meta: key', '');
             key = key.replace('{ meta: key', '');
             key = key.replace('}', '');
@@ -366,13 +397,13 @@ function getTime(song) {
     let time = "";
     for (let i = 0; i < split.length; i++) {
         if (split[i].includes("{time:") || split[i].includes('{ time:')) {
-            //console.log(split[i]);
+
             time = split[i].replace("{time:", '');
             time = time.replace('{ time:', '');
             time = time.replace('}', '');
             return time.trim();
         } else if (split[i].includes('{meta: time') || split[i].includes('{ meta: time')) {
-            //console.log(split[i]);
+
             time = split[i].replace('{meta: time', '');
             time = time.replace('{ meta: time', '');
             time = time.replace('}', '');
@@ -387,13 +418,13 @@ function getTempo(song) {
     let tempo = "";
     for (let i = 0; i < split.length; i++) {
         if (split[i].includes("{tempo:") || split[i].includes('{ tempo:')) {
-            //console.log(split[i]);
+
             tempo = split[i].replace("{tempo:", '');
             tempo = tempo.replace('{ tempo:', '');
             tempo = tempo.replace('}', '');
             return tempo.trim();
         } else if (split[i].includes('{tempo: key') || split[i].includes('{ tempo: key')) {
-            //console.log(split[i]);
+
             tempo = split[i].replace('{meta: tempo', '');
             tempo = tempo.replace('{ meta: tempo', '');
             tempo = tempo.replace('}', '');
@@ -408,13 +439,13 @@ function getDuration(song) {
     let duration = "";
     for (let i = 0; i < split.length; i++) {
         if (split[i].includes("{duration:") || split[i].includes('{ duration:')) {
-            //console.log(split[i]);
+
             duration = split[i].replace("{duration:", '');
             duration = duration.replace('{ duration:', '');
             duration = duration.replace('}', '');
             return duration.trim();
         } else if (split[i].includes('{meta: duration') || split[i].includes('{ meta: duration')) {
-            //console.log(split[i]);
+
             duration = split[i].replace('{meta: duration', '');
             duration = duration.replace('{ meta: duration', '');
             duration = duration.replace('}', '');
