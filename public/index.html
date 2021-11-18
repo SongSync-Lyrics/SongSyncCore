@@ -14,10 +14,16 @@
 </head>
 
 <body>
-    <div id='portrait'><h1 style="color: white;">Please Switch Your Device to Landscape</h1></div>
+    <div id='portrait'>
+        <h1 style="color: white;">Please Switch Your Device to Landscape</h1>
+    </div>
     <h2 id='session-name' style="color: white"></h2>
-    <div id='screen'><div id='display'></div></div>
-    <div id='song-info'><h2 id='song-title'></h2></div>
+    <div id='screen'>
+        <div id='display'></div>
+    </div>
+    <div id='song-info'>
+        <h2 id='song-title'></h2>
+    </div>
     <section class='container' id="container">
         <div class='main-text'>
             <img class="logo" src="./css/pictures/SongSync_Logo.png">
@@ -49,7 +55,7 @@
                             <label class='chord-pro-text' id="chordProText">To create a session please upload a chord
                                 pro
                                 file:
-                                <input type='file' id='chordproInput' name='chordproInput' class='chord-pro-file'
+                                <input type='file' id='chordproFile' name='chordproFile' class='chord-pro-file'
                                     accept=".cho,.crd,.chopro,.chord,.pro" />
                             </label>
                             <div class="url-container" id="urlContainer">
@@ -61,7 +67,7 @@
                                     Create Session
                                 </button>
                             </div>
-                            <div class="back-button" >
+                            <div class="back-button">
                                 <a href="javascript:window.location.href=window.location.href" id="backButton">Back</a>
                                 <button type="button" id="postBackButton" class="post-back-button">Back</button>
                                 <button type="button" id="nextButton" class="next-button">Next</button>
