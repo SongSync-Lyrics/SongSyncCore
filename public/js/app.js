@@ -13,10 +13,22 @@ var visibleTables = [];
 var vtl;
 
 let room;
+let fileUpload = false;
 
 uploadButton.addEventListener('click', async() => {
-    console.log("Url upload")
-    await retrieveUrl();
+    if (fileUpload) {
+        console.log("file upload");
+        parseChordProFile();
+    } else {
+        console.log("Url upload")
+        await retrieveUrl();
+
+    }
+
+})
+
+chordproFileInput.addEventListener('change', () => {
+    fileUpload = true;
 })
 
 async function retrieveUrl() {
@@ -65,9 +77,8 @@ socket.on('parseSongFile', (chordProInput) => {
     validFile = true;
 });
 
-chordproFileInput.addEventListener('change', function() {
-    console.log("file upload");
-    let fileName = this.files[0].name;
+function parseChordProFile() {
+    let fileName = chordproFileInput.files[0].name;
     if (fileName.includes('.cho') || fileName.includes('.crd') ||
         fileName.includes('.chopro') || fileName.includes('.chord') ||
         fileName.includes('.pro')) {
@@ -103,14 +114,14 @@ chordproFileInput.addEventListener('change', function() {
             song["duration"] = duration;
             song["lyrics"] = lyrics;
         }
-        fr.readAsText(this.files[0]);
+        fr.readAsText(chordproFileInput.files[0]);
         validFile = true;
     } else {
         alert("This is not a valid ChordPro file");
         validFile = false;
         chordproFileInput.value = null;
     }
-});
+}
 
 leaderCreateForm.addEventListener('submit', function(e) {
     e.preventDefault()
