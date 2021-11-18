@@ -8,6 +8,7 @@ Share lyrics with friends. Featuring online rooms.
 
 * Socket.io
 * Socket.io-client
+* Axios
 * Express.js
 * Node.js
 * ChordSheetJs

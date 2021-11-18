@@ -1,27 +1,27 @@
 // Initialization of backend
-const path = require('path')
-const http = require('http')
-const express = require('express')
-const socketIO = require('socket.io')
-const app = express()
-const server = http.createServer(app)
-const io = socketIO(server)
-const publicPath = path.join(__dirname, '/../public')
-const port = process.env.PORT || 20411
+const path = require('path');
+const http = require('http');
+const express = require('express');
+const socketIO = require('socket.io');
+const axios = require('axios');
+const fs = require('fs');
+
+const app = express();
+const server = http.createServer(app);
+const io = socketIO(server);
+const publicPath = path.join(__dirname, '/../public');
+const port = process.env.PORT || 20411;
 
 const ChordSheetJS = require('chordsheetjs').default;
-const roomMap = new Map()
+const roomMap = new Map();
 
-app.use(express.static(publicPath))
+app.use(express.static(publicPath));
 server.listen(port, () => {
-    console.log('Server is up on port ' + port + '.')
-})
+    console.log('Server is up on port ' + port + '.');
+});
 
 // Start Socket.IO connection with clients
 io.on('connection', (socket) => {
-
-    // Prevents crashes due to preexisting file upload
-    io.to(socket.id).emit('clearForm');
 
     socket.on('disconnect', () => {
         removeLeaderIfDisconnected(socket.id);
@@ -55,14 +55,24 @@ io.on('connection', (socket) => {
         io.to(room).emit('move', vt);
     });
 
-    /*socket.on('scrollDown', (room) => {
-        io.to(room).emit('moveDown');
-    });
+    socket.on('getChordProFromUrl', async(url) => {
+        console.log(url);
+        let result = await getChordProFromUrl(url);
 
-    socket.on('scrollUp', (room) => {
-        io.to(room).emit('moveUp');
-    });*/
+        io.to(socket.id).emit('parseSongFile', result);
+    })
 });
+
+async function getChordProFromUrl(url) {
+    try {
+        const result = await axios.get(url)
+        console.log("result is = " + result.data);
+        return result.data;
+    } catch (err) {
+        console.log('Error ' + err.statusCode);
+        return undefined;
+    };
+}
 
 function isLeaderAction(socketid, room) {
     let leader = roomMap.get(room)[1];
@@ -156,8 +166,7 @@ module.exports = {
     isRoomEmpty,
     removeEmptyRooms,
     roomMapHasRoom,
-    leaderJoinAction,
-    followerJoinAction,
+    getChordProFromUrl,
     chordProFormat,
     getActiveRooms
 }

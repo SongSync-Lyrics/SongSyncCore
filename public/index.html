@@ -9,11 +9,7 @@
     <!-- Title -->
     <title>Song Sync Alpha</title>
     <!-- Links -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
     <script src="https://kit.fontawesome.com/d09eed82ec.js" crossorigin="anonymous"></script>
-
-
     <link rel="stylesheet" href="css/main.css" />
 </head>
 
@@ -26,10 +22,6 @@
         <div class='main-text'>
             <img class="logo" src="./css/pictures/SongSync_Logo.png">
             <div class='centering-card' id="centeringCard">
-                <div class="back-arrow">
-                    <a href="javascript:window.location.href=window.location.href" class="left-arrow"> <i
-                            class="fas fa-chevron-left left-arrow"></i></a>
-                </div>
                 <div class='inputs' id='inputs'>
                     <div class='sub-inputs' id='subInputs'>
                         <button id='initialCreateButton' class='enter-button'>
@@ -40,24 +32,39 @@
                         </button>
                     </div>
                     <form id="followerJoinForm">
-                        <input type='text' id='input' name='input' class='input-code'
-                            placeholder='Enter Session Code' />
+                        <input type='text' autocomplete="off" id='input' name='input' class='input-code' placeholder='Enter Session Code' />
                         <div class='enter-session' id='enterSession'>
-                            <button type='submit' id='startButton' class='enter-button'>
+                            <button type='submit' id='followerStartButton' class='enter-button'>
                                 Join Session
                             </button>
+
                         </div>
+                        <div class="join-back-button back-button" id="joinBackButton">
+                            <a href="javascript:window.location.href=window.location.href">Back</a>
+                        </div>
+
                     </form>
                     <form id="leaderCreateForm">
                         <div class='chord-pro-container' id='chordProContainer'>
-                            <label class='chord-pro-text'>To create a session please upload a chord pro
-                                file:</label>
-                            <div class='sub-chord-pro-container'>
+                            <label class='chord-pro-text' id="chordProText">To create a session please upload a chord
+                                pro
+                                file:
                                 <input type='file' id='chordproInput' name='chordproInput' class='chord-pro-file'
                                     accept=".cho,.crd,.chopro,.chord,.pro" />
+                            </label>
+                            <div class="url-container" id="urlContainer">
+                                <label class="chord-pro-text"> Or you can enter a valid URL from a website: </label>
+                                <input type="text" class="url-input" id="chordProUrl" placeholder="URL goes here" />
+                            </div>
+                            <div class='sub-chord-pro-container' id="subChordProContainer">
                                 <button type='submit' id='startButton' class='enter-button'>
                                     Create Session
                                 </button>
+                            </div>
+                            <div class="back-button" >
+                                <a href="javascript:window.location.href=window.location.href" id="backButton">Back</a>
+                                <button type="button" id="postBackButton" class="post-back-button">Back</button>
+                                <button type="button" id="nextButton" class="next-button">Next</button>
                             </div>
                         </div>
                     </form>
