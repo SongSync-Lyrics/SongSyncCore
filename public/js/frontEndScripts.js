@@ -17,12 +17,10 @@ let followerStartButton =document.getElementById('followerStartButton');
 let joinBackButton = document.getElementById('joinBackButton');
 let postBackButton = document.getElementById('postBackButton');
 
-
-
-
 if(initialCreateButton.click = true){
     centeringCard.style.height = '24vh';
 }
+
 postBackButton.addEventListener('click', function(){
     sessionCode.style.display='none';
     //enterSession.style.display='flex';
@@ -51,22 +49,21 @@ nextButton.addEventListener('click', function(){
     
 });
 
- /*startButton.forEach((startButton) => startButton.addEventListener('click', function () {
-    document.body.style.background = '#fff';
+startButton.forEach((startButton) => startButton.addEventListener('click', function () {
+    document.body.style.background = "black";
+
     container.style.display = 'none';
-})); */
+})); 
+
 startButton.addEventListener('click', function(){
     document.body.style.background='#fff';
     container.style.display='none';
 })
+
 followerStartButton.addEventListener('click', function(){
     document.body.style.background='#fff';
     container.style.display='none';
 })
-
-
-
-
 
 initialCreateButton.addEventListener('click', function () {
     subInputs.style.display = 'none';

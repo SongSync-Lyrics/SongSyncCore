@@ -50,11 +50,14 @@ io.on('connection', (socket) => {
         io.to(room).emit('displayLyrics', lyrics);
     });
 
+    socket.on('scroll', (room, visibleTables) => {
+        vt = visibleTables;
+        io.to(room).emit('move', vt);
+    });
+
     socket.on('getChordProFromUrl', async(url) => {
         console.log(url);
         let result = await getChordProFromUrl(url);
-        // let blob = new Blob([result], { type: 'text/plain' });
-        // let file = new File([blob], "song.txt", { type: "text/plain" });
 
         io.to(socket.id).emit('parseSongFile', result);
     })
@@ -124,6 +127,7 @@ function leaderJoinAction(room, socket) {
     socket.join(room);
 
     io.to(room).emit('startGame');
+    io.to(room).emit('enableScroll');
 }
 
 function followerJoinAction(room, socket) {
