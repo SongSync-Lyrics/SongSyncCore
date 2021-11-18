@@ -14,7 +14,8 @@ let nextButton = document.getElementById('nextButton');
 let chordProText = document.getElementById('chordProText');
 let urlContainer =document.getElementById('urlContainer');
 let followerStartButton =document.getElementById('followerStartButton');
-
+let joinBackButton = document.getElementById('joinBackButton');
+let postBackButton = document.getElementById('postBackButton');
 
 
 
@@ -22,6 +23,19 @@ let followerStartButton =document.getElementById('followerStartButton');
 if(initialCreateButton.click = true){
     centeringCard.style.height = '24vh';
 }
+postBackButton.addEventListener('click', function(){
+    sessionCode.style.display='none';
+    //enterSession.style.display='flex';
+    startButton.style.display='none';
+    subChordProContainer.style.display='none';
+    chordProText.style.display='block';
+    urlContainer.style.display='block';
+    backButton.style.display = 'flex';
+    nextButton.style.display = 'flex';
+    postBackButton.style.display = 'none';
+
+})
+
 
 nextButton.addEventListener('click', function(){
     sessionCode.style.display='flex';
@@ -31,7 +45,9 @@ nextButton.addEventListener('click', function(){
     chordProText.style.display='none';
     urlContainer.style.display='none';
     startButton.style.width="100%";
-    backButton.style.display='none';
+    backButton.style.display = 'none';
+    nextButton.style.display = 'none';
+    postBackButton.style.display = 'flex';
     
 });
 
@@ -67,6 +83,7 @@ initialJoinButton.addEventListener('click', function () {
     sessionCode.style.display = 'flex';
     subInputs.style.display = 'none';
     enterSession.style.display = 'flex';
+    joinBackButton.style.display='flex';
     document.addEventListener("keyup", function (event) {
         if (event.code === 'Enter') {
             document.body.style.background = '#fff';
