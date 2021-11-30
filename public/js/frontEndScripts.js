@@ -58,7 +58,7 @@ startButton.addEventListener('click', function() {
     document.body.style.background = '#fff';
     container.style.display = 'none';
     portrait.style.display='block';
-    formLink.style.color='black';   
+    formLink.style.color='black';
 })
 
 followerStartButton.addEventListener('click', function() {
