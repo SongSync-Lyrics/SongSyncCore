@@ -43,7 +43,8 @@ body {
   background-color: #dadada;
   align-content: center;
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.5), 0 12px 20px 0 rgba(0, 0, 0, 0.5);
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   flex-wrap: wrap;
 }
 
@@ -78,6 +79,7 @@ body {
 }
 .chord-pro-file {
   font-size: 1rem !important;
+/*   padding-bottom:10px; */
 }
 @media (max-width: 1025px) {
   .card {
@@ -115,7 +117,8 @@ body {
   background-color: #dadada;
   align-content: center;
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.5), 0 12px 20px 0 rgba(0, 0, 0, 0.5);
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   flex-wrap: wrap;
   flex-shrink: 1;
   flex-basis: calc(var(--modifier) * 999);
@@ -158,6 +161,26 @@ body {
   border: 1px solid black;
   margin-top: 5px;
   display: none;
+}
+::-webkit-input-placeholder {
+  color: gray;
+  opacity: 1;
+  font-size: 1.25rem;
+}
+::-moz-placeholder {
+  color: gray;
+  opacity: 1;
+  font-size: 1.25rem;
+}
+:-ms-input-placeholder {
+  color: gray;
+  opacity: 1;
+  font-size: 1.25rem;
+}
+::-ms-input-placeholder {
+  color: gray;
+  opacity: 1;
+  font-size: 1.25rem;
 }
 ::placeholder {
   color: gray;
@@ -237,6 +260,8 @@ body {
   font-size: 1.3rem;
 }
 .left-arrow {
+  max-width: -webkit-min-content;
+  max-width: -moz-min-content;
   max-width: min-content;
   color: black;
   align-self: flex-start;
@@ -246,19 +271,6 @@ body {
   position: fixed;
   padding-bottom: 8%;
   padding-left: 10px;
-}
-
-body {
-  background: linear-gradient(
-      rgba(255, 255, 255, 0.2),
-      rgba(255, 255, 255, 0.2),
-      rgba(255, 255, 255, 0.2),
-      rgba(255, 255, 255, 0.2)
-    ),
-    url("pictures/Ukelele.jpg") no-repeat center;
-  background-size: cover;
-  background-attachment: fixed;
-  height: 100vh;
 }
 
 .container {
@@ -327,6 +339,30 @@ body {
   display: none;
 }
 
+::-webkit-input-placeholder {
+  color: gray;
+  opacity: 1;
+  font-size: 1.25rem;
+}
+
+::-moz-placeholder {
+  color: gray;
+  opacity: 1;
+  font-size: 1.25rem;
+}
+
+:-ms-input-placeholder {
+  color: gray;
+  opacity: 1;
+  font-size: 1.25rem;
+}
+
+::-ms-input-placeholder {
+  color: gray;
+  opacity: 1;
+  font-size: 1.25rem;
+}
+
 ::placeholder {
   color: gray;
   opacity: 1;
@@ -340,11 +376,12 @@ body {
   align-self: center;
   cursor: pointer;
   border-radius: 0.5rem;
-  height: 7vh;
+  height: 150%;
   font-size: 1.5rem;
   border: 1px solid black;
   transition: all 0.35s;
   background-color: #6c757d;
+  align-items: center;
 }
 .enter-button:focus-visible {
   box-shadow: 0 0 0.25rem rgb(130 138 145 / 50%);
@@ -447,8 +484,31 @@ body {
   display: none;
   justify-content: center;
   align-items: center;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+}
+.arrows{
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.arrow-button{
+  text-decoration: none;
+  background-color: inherit;
+  border: none;
+}
+.arrow-button:hover{
+  cursor: pointer;
+}
+.arrow{
+  font-size:75px;
 }
 .back-button {
+
   width: 100%;
   text-align: left;
   text-decoration: none;
@@ -501,7 +561,73 @@ body {
 .post-back-button {
   display: none;
 }
+.next-button:hover{
+  cursor: pointer;
+}
+.url-container{
+  padding-bottom: 15px;
+}
+.join-back-button-link{
+  padding-top:15px;
+}
+.post-back-button{
+  padding-top:5px;
+}
 /* Responsive css */
+@media only screen and (max-width:800px) and (max-height:300px) and (orientation:landscape){
+  .centering-card{
+    height: 95vh !important;
+  }
+}
+@media only screen and (max-width:750px) and (max-height:440px){
+  .centering-card{
+    height: 40vh !important;
+  }
+}
+
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+  .centering-card{
+    height:  65vh important;
+    
+  }
+  label{
+    font-size: 1.6rem;
+  }
+
+}
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait){
+  .centering-card{  
+    height: 19vh !important;
+    
+  }
+  label{
+    font-size: 1.6rem;
+  }
+
+}
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-max-device-pixel-ratio: 1) 
+  and (orientation: landscape){
+  .centering-card{  
+    height: 19vh !important;
+    
+  }}
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1366px) 
+  {
+    label{
+      font-size: 1.6rem !important;
+    }
+  }
 
 @media screen and (max-width: 1250px) {
   .sub-chord-pro-container {
@@ -586,13 +712,25 @@ body {
 
 @media screen and (orientation: portrait) {
   #portrait {
-    display: block;
+    color: white;
+    background-color: black;
+    display: none;
+    position: fixed;
+    z-index: 100;
+    height: 100vh;
+    width: 100vw;
+/*     height: 100vh;
+    width: 100vw;
+    display: none;
+    position:fixed;
+    background-color: black;
+    color: white; */
   }
 }
 
 @media screen and (orientation: landscape) {
   #portrait {
-    display: none;
+    display: none !important; 
   }
 }
 @media only screen and (min-width: 375px) and (max-height: 812px) and (-webkit-device-pixel-ratio: 3) {
@@ -626,6 +764,9 @@ body {
   .centering-card {
     width: 80vw;
     height: 22vh;
+  }
+  .logo{
+    width: 75vw;
   }
   .main-text {
     display: flex;

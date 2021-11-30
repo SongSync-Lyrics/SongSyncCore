@@ -7,6 +7,9 @@ let chordproFileInput = document.getElementById('chordproFile');
 let chordproUrlInput = document.getElementById('chordProUrl');
 let uploadButton = document.getElementById('nextButton');
 
+let downArrow = document.getElementById('downArrowButton');
+let arrows = document.getElementById('arrows');
+
 let song;
 let validFile = true;
 var visibleTables = [];
@@ -16,26 +19,72 @@ let room;
 let fileUpload = false;
 
 uploadButton.addEventListener('click', async() => {
-    if (fileUpload) {
-        console.log("file upload");
-        parseChordProFile();
-    } else {
-        console.log("Url upload")
-        await retrieveUrl();
+    if(chordproFileInput !=null || (chordproUrlInput !=null)){
+        if (fileUpload) {
+            console.log("file upload");
+            parseChordProFile();
+        }
+        else{
+            console.log("Url upload")
+            await retrieveUrl();
 
+        }
     }
-
 })
 
 chordproFileInput.addEventListener('change', () => {
     fileUpload = true;
 })
 
-async function retrieveUrl() {
+let acceptedExtensions = ['cho', 'crd', 'chopro', 'chord', 'pro'];
+
+//check on file upload whether extension is valid remove disabled attribute to make button clickable if conditions are met
+chordproFileInput.addEventListener('change', function(){
+    let trueExtension = chordproFileInput.value.split('.').pop();
+    if(!acceptedExtensions.includes(trueExtension)){
+        alert('Not a valid ChordPro File or you have pasted a URL');
+        chordproFileInput.value = '';
+
+    }else if(chordproUrlInput.value !== ''){
+        chordproUrlInput.value='';
+        alert('Please only select one option')
+        
+    }else{
+        nextButton.removeAttribute("disabled")
+    }
+    
+})
+//check to make sure only one option is selected and allow nextButton to be clickable
+chordproUrlInput.addEventListener('input', function(){
+    fileUpload=false;
+    if(chordproFileInput.value !=''){
+        alert('Please select one option');
+        chordproFileInput.value = '';
+    }else{
+        nextButton.removeAttribute('disabled', 'disabled');
+    }
+})
+
+input.addEventListener('input', function(){
+    startButton.removeAttribute('disabled');
+    followerStartButton.removeAttribute('disabled');
+
+})
+//after user enters session code, on enter press automatically creates session
+input.addEventListener('keyup', function(event){
+    if(event.keyCode=='13'){
+        document.activeElement.blur();
+        followerStartButton.click();
+        startButton.click();
+    }
+})
+
+ async function retrieveUrl() {
     let url = chordproUrlInput.value;
-    if (url.includes('.cho') || url.includes('.crd') ||
+    if (url.substring(url.includes(acceptedExtensions.values))
+    /* url.includes('.cho') || url.includes('.crd') ||
         url.includes('.chopro') || url.includes('.chord') ||
-        url.includes('.pro')) {
+        url.includes('.pro') */) {
         await socket.emit('getChordProFromUrl', (url));
     } else {
         alert("This is not a valid ChordPro file");
@@ -79,9 +128,10 @@ socket.on('parseSongFile', (chordProInput) => {
 
 function parseChordProFile() {
     let fileName = chordproFileInput.files[0].name;
-    if (fileName.includes('.cho') || fileName.includes('.crd') ||
+    if (fileName.substring(fileName.includes(acceptedExtensions.values))
+    /* fileName.includes('.cho') || fileName.includes('.crd') ||
         fileName.includes('.chopro') || fileName.includes('.chord') ||
-        fileName.includes('.pro')) {
+        fileName.includes('.pro') */) {
         let fr = new FileReader();
         fr.onload = function() {
             let chordProInput = fr.result;
@@ -130,7 +180,6 @@ leaderCreateForm.addEventListener('submit', function(e) {
     } else {
         if (input.value) {
             room = input.value
-
             if (song != undefined) {
                 console.log("ChordPro File found")
                 socket.emit('startGame', input.value)
@@ -241,6 +290,15 @@ function moveUp() {
         visibleTables[temp - 4] = 1;
     }
 }
+downArrow.addEventListener('click', function(){
+    moveDown();
+    socket.emit('scroll',room, visibleTables );
+});
+upArrow.addEventListener('click', function(){
+    moveUp();
+    socket.emit('scroll', room, visibleTables);
+})
+
 
 function keyDownScroll(e) {
     //speed = document.getElementsByClassName('row')[0].clientHeight;
@@ -262,6 +320,7 @@ function keyDownScroll(e) {
         console.log("up");
         moveUp();
         socket.emit('scroll', room, visibleTables);
+        
         /*console.log("DivPos: " + divPos);
         let x = divPos + scrollSpeed;
         console.log("x: " + x);
@@ -566,3 +625,5 @@ function getDuration(song) {
     }
     return "Undefined";
 }
+
+
