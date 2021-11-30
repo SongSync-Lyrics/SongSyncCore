@@ -16,32 +16,36 @@ let urlContainer = document.getElementById('urlContainer');
 let followerStartButton = document.getElementById('followerStartButton');
 let joinBackButton = document.getElementById('joinBackButton');
 let postBackButton = document.getElementById('postBackButton');
+let leaderCreateForm1 = document.getElementById('leaderCreateForm');
+let firstMenu = document.getElementById('firstMenu');
+let portrait = document.getElementById('portrait');
+let upArrow = document.getElementById('upArrowButton');
+
+
+
 
 if (initialCreateButton.click = true) {
     centeringCard.style.height = '24vh';
 }
 
 postBackButton.addEventListener('click', function() {
-    sessionCode.style.display = 'none';
-    //enterSession.style.display='flex';
-    startButton.style.display = 'none';
-    subChordProContainer.style.display = 'none';
-    chordProText.style.display = 'block';
-    urlContainer.style.display = 'block';
-    backButton.style.display = 'flex';
-    nextButton.style.display = 'flex';
+    subChordProContainer.style.display='none';
+    firstMenu.style.display='block'
+    startButton.style.display='none'
+    sessionCode.style.display='none';
     postBackButton.style.display = 'none';
+    backButton.style.display='flex';
+    nextButton.style.display='flex';
 
 })
 
 
+
 nextButton.addEventListener('click', function() {
     sessionCode.style.display = 'flex';
-    //enterSession.style.display='flex';
     startButton.style.display = 'flex';
     subChordProContainer.style.display = 'flex';
-    chordProText.style.display = 'none';
-    urlContainer.style.display = 'none';
+    firstMenu.style.display='none';
     startButton.style.width = "100%";
     backButton.style.display = 'none';
     nextButton.style.display = 'none';
@@ -52,21 +56,22 @@ nextButton.addEventListener('click', function() {
 startButton.addEventListener('click', function() {
     document.body.style.background = '#fff';
     container.style.display = 'none';
+    portrait.style.display='block';
 })
 
 followerStartButton.addEventListener('click', function() {
     document.body.style.background = '#fff';
     container.style.display = 'none';
+    portrait.style.display='block';
 })
 
 initialCreateButton.addEventListener('click', function() {
     subInputs.style.display = 'none';
-    //sessionCode.style.display = 'flex';
     chordProContainer.style.display = 'flex';
     subChordProContainer.style.display = 'none';
     startButton.style.display = 'none';
     centeringCard.style.height = '30vh';
-    //backButton2.style.display = 'none'
+    arrows.style.display='flex';
 
 });
 
@@ -75,6 +80,7 @@ initialJoinButton.addEventListener('click', function() {
     subInputs.style.display = 'none';
     enterSession.style.display = 'flex';
     joinBackButton.style.display = 'flex';
+    arrows.style.display='none';
     document.addEventListener("keyup", function(event) {
         if (event.code === 'Enter') {
             document.body.style.background = '#fff';
