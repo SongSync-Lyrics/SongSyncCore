@@ -573,6 +573,16 @@ body {
 .post-back-button{
   padding-top:5px;
 }
+.form-link{
+  position:fixed;
+  right: 0;
+  bottom:0;
+  color: white;
+  padding-bottom: 10px;
+  text-decoration: none;
+  padding-right:10px;
+  display: block !important;
+}
 /* Responsive css */
 @media only screen and (max-width:800px) and (max-height:300px) and (orientation:landscape){
   .centering-card{

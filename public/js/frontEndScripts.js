@@ -20,6 +20,7 @@ let leaderCreateForm1 = document.getElementById('leaderCreateForm');
 let firstMenu = document.getElementById('firstMenu');
 let portrait = document.getElementById('portrait');
 let upArrow = document.getElementById('upArrowButton');
+let formLink = document.getElementById('formLink');
 
 
 
@@ -57,12 +58,14 @@ startButton.addEventListener('click', function() {
     document.body.style.background = '#fff';
     container.style.display = 'none';
     portrait.style.display='block';
+    formLink.style.color='black';   
 })
 
 followerStartButton.addEventListener('click', function() {
     document.body.style.background = '#fff';
     container.style.display = 'none';
     portrait.style.display='block';
+    formLink.style.color='black';
 })
 
 initialCreateButton.addEventListener('click', function() {
@@ -88,3 +91,4 @@ initialJoinButton.addEventListener('click', function() {
 
     })
 });
+
