@@ -64,6 +64,7 @@ chordproUrlInput.addEventListener('input', function(){
         chordproFileInput.value = '';
     }else if(!acceptedExtensions.includes(trueExtension)){
         notValidUrlLabel.style.display='block';
+        nextButton.setAttribute('disabled', 'disabled');
     }
     else{
         notValidUrlLabel.style.display='none';
@@ -78,7 +79,7 @@ input.addEventListener('input', function(){
 })
 //after user enters session code, on enter press automatically creates session
 input.addEventListener('keyup', function(event){
-    if(event.keyCode=='13'){
+    if(event.code=='13'){
         document.activeElement.blur();
         followerStartButton.click();
         startButton.click();

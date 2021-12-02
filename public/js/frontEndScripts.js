@@ -89,6 +89,5 @@ initialJoinButton.addEventListener('click', function() {
         if (event.code === 'Enter') {
             document.body.style.background = '#fff';
         }
-
     })
 });

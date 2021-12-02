@@ -548,6 +548,9 @@ body {
 .post-back-button {
   display: none;
 }
+.post-back-button:hover{
+  cursor: pointer;
+}
 .next-button:hover{
   cursor: pointer;
 }
