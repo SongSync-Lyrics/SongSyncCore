@@ -84,6 +84,7 @@ initialJoinButton.addEventListener('click', function() {
     enterSession.style.display = 'flex';
     joinBackButton.style.display = 'flex';
     arrows.style.display='none';
+    centeringCard.style.height = '25vh';
     document.addEventListener("keyup", function(event) {
         if (event.code === 'Enter') {
             document.body.style.background = '#fff';
@@ -91,4 +92,3 @@ initialJoinButton.addEventListener('click', function() {
 
     })
 });
-

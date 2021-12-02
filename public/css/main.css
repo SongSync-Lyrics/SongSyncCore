@@ -570,7 +570,20 @@ body {
   display: block !important;
   color: white;
 }
+.not-valid-url{
+  color:red;
+  font-size: 1rem !important;
+  display: none;
+}
 /* Responsive css */
+@media only screen 
+  and (min-device-width: 1024px)
+  and (max-device-height: 1366px) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .enter-button{
+      height:300%;
+    }
+  }
 @media only screen and (max-width:800px) and (max-height:300px) and (orientation:landscape){
   .centering-card{
     height: 95vh !important;
@@ -616,7 +629,9 @@ body {
   .centering-card{  
     height: 19vh !important;
     
-  }}
+  }
+
+}
 @media only screen 
   and (min-device-width: 768px) 
   and (max-device-width: 1366px) 
@@ -690,6 +705,9 @@ body {
   }
   .back-arrow {
     padding-bottom: 15%;
+  }
+  .logo{
+    width: 45vw;
   }
 }
 
