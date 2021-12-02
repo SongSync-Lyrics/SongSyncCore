@@ -57,10 +57,16 @@ chordproFileInput.addEventListener('change', function(){
 //check to make sure only one option is selected and allow nextButton to be clickable
 chordproUrlInput.addEventListener('input', function(){
     fileUpload=false;
+    let trueExtension = chordproUrlInput.value.split('.').pop();
+    let notValidUrlLabel = document.getElementById('notValidUrl');
     if(chordproFileInput.value !=''){
         alert('Please select one option');
         chordproFileInput.value = '';
-    }else{
+    }else if(!acceptedExtensions.includes(trueExtension)){
+        notValidUrlLabel.style.display='block';
+    }
+    else{
+        notValidUrlLabel.style.display='none';
         nextButton.removeAttribute('disabled', 'disabled');
     }
 })

@@ -26,7 +26,7 @@ let formLink = document.getElementById('formLink');
 
 
 if (initialCreateButton.click = true) {
-    centeringCard.style.height = '24vh';
+    centeringCard.style.height = '18vh';
 }
 
 postBackButton.addEventListener('click', function() {

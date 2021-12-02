@@ -1,10 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Shippori+Antique+B1&display=swap");
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
   font-family: Montserrat;
   font-size: 12px;
+
 }
 
 body {
@@ -79,6 +81,7 @@ body {
 }
 .chord-pro-file {
   font-size: 1rem !important;
+  padding-bottom: 1rem;
 /*   padding-bottom:10px; */
 }
 @media (max-width: 1025px) {
@@ -106,22 +109,6 @@ body {
   align-items: center;
   height: 100vh;
   width: 100%;
-}
-.centering-card {
-  height: 20vh;
-  width: 40vw;
-  display: flex;
-  justify-content: center;
-  border-radius: 1.25rem;
-  flex-direction: column;
-  background-color: #dadada;
-  align-content: center;
-  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.5), 0 12px 20px 0 rgba(0, 0, 0, 0.5);
-  -o-object-fit: cover;
-     object-fit: cover;
-  flex-wrap: wrap;
-  flex-shrink: 1;
-  flex-basis: calc(var(--modifier) * 999);
 }
 .logo {
   width: 40vw;
@@ -376,7 +363,7 @@ body {
   align-self: center;
   cursor: pointer;
   border-radius: 0.5rem;
-  height: 150%;
+  height: 200%;
   font-size: 1.5rem;
   border: 1px solid black;
   transition: all 0.35s;
