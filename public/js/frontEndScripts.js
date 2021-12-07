@@ -61,6 +61,7 @@ followerStartButton.addEventListener('click', function() {
     container.style.display = 'none';
     portrait.style.display='block';
     formLink.style.color='black';
+    
 })
 
 initialCreateButton.addEventListener('click', function() {
@@ -80,9 +81,4 @@ initialJoinButton.addEventListener('click', function() {
     joinBackButton.style.display = 'flex';
     arrows.style.display='none';
     centeringCard.style.height = '25vh';
-    document.addEventListener("keyup", function(event) {
-        if (event.code === 'Enter') {
-            document.body.style.background = '#fff';
-        }
-    })
 });

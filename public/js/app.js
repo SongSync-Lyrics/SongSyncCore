@@ -78,13 +78,7 @@ input.addEventListener('input', function(){
 
 })
 //after user enters session code, on enter press automatically creates session
-input.addEventListener('keyup', function(event){
-    if(event.code=='13'){
-        document.activeElement.blur();
-        followerStartButton.click();
-        startButton.click();
-    }
-})
+
 
  async function retrieveUrl() {
     let url = chordproUrlInput.value;
