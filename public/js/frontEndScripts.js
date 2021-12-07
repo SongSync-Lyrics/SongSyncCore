@@ -9,17 +9,12 @@ let container = document.getElementById('container');
 let centeringCard = document.getElementById('centeringCard');
 let subChordProContainer = document.getElementById('subChordProContainer');
 let backButton = document.getElementById('backButton');
-let chordProInput = document.getElementById('chordproInput');
 let nextButton = document.getElementById('nextButton');
-let chordProText = document.getElementById('chordProText');
-let urlContainer = document.getElementById('urlContainer');
 let followerStartButton = document.getElementById('followerStartButton');
 let joinBackButton = document.getElementById('joinBackButton');
 let postBackButton = document.getElementById('postBackButton');
-let leaderCreateForm1 = document.getElementById('leaderCreateForm');
 let firstMenu = document.getElementById('firstMenu');
 let portrait = document.getElementById('portrait');
-let upArrow = document.getElementById('upArrowButton');
 let formLink = document.getElementById('formLink');
 
 
