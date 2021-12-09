@@ -8,6 +8,7 @@ let chordproUrlInput = document.getElementById('chordProUrl');
 let uploadButton = document.getElementById('nextButton');
 
 let downArrow = document.getElementById('downArrowButton');
+let upArrow = document.getElementById('upArrowButton')
 let arrows = document.getElementById('arrows');
 
 let song;
@@ -54,12 +55,19 @@ chordproFileInput.addEventListener('change', function() {
 })
 
 //check to make sure only one option is selected and allow nextButton to be clickable
-chordproUrlInput.addEventListener('input', function() {
-    fileUpload = false;
-    if (chordproFileInput.value != '') {
+chordproUrlInput.addEventListener('input', function(){
+    fileUpload=false;
+    let trueExtension = chordproUrlInput.value.split('.').pop();
+    let notValidUrlLabel = document.getElementById('notValidUrl');
+    if(chordproFileInput.value !=''){
         alert('Please select one option');
         chordproFileInput.value = '';
-    } else {
+    }else if(!acceptedExtensions.includes(trueExtension)){
+        notValidUrlLabel.style.display='block';
+        nextButton.setAttribute('disabled', 'disabled');
+    }
+    else{
+        notValidUrlLabel.style.display='none';
         nextButton.removeAttribute('disabled', 'disabled');
     }
 })
@@ -67,15 +75,6 @@ chordproUrlInput.addEventListener('input', function() {
 input.addEventListener('input', function() {
     startButton.removeAttribute('disabled');
     followerStartButton.removeAttribute('disabled');
-})
-
-//after user enters session code, on enter press automatically creates session
-input.addEventListener('keyup', function(event) {
-    if (event.keyCode == '13') {
-        document.activeElement.blur();
-        followerStartButton.click();
-        startButton.click();
-    }
 })
 
 async function retrieveUrl() {
@@ -278,7 +277,8 @@ downArrow.addEventListener('click', function() {
     moveDown();
     socket.emit('scroll', room, visibleTables);
 });
-upArrow.addEventListener('click', function() {
+
+upArrow.addEventListener('click', function(){
     moveUp();
     socket.emit('scroll', room, visibleTables);
 })

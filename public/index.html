@@ -26,7 +26,6 @@
             <button type="button" class="arrow-button" id="downArrowButton">
                 <i class="fas fa-arrow-down arrow"></i>
             </button>
-
         </div>
         <div id='display'></div>
     </div>
@@ -46,7 +45,7 @@
                             Join Session
                         </button>
                     </div>
-                    <form id="followerJoinForm">
+                    <form id="followerJoinForm" onkeydown="return event.key != 'Enter';">
                         <input type='text' autocomplete="off" id='input' name='input' class='input-code'
                             placeholder='Enter Session Code' />
                         <div class='enter-session' id='enterSession'>
@@ -61,7 +60,7 @@
                         </div>
 
                     </form>
-                    <form id="leaderCreateForm">
+                    <form id="leaderCreateForm" onkeydown="return event.key != 'Enter';" >
                         <div class='chord-pro-container' id='chordProContainer'>
                             <div class="first-menu" id="firstMenu">
                                     <label class='chord-pro-text' id="chordProText">To create a session please upload a
@@ -76,6 +75,7 @@
                                     <label class="chord-pro-text"> Or you can enter a valid URL from a website: </label>
                                     <input type="text" autocomplete="off" class="url-input" id="chordProUrl"
                                         placeholder="URL goes here" />
+                                        <label class="not-valid-url" id="notValidUrl">Url entered is not valid!</label>
                                 </div>
                             </div>
 
@@ -97,9 +97,11 @@
         </div>
 
         <!-- Front End Javscript reference-->
-        <script src='/js/frontEndScripts.js'></script>
-    </section>
 
+
+    </section>
+    <a href="https://forms.gle/j6Vup9v7D9KTTUHf7" class="form-link" target="__blank" id="formLink">To report an issue please click here</a>
+    <script src='/js/frontEndScripts.js'></script>
     <!-- Socket.IO Javacript -->
     <script src='/socket.io/socket.io.js'></script>
     <script src='/js/app.js' charset='utf-8'></script>

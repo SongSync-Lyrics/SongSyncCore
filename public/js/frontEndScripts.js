@@ -9,23 +9,19 @@ let container = document.getElementById('container');
 let centeringCard = document.getElementById('centeringCard');
 let subChordProContainer = document.getElementById('subChordProContainer');
 let backButton = document.getElementById('backButton');
-let chordProInput = document.getElementById('chordproInput');
 let nextButton = document.getElementById('nextButton');
-let chordProText = document.getElementById('chordProText');
-let urlContainer = document.getElementById('urlContainer');
 let followerStartButton = document.getElementById('followerStartButton');
 let joinBackButton = document.getElementById('joinBackButton');
 let postBackButton = document.getElementById('postBackButton');
-let leaderCreateForm1 = document.getElementById('leaderCreateForm');
 let firstMenu = document.getElementById('firstMenu');
 let portrait = document.getElementById('portrait');
-let upArrow = document.getElementById('upArrowButton');
+let formLink = document.getElementById('formLink');
 
 
 
 
 if (initialCreateButton.click = true) {
-    centeringCard.style.height = '24vh';
+    centeringCard.style.height = '18vh';
 }
 
 postBackButton.addEventListener('click', function() {
@@ -57,12 +53,15 @@ startButton.addEventListener('click', function() {
     document.body.style.background = '#fff';
     container.style.display = 'none';
     portrait.style.display='block';
+    formLink.style.color='black';
 })
 
 followerStartButton.addEventListener('click', function() {
     document.body.style.background = '#fff';
     container.style.display = 'none';
     portrait.style.display='block';
+    formLink.style.color='black';
+    
 })
 
 initialCreateButton.addEventListener('click', function() {
@@ -81,10 +80,5 @@ initialJoinButton.addEventListener('click', function() {
     enterSession.style.display = 'flex';
     joinBackButton.style.display = 'flex';
     arrows.style.display='none';
-    document.addEventListener("keyup", function(event) {
-        if (event.code === 'Enter') {
-            document.body.style.background = '#fff';
-        }
-
-    })
+    centeringCard.style.height = '25vh';
 });
