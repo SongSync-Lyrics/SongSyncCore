@@ -43,6 +43,7 @@ chordproFileInput.addEventListener('change', function() {
     if (!acceptedExtensions.includes(trueExtension)) {
         alert('Not a valid ChordPro File or you have pasted a URL');
         chordproFileInput.value = '';
+        nextButton.setAttribute('disabled', 'disabled')
 
     } else if (chordproUrlInput.value !== '') {
         chordproUrlInput.value = '';

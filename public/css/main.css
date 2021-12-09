@@ -340,17 +340,43 @@ body {
   padding-right:10px;
   display: block !important;
   color: white;
+  font-weight: 700;
 }
 .not-valid-url{
   color:red;
   font-size: 1rem !important;
   display: none;
 }
+
+
 /* Responsive css */
 @media only screen and (min-width: 1500px){
   .centering-card{
     width: 49vw;
     height: 23vh !important;
+  }
+}
+
+@media only screen and (max-height: 800px) and (min-width: 1300px) and (orientation:landscape){
+  .centering-card{
+    height: 65vh !important;
+  }
+  .enter-button{
+    height: 15vh !important;
+  }
+  .input-code{
+    height: 15vh !important;
+  }
+}
+@media only screen and (max-height: 360px) and (max-width:1000px) and (orientation:landscape){
+  .centering-card{
+    height: 50vh !important;
+  }
+  .enter-button{
+    height: 15vh !important;
+  }
+  .input-code{
+    height: 15vh !important;
   }
 }
 @media only screen 
@@ -534,7 +560,7 @@ body {
     width: 100%;
   }
 }
-@media only screen and (max-width:812px) and (min-height: 375px) and (orientation:landscape){
+@media only screen and (max-width:1200px) and (min-height: 375px) and (orientation:landscape){
   .back-arrow {
     padding-bottom: 30%;
   }
