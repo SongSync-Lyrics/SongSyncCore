@@ -4,7 +4,6 @@ const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
 const axios = require('axios');
-const fs = require('fs');
 
 const app = express();
 const server = http.createServer(app);
@@ -28,26 +27,34 @@ io.on('connection', (socket) => {
         removeEmptyRooms();
     });
 
-    // Action when client clicks startButton. Flow: Client Press -> Server Receive -> Server Response -> All Client Action
-    socket.on('startGame', (room) => {
-        if (!roomMapHasRoom(room)) {
-            leaderJoinAction(room, socket);
+    socket.on('leaderJoin', (room) => {
+        if (roomMap.has(room)) {
+            io.to(socket.id).emit('roomAlreadyExists', room);
         } else {
-            followerJoinAction(room, socket);
+            leaderJoinAction(room, socket);
         }
-    });
+    })
+
+    socket.on('followerJoin', (room) => {
+        if (roomMap.has(room)) {
+            followerJoinAction(room, socket);
+        } else {
+            io.to(socket.id).emit('roomNotFound', room);
+        }
+    })
 
     socket.on('displayLeaderLyrics', (room, song) => {
         let lyrics = chordProFormat(song['lyrics']);
         let posAndLeader = [lyrics, socket.id];
         roomMap.set(room, posAndLeader);
-        io.to(room).emit('displayLyrics', lyrics);
+
+        io.to(socket.id).emit('displayLyrics', lyrics);
     });
 
     socket.on('displayFollowerLyrics', (room) => {
         let lyrics = roomMap.get(room)[0];
 
-        io.to(room).emit('displayLyrics', lyrics);
+        io.to(socket.id).emit('displayLyrics', lyrics);
     });
 
     socket.on('scroll', (room, visibleTables) => {
@@ -56,7 +63,6 @@ io.on('connection', (socket) => {
     });
 
     socket.on('getChordProFromUrl', async(url) => {
-        console.log(url);
         let result = await getChordProFromUrl(url);
 
         io.to(socket.id).emit('parseSongFile', result);
@@ -66,7 +72,6 @@ io.on('connection', (socket) => {
 async function getChordProFromUrl(url) {
     try {
         const result = await axios.get(url)
-        console.log("result is = " + result.data);
         return result.data;
     } catch (err) {
         console.log('Error ' + err.statusCode);
@@ -126,14 +131,15 @@ function leaderJoinAction(room, socket) {
 
     socket.join(room);
 
-    io.to(room).emit('startGame');
+    io.to(room).emit('leaderJoin', room);
+    io.to(room).emit('startSession');
     io.to(room).emit('enableScroll');
 }
 
 function followerJoinAction(room, socket) {
     socket.join(room);
-
-    io.to(room).emit('startGame');
+    io.to(socket.id).emit('followerJoin', room);
+    io.to(room).emit('startSession');
 }
 
 function chordProFormat(input) {
