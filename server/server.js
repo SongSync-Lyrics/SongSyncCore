@@ -47,7 +47,8 @@ io.on('connection', (socket) => {
         let lyrics = chordProFormat(song['lyrics']);
         let posAndLeader = [lyrics, socket.id];
         roomMap.set(room, posAndLeader);
-        io.to(room).emit('displayLyrics', lyrics);
+
+        io.to(socket.id).emit('displayLyrics', lyrics);
     });
 
     socket.on('displayFollowerLyrics', (room) => {
@@ -71,7 +72,6 @@ io.on('connection', (socket) => {
 async function getChordProFromUrl(url) {
     try {
         const result = await axios.get(url)
-        console.log("result is = " + result.data);
         return result.data;
     } catch (err) {
         console.log('Error ' + err.statusCode);

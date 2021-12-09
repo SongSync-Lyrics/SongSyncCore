@@ -161,4 +161,13 @@ describe("SongSync-Core Unit tests", () => {
         done();
     })
 
+    step("should download from url", async(done) => {
+        let url = "https://www.google.com/";
+
+        let result = await app.getChordProFromUrl(url);
+
+        assert.isNotEmpty(result);
+        done();
+    })
+
 });
