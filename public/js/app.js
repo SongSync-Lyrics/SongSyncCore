@@ -8,6 +8,7 @@ let chordproUrlInput = document.getElementById('chordProUrl');
 let uploadButton = document.getElementById('nextButton');
 
 let downArrow = document.getElementById('downArrowButton');
+let upArrow = document.getElementById('upArrowButton')
 let arrows = document.getElementById('arrows');
 
 let song;
@@ -295,6 +296,7 @@ downArrow.addEventListener('click', function(){
     moveDown();
     socket.emit('scroll',room, visibleTables );
 });
+
 upArrow.addEventListener('click', function(){
     moveUp();
     socket.emit('scroll', room, visibleTables);

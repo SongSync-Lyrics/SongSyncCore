@@ -356,16 +356,23 @@ body {
 @media only screen 
   and (min-device-width: 1024px)
   and (max-device-height: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) {
+  and (-webkit-min-device-pixel-ratio: 2) and (orientation:portrait) {
     .enter-button{
       height:300%;
     }
+    .centering-card{
+      width: 40vw;
+    }
   }
-@media only screen and (max-width:800px) and (max-height:300px) and (orientation:landscape){
-  .centering-card{
-    height: 95vh !important;
+  @media only screen 
+  and (min-device-width: 1024px)
+  and (max-device-height: 1366px) 
+  and (-webkit-min-device-pixel-ratio: 2) and (orientation:landscape) {
+    .centering-card{
+      width: 40vw;
+    }
   }
-}
+
 @media only screen and (max-width:750px) and (max-height:440px){
   .centering-card{
     height: 40vh !important;
@@ -526,9 +533,21 @@ body {
     flex-direction: column;
     width: 100%;
   }
-  .main-text > p {
-    font-size: 3rem;
-    width: auto;
+}
+@media only screen and (max-width:812px) and (min-height: 375px) and (orientation:landscape){
+  .back-arrow {
+    padding-bottom: 30%;
+  }
+  .centering-card {
+    width: 60vw;
+    height: 45vh !important;
+  }
+  .enter-button{
+    height: 12vh !important;
+
+  }
+  .input-code{
+    height:12vh !important;
   }
 }
 
