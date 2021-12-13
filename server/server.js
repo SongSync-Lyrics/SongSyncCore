@@ -45,16 +45,20 @@ io.on('connection', (socket) => {
 
     socket.on('displayLeaderLyrics', (room, song) => {
         let lyrics = chordProFormat(song['lyrics']);
-        let posAndLeader = [lyrics, socket.id];
+        let title = song['title'];
+        let artist = song['artist'];
+        let posAndLeader = [lyrics, socket.id, title, artist];
         roomMap.set(room, posAndLeader);
 
-        io.to(socket.id).emit('displayLyrics', lyrics);
+        io.to(socket.id).emit('displayLyrics', lyrics, title, artist);
     });
 
     socket.on('displayFollowerLyrics', (room) => {
         let lyrics = roomMap.get(room)[0];
+        let title = roomMap.get(room)[2];
+        let artist = roomMap.get(room)[3];
 
-        io.to(socket.id).emit('displayLyrics', lyrics);
+        io.to(socket.id).emit('displayLyrics', lyrics, title, artist);
     });
 
     socket.on('scroll', (room, visibleTables) => {

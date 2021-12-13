@@ -52,14 +52,14 @@ nextButton.addEventListener('click', function() {
 startButton.addEventListener('click', function() {
     document.body.style.background = '#fff';
     container.style.display = 'none';
-    portrait.style.display='block';
+    portrait.style.display='flex';
     formLink.style.color='black';
 })
 
 followerStartButton.addEventListener('click', function() {
     document.body.style.background = '#fff';
     container.style.display = 'none';
-    portrait.style.display='block';
+    portrait.style.display='flex';
     formLink.style.color='black';
     
 })

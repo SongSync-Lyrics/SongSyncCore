@@ -19,7 +19,7 @@ var vtl;
 let room;
 let fileUpload = false;
 
-uploadButton.addEventListener('click', async() => {
+uploadButton.addEventListener('click', async () => {
     if (chordproFileInput != null || (chordproUrlInput != null)) {
         if (fileUpload) {
             console.log("file upload");
@@ -38,7 +38,7 @@ chordproFileInput.addEventListener('change', () => {
 let acceptedExtensions = ['cho', 'crd', 'chopro', 'chord', 'pro'];
 
 //check on file upload whether extension is valid remove disabled attribute to make button clickable if conditions are met
-chordproFileInput.addEventListener('change', function() {
+chordproFileInput.addEventListener('change', function () {
     let trueExtension = chordproFileInput.value.split('.').pop();
     if (!acceptedExtensions.includes(trueExtension)) {
         alert('Not a valid ChordPro File or you have pasted a URL');
@@ -55,24 +55,24 @@ chordproFileInput.addEventListener('change', function() {
 })
 
 //check to make sure only one option is selected and allow nextButton to be clickable
-chordproUrlInput.addEventListener('input', function(){
-    fileUpload=false;
+chordproUrlInput.addEventListener('input', function () {
+    fileUpload = false;
     let trueExtension = chordproUrlInput.value.split('.').pop();
     let notValidUrlLabel = document.getElementById('notValidUrl');
-    if(chordproFileInput.value !=''){
+    if (chordproFileInput.value != '') {
         alert('Please select one option');
         chordproFileInput.value = '';
-    }else if(!acceptedExtensions.includes(trueExtension)){
-        notValidUrlLabel.style.display='block';
+    } else if (!acceptedExtensions.includes(trueExtension)) {
+        notValidUrlLabel.style.display = 'block';
         nextButton.setAttribute('disabled', 'disabled');
     }
-    else{
-        notValidUrlLabel.style.display='none';
+    else {
+        notValidUrlLabel.style.display = 'none';
         nextButton.removeAttribute('disabled', 'disabled');
     }
 })
 
-input.addEventListener('input', function() {
+input.addEventListener('input', function () {
     startButton.removeAttribute('disabled');
     followerStartButton.removeAttribute('disabled');
 })
@@ -125,7 +125,7 @@ function parseChordProFile() {
     let fileName = chordproFileInput.files[0].name;
     if (fileName.substring(fileName.includes(acceptedExtensions.values))) {
         let fr = new FileReader();
-        fr.onload = function() {
+        fr.onload = function () {
             let chordProInput = fr.result;
             let title = getTitle(chordProInput);
             let subtitle = getSubtitle(chordProInput);
@@ -165,7 +165,7 @@ function parseChordProFile() {
     }
 }
 
-leaderCreateForm.addEventListener('submit', function(e) {
+leaderCreateForm.addEventListener('submit', function (e) {
     e.preventDefault()
     if (!input.value) return;
 
@@ -179,7 +179,7 @@ socket.on('leaderJoin', (room) => {
     socket.emit('displayLeaderLyrics', room, song)
 })
 
-followerCreateForm.addEventListener('submit', function(e) {
+followerCreateForm.addEventListener('submit', function (e) {
     e.preventDefault()
     room = input.value
     socket.emit('followerJoin', input.value)
@@ -190,11 +190,11 @@ socket.on('followerJoin', (room) => {
 })
 
 socket.on('roomAlreadyExists', (room) => {
-    if (alert("Room " + room + " already exists. Please try a different room id.")) {} else window.location.reload();
+    if (alert("Room " + room + " already exists. Please try a different room id.")) { } else window.location.reload();
 })
 
 socket.on('roomNotFound', (room) => {
-    if (alert("Room " + room + " not found. Please try a different room id.")) {} else window.location.reload();
+    if (alert("Room " + room + " not found. Please try a different room id.")) { } else window.location.reload();
 })
 
 function hideStartButton() {
@@ -205,12 +205,16 @@ socket.on('startSession', () => {
     hideStartButton()
 });
 
-socket.on('displayLyrics', (lyrics) => {
+socket.on('displayLyrics', (lyrics, title, artist) => {
     document.getElementById('screen').style.display = 'flex';
     document.getElementById('display').style.display = 'block';
     document.getElementById('song-info').style.display = 'flex';
     document.getElementById('display').innerHTML = lyrics;
     document.getElementById('session-name').innerHTML = "Session: " + room;
+    document.getElementById('song-title').innerHTML = title;
+    if (artist != 'Undefined') {
+        document.getElementById('song-artist').innerHTML = "By " + artist;
+    }
     //document.getElementById('song-title').innerHTML = song["title"];
     var elements = document.querySelectorAll('.row');
     for (let i = 0; i < elements.length; i++) {
@@ -273,12 +277,12 @@ function moveUp() {
         visibleTables[temp - 4] = 1;
     }
 }
-downArrow.addEventListener('click', function() {
+downArrow.addEventListener('click', function () {
     moveDown();
     socket.emit('scroll', room, visibleTables);
 });
 
-upArrow.addEventListener('click', function(){
+upArrow.addEventListener('click', function () {
     moveUp();
     socket.emit('scroll', room, visibleTables);
 })

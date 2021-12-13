@@ -15,12 +15,17 @@
 
 <body>
     <div id='portrait'>
-        <h1>Please Switch Your Device to Landscape</h1>
+        <img src="./css/pictures/Rotate_Phone_Symbol.png" alt="Rotate phone to landscape." width="60%">
+        <h1 class='rotate'>Please Switch Your Device to Landscape</h1>
     </div>
     <h2 id='session-name' style="color:black"></h2>
+    <div id='song-info'>
+        <h1 id="song-title"></h1>
+        <h2 id="song-artist"></h2>
+    </div>
     <div id='screen'>
         <div class="arrows" id="arrows">
-            <button type="button" class="arrow-button" id="upArrowButton"> 
+            <button type="button" class="arrow-button" id="upArrowButton">
                 <i class="fas fa-arrow-up arrow"></i>
             </button>
             <button type="button" class="arrow-button" id="downArrowButton">
@@ -28,9 +33,6 @@
             </button>
         </div>
         <div id='display'></div>
-    </div>
-    <div id='song-info'>
-        <h2 id='song-title'></h2>
     </div>
     <section class='container' id="container">
         <div class='main-text'>
@@ -60,22 +62,22 @@
                         </div>
 
                     </form>
-                    <form id="leaderCreateForm" onkeydown="return event.key != 'Enter';" >
+                    <form id="leaderCreateForm" onkeydown="return event.key != 'Enter';">
                         <div class='chord-pro-container' id='chordProContainer'>
                             <div class="first-menu" id="firstMenu">
-                                    <label class='chord-pro-text' id="chordProText">To create a session please upload a
-                                        chord
-                                        pro
-                                        file:
-                                        <input type='file' id='chordproFile' name='chordproFile' autocomplete="off"
-                                            class='chord-pro-file' accept=".cho,.crd,.chopro,.chord,.pro" />
-                                    </label>
+                                <label class='chord-pro-text' id="chordProText">To create a session please upload a
+                                    chord
+                                    pro
+                                    file:
+                                    <input type='file' id='chordproFile' name='chordproFile' autocomplete="off"
+                                        class='chord-pro-file' accept=".cho,.crd,.chopro,.chord,.pro" />
+                                </label>
 
                                 <div class="url-container" id="urlContainer">
                                     <label class="chord-pro-text"> Or you can enter a valid URL from a website: </label>
                                     <input type="text" autocomplete="off" class="url-input" id="chordProUrl"
                                         placeholder="URL goes here" />
-                                        <label class="not-valid-url" id="notValidUrl">Url entered is not valid!</label>
+                                    <label class="not-valid-url" id="notValidUrl">Url entered is not valid!</label>
                                 </div>
                             </div>
 
@@ -88,7 +90,8 @@
                                 <a href="javascript:window.location.href=window.location.href" class='first-back-button'
                                     id="backButton">Back</a>
                                 <button type="button" id="postBackButton" class="post-back-button">Back</button>
-                                <button type="button" id="nextButton" class="next-button" disabled='disabled'>Next</button>
+                                <button type="button" id="nextButton" class="next-button"
+                                    disabled='disabled'>Next</button>
                             </div>
                         </div>
                     </form>
@@ -100,7 +103,8 @@
 
 
     </section>
-    <a href="https://forms.gle/j6Vup9v7D9KTTUHf7" class="form-link" target="__blank" id="formLink">To report an issue please click here</a>
+    <a href="https://forms.gle/j6Vup9v7D9KTTUHf7" class="form-link" target="__blank" id="formLink">To report an issue
+        please click here</a>
     <script src='/js/frontEndScripts.js'></script>
     <!-- Socket.IO Javacript -->
     <script src='/socket.io/socket.io.js'></script>

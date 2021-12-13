@@ -5,22 +5,22 @@
   padding: 0;
   margin: 0;
   font-family: Montserrat;
-  font-size: 1.5vw;;
+  font-size: 1.5vw;
+  ;
 
 }
 
 body {
-  background: linear-gradient(
+  background: linear-gradient(rgba(255, 255, 255, 0.2),
       rgba(255, 255, 255, 0.2),
       rgba(255, 255, 255, 0.2),
-      rgba(255, 255, 255, 0.2),
-      rgba(255, 255, 255, 0.2)
-    ),
+      rgba(255, 255, 255, 0.2)),
     url("pictures/Ukelele.jpg") no-repeat center;
   background-size: cover;
   background-attachment: fixed;
   height: 100vh;
 }
+
 .card-body {
   flex-direction: row;
   flex-shrink: 1;
@@ -46,7 +46,7 @@ body {
   align-content: center;
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.5), 0 12px 20px 0 rgba(0, 0, 0, 0.5);
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   flex-wrap: wrap;
 }
 
@@ -70,7 +70,7 @@ body {
   justify-content: center;
 }
 
-.main-text > p {
+.main-text>p {
   font-size: 3.5rem;
   vertical-align: top;
   margin-bottom: 20px;
@@ -80,12 +80,14 @@ body {
   width: 30vw;
   text-align: center;
 }
+
 .chord-pro-file {
   font-size: 1rem !important;
   padding-bottom: 1rem;
-  text-align:left;
-/*   padding-bottom:10px; */
+  text-align: left;
+  /*   padding-bottom:10px; */
 }
+
 @media (max-width: 1025px) {
   .card {
     width: 30vw;
@@ -98,6 +100,7 @@ body {
   display: flex;
   align-self: center;
 }
+
 .input-code {
   color: gray;
   background-color: #ffff;
@@ -113,31 +116,37 @@ body {
   margin-top: 5px;
   display: none;
 }
+
 ::-webkit-input-placeholder {
   color: gray;
   opacity: 1;
   font-size: 1.25rem;
 }
+
 ::-moz-placeholder {
   color: gray;
   opacity: 1;
   font-size: 1.25rem;
 }
+
 :-ms-input-placeholder {
   color: gray;
   opacity: 1;
   font-size: 1.25rem;
 }
+
 ::-ms-input-placeholder {
   color: gray;
   opacity: 1;
   font-size: 1.25rem;
 }
+
 ::placeholder {
   color: gray;
   opacity: 1;
   font-size: 1.25rem;
 }
+
 .enter-button {
   color: #ffffff;
   margin-top: 5px;
@@ -152,6 +161,7 @@ body {
   background-color: #6c757d;
   align-items: center;
 }
+
 #display {
   margin-left: 20px;
   font-size: 1.5rem;
@@ -160,12 +170,14 @@ body {
   display: none;
   width: 90%;
 }
+
 .sub-inputs {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   flex-shrink: 1;
 }
+
 .chord-pro-container {
   display: flex;
   flex-direction: column;
@@ -180,6 +192,7 @@ body {
   text-align: left;
   font-size: 1.3rem;
 }
+
 .sub-chord-pro-container {
   display: flex;
   align-content: center;
@@ -187,28 +200,33 @@ body {
   width: 100%;
 }
 
-.sub-chord-pro-container > .chord-pro-file {
+.sub-chord-pro-container>.chord-pro-file {
   align-content: center;
   align-self: center;
 }
-.sub-chord-pro-container > .enter-button {
+
+.sub-chord-pro-container>.enter-button {
   justify-content: center;
   align-content: center;
   height: 5vh;
   width: 100%;
 }
+
 .enter-session {
   display: none;
   width: 100%;
 }
-.enter-session > .enter-button {
+
+.enter-session>.enter-button {
   width: 100%;
   height: 5vh;
 }
+
 .lyrics {
   font-weight: 600;
   font-size: 2vw;
 }
+
 .left-arrow {
   max-width: -webkit-min-content;
   max-width: -moz-min-content;
@@ -216,12 +234,14 @@ body {
   color: black;
   align-self: flex-start;
 }
+
 .back-arrow {
   align-self: flex-start;
   position: fixed;
   padding-bottom: 8%;
   padding-left: 10px;
 }
+
 .enter-button:focus-visible {
   box-shadow: 0 0 0.25rem rgb(130 138 145 / 50%);
 }
@@ -239,13 +259,14 @@ body {
 
 .chord {
   font-size: 2vw;
+  color: red;
 }
 
 #screen {
   margin: 2.5%;
   position: absolute;
   height: 60%;
-  width: 75%;
+  width: 95%;
   overflow-y: hidden;
   overflow-x: hidden;
   background: white;
@@ -255,7 +276,8 @@ body {
   justify-content: space-between;
   flex-direction: row-reverse;
 }
-.arrows{
+
+.arrows {
   z-index: 100;
   display: flex;
   flex-direction: column;
@@ -264,17 +286,20 @@ body {
   align-items: center;
 }
 
-.arrow-button{
+.arrow-button {
   text-decoration: none;
   background-color: inherit;
   border: none;
 }
-.arrow-button:hover{
+
+.arrow-button:hover {
   cursor: pointer;
 }
-.arrow{
-  font-size:75px;
+
+.arrow {
+  font-size: 75px;
 }
+
 .back-button {
 
   width: 100%;
@@ -284,7 +309,8 @@ body {
   display: flex;
   justify-content: space-between;
 }
-.back-button > a {
+
+.back-button>a {
   text-decoration: none;
   background-color: inherit;
   border: none;
@@ -292,146 +318,157 @@ body {
 }
 
 #song-info {
-  margin-top: 2.5%;
-  display: none;
-  float: right;
-  width: 20%;
-  color: white;
-  padding-right: 2.5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: rgb(202, 202, 202);
+  width: 100%;
 }
 
 #song-title {
-  font-size: 3.5vw;
+  font-size: 4vw;
+  font-family: "Shippori Antique B1", sans-serif;
 }
-.back-button > button {
+
+#song-artist {
+  font-family: "Shippori Antique B1", sans-serif;
+}
+
+#session-name {
+  font-family: "Shippori Antique B1", sans-serif;
+}
+
+.back-button>button {
   text-decoration: none;
   background: inherit;
   border: none;
   color: inherit;
   text-align: right;
 }
+
 .join-back-button {
   display: none;
 }
+
 .post-back-button {
   display: none;
 }
-.post-back-button:hover{
+
+.post-back-button:hover {
   cursor: pointer;
 }
-.next-button:hover{
+
+.next-button:hover {
   cursor: pointer;
 }
-.url-container{
+
+.url-container {
   padding-bottom: 15px;
 }
-.join-back-button-link{
-  padding-top:15px;
+
+.join-back-button-link {
+  padding-top: 15px;
 }
-.post-back-button{
-  padding-top:5px;
+
+.post-back-button {
+  padding-top: 5px;
 }
-.form-link{
-  position:fixed;
+
+.form-link {
+  position: fixed;
   right: 0;
-  bottom:0;
+  bottom: 0;
   padding-bottom: 10px;
   text-decoration: none;
-  padding-right:10px;
+  padding-right: 10px;
   display: block !important;
   color: white;
 }
-.not-valid-url{
-  color:red;
+
+.not-valid-url {
+  color: red;
   font-size: 1rem !important;
   display: none;
 }
+
 /* Responsive css */
-@media only screen and (min-width: 1500px){
-  .centering-card{
+@media only screen and (min-width: 1500px) {
+  .centering-card {
     width: 49vw;
     height: 23vh !important;
   }
 }
-@media only screen 
-  and (min-device-width: 1024px)
-  and (max-device-height: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) and (orientation:portrait) {
-    .enter-button{
-      height:300%;
-    }
-    .centering-card{
-      width: 40vw;
-    }
-  }
-  @media only screen 
-  and (min-device-width: 1024px)
-  and (max-device-height: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) and (orientation:landscape) {
-    .centering-card{
-      width: 40vw;
-    }
+
+@media only screen and (min-device-width: 1024px) and (max-device-height: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation:portrait) {
+  .enter-button {
+    height: 300%;
   }
 
-@media only screen and (max-width:750px) and (max-height:440px){
-  .centering-card{
+  .centering-card {
+    width: 40vw;
+  }
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-height: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation:landscape) {
+  .centering-card {
+    width: 40vw;
+  }
+}
+
+@media only screen and (max-width:750px) and (max-height:440px) {
+  .centering-card {
     height: 40vh !important;
   }
 }
 
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 1) {
-  .centering-card{
-    height:  65vh important;
-    
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+  .centering-card {
+    height: 65vh important;
+
   }
-  label{
+
+  label {
     font-size: 1.6rem;
   }
 
 }
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: portrait){
-  .centering-card{  
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .centering-card {
     height: 19vh !important;
-    
+
   }
-  label{
+
+  label {
     font-size: 1.6rem;
   }
 
 }
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-max-device-pixel-ratio: 1) 
-  and (orientation: landscape){
-  .centering-card{  
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-max-device-pixel-ratio: 1) and (orientation: landscape) {
+  .centering-card {
     height: 19vh !important;
-    
+
   }
 
 }
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1366px) 
-  {
-    label{
-      font-size: 1.6rem !important;
-    }
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1366px) {
+  label {
+    font-size: 1.6rem !important;
   }
+}
 
 @media screen and (max-width: 1250px) {
-  *{
+  * {
     font-size: 1.2vw;
   }
+
   .sub-chord-pro-container {
     flex-flow: wrap;
   }
+
   .centering-card {
     width: 40vw;
   }
@@ -442,10 +479,12 @@ body {
     padding-right: 25px;
     padding-left: 25px;
   }
+
   .centering-card {
     width: 40vw;
   }
-  .main-text > p {
+
+  .main-text>p {
     width: auto;
   }
 }
@@ -455,15 +494,19 @@ body {
   .back-arrow {
     padding-bottom: 12%;
   }
+
   .sub-chord-pro-container {
     flex-flow: wrap;
   }
+
   .centering-card {
     width: 40vw;
   }
-  .main-text > p {  
+
+  .main-text>p {
     width: auto;
   }
+
   .enter-button {
     font-size: 1.3rem;
   }
@@ -472,12 +515,15 @@ body {
 
 
 @media screen and (max-width: 600px) {
-  *{font-size: 2.5vw;
+  * {
+    font-size: 2.5vw;
   }
+
   .centering-card {
     width: 60vw;
     height: 22vh;
   }
+
   .main-text {
     display: flex;
     align-content: center;
@@ -485,23 +531,32 @@ body {
     flex-direction: column;
     width: 100%;
   }
+
   .back-arrow {
     padding-bottom: 15%;
   }
-  .logo{
+
+  .logo {
     width: 45vw;
   }
 }
 
-
+.rotate {
+  font-family: "Shippori Antique B1", sans-serif;
+  font-size: 4.5vw;
+  padding-top: 5%;
+}
 
 @media screen and (orientation: portrait) {
   #portrait {
     color: white;
     background-color: black;
     display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     position: fixed;
-    z-index: 100;
+    z-index: 1000;
     height: 100vh;
     width: 100vw;
   }
@@ -509,7 +564,8 @@ body {
 
 @media screen and (orientation: landscape) {
   #portrait {
-    display: none !important; 
+    display: none !important;
+    font-family: "Shippori Antique B1", sans-serif;
   }
 }
 
@@ -518,14 +574,17 @@ body {
     padding-bottom: 8%;
   }
 }
+
 @media only screen and (min-width: 375px) and (max-height: 812px) and (-webkit-device-pixel-ratio: 3) {
   .back-arrow {
     padding-bottom: 30%;
   }
+
   .centering-card {
     width: 60vw;
     height: 22vh;
   }
+
   .main-text {
     display: flex;
     align-content: center;
@@ -534,35 +593,42 @@ body {
     width: 100%;
   }
 }
-@media only screen and (max-width:812px) and (min-height: 375px) and (orientation:landscape){
+
+@media only screen and (max-width:812px) and (min-height: 375px) and (orientation:landscape) {
   .back-arrow {
     padding-bottom: 30%;
   }
+
   .centering-card {
     width: 60vw;
     height: 45vh !important;
   }
-  .enter-button{
+
+  .enter-button {
     height: 12vh !important;
 
   }
-  .input-code{
-    height:12vh !important;
+
+  .input-code {
+    height: 12vh !important;
   }
 }
 
 
 @media screen and (max-width: 400px) {
-  *{
+  * {
     font-size: 3vw;
   }
+
   .centering-card {
     width: 80vw;
     height: 22vh;
   }
-  .logo{
+
+  .logo {
     width: 75vw;
   }
+
   .main-text {
     display: flex;
     align-content: center;
@@ -570,7 +636,8 @@ body {
     flex-direction: column;
     width: 100%;
   }
-  .main-text > p {
+
+  .main-text>p {
     font-size: 3rem;
     width: auto;
   }
