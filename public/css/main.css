@@ -398,6 +398,10 @@ body {
     width: 49vw;
     height: 23vh !important;
   }
+  *{
+    font-size: 1.2rem;
+  }
+
 }
 
 @media only screen and (min-device-width: 1024px) and (max-device-height: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation:portrait) {
