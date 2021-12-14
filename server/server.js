@@ -1,55 +1,87 @@
 // Initialization of backend
-const path = require('path')
-const http = require('http')
-const express = require('express')
-const socketIO = require('socket.io')
-const app = express()
-const server = http.createServer(app)
-const io = socketIO(server)
-const publicPath = path.join(__dirname, '/../public')
-const port = process.env.PORT || 20411
+const path = require('path');
+const http = require('http');
+const express = require('express');
+const socketIO = require('socket.io');
+const axios = require('axios');
+
+const app = express();
+const server = http.createServer(app);
+const io = socketIO(server);
+const publicPath = path.join(__dirname, '/../public');
+const port = process.env.PORT || 20411;
 
 const ChordSheetJS = require('chordsheetjs').default;
-const roomMap = new Map()
+const roomMap = new Map();
 
-app.use(express.static(publicPath))
+app.use(express.static(publicPath));
 server.listen(port, () => {
-    console.log('Server is up on port ' + port + '.')
-})
+    console.log('Server is up on port ' + port + '.');
+});
 
 // Start Socket.IO connection with clients
 io.on('connection', (socket) => {
-
-    // Prevents crashes due to preexisting file upload
-    io.to(socket.id).emit('clearForm');
 
     socket.on('disconnect', () => {
         removeLeaderIfDisconnected(socket.id);
         removeEmptyRooms();
     });
 
-    // Action when client clicks startButton. Flow: Client Press -> Server Receive -> Server Response -> All Client Action
-    socket.on('startGame', (room) => {
-        if (!roomMapHasRoom(room)) {
-            leaderJoinAction(room, socket);
+    socket.on('leaderJoin', (room) => {
+        if (roomMap.has(room)) {
+            io.to(socket.id).emit('roomAlreadyExists', room);
         } else {
-            followerJoinAction(room, socket);
+            leaderJoinAction(room, socket);
         }
-    });
+    })
+
+    socket.on('followerJoin', (room) => {
+        if (roomMap.has(room)) {
+            followerJoinAction(room, socket);
+        } else {
+            io.to(socket.id).emit('roomNotFound', room);
+        }
+    })
 
     socket.on('displayLeaderLyrics', (room, song) => {
         let lyrics = chordProFormat(song['lyrics']);
-        let posAndLeader = [lyrics, socket.id];
+        let title = song['title'];
+        let artist = song['artist'];
+        let posAndLeader = [lyrics, socket.id, title, artist];
         roomMap.set(room, posAndLeader);
-        io.to(room).emit('displayLyrics', lyrics);
+
+        io.to(socket.id).emit('displayLyrics', lyrics, title, artist);
     });
 
     socket.on('displayFollowerLyrics', (room) => {
         let lyrics = roomMap.get(room)[0];
+        let title = roomMap.get(room)[2];
+        let artist = roomMap.get(room)[3];
 
-        io.to(room).emit('displayLyrics', lyrics);     
+        io.to(socket.id).emit('displayLyrics', lyrics, title, artist);
     });
+
+    socket.on('scroll', (room, visibleTables) => {
+        vt = visibleTables;
+        io.to(room).emit('move', vt);
+    });
+
+    socket.on('getChordProFromUrl', async(url) => {
+        let result = await getChordProFromUrl(url);
+
+        io.to(socket.id).emit('parseSongFile', result);
+    })
 });
+
+async function getChordProFromUrl(url) {
+    try {
+        const result = await axios.get(url)
+        return result.data;
+    } catch (err) {
+        console.log('Error ' + err.statusCode);
+        return undefined;
+    };
+}
 
 function isLeaderAction(socketid, room) {
     let leader = roomMap.get(room)[1];
@@ -74,7 +106,7 @@ function removeLeaderIfDisconnected(socketid) {
 
     if (room != undefined) {
         roomMap.delete(room);
-    }   
+    }
 }
 
 function isRoomEmpty(room) {
@@ -103,13 +135,15 @@ function leaderJoinAction(room, socket) {
 
     socket.join(room);
 
-    io.to(room).emit('startGame');
+    io.to(room).emit('leaderJoin', room);
+    io.to(room).emit('startSession');
+    io.to(room).emit('enableScroll');
 }
 
 function followerJoinAction(room, socket) {
     socket.join(room);
-
-    io.to(room).emit('startGame');
+    io.to(socket.id).emit('followerJoin', room);
+    io.to(room).emit('startSession');
 }
 
 function chordProFormat(input) {
@@ -142,8 +176,7 @@ module.exports = {
     isRoomEmpty,
     removeEmptyRooms,
     roomMapHasRoom,
-    leaderJoinAction,
-    followerJoinAction,
+    getChordProFromUrl,
     chordProFormat,
     getActiveRooms
 }
