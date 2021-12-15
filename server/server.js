@@ -61,8 +61,9 @@ io.on('connection', (socket) => {
         io.to(socket.id).emit('displayLyrics', lyrics, title, artist);
     });
 
+    // vt is included to prevent wonky behavior
     socket.on('scroll', (room, visibleTables) => {
-        vt = visibleTables;
+        let vt = visibleTables;
         io.to(room).emit('move', vt);
     });
 
@@ -143,7 +144,7 @@ function leaderJoinAction(room, socket) {
 function followerJoinAction(room, socket) {
     socket.join(room);
     io.to(socket.id).emit('followerJoin', room);
-    io.to(room).emit('startSession');
+    io.to(socket.id).emit('startSession');
 }
 
 function chordProFormat(input) {
@@ -153,18 +154,6 @@ function chordProFormat(input) {
     const formatter = new ChordSheetJS.HtmlTableFormatter();
     const disp = formatter.format(song);
     return disp;
-}
-
-function getActiveRooms(io) {
-    // Convert map into 2D list:
-    // ==> [['4ziBKG9XFS06NdtVAAAH', Set(1)], ['room1', Set(2)], ...]
-    const arrayOfRoomObjects = Array.from(io.sockets.adapter.rooms);
-
-    // Filter rooms whose name exist in set:
-    // ==> [['room1', Set(2)], ['room2', Set(2)]]
-    const filteredRooms = arrayOfRoomObjects.filter(room => !room[1].has(room[0]));
-
-    return filteredRooms;
 }
 
 module.exports = {
@@ -178,5 +167,4 @@ module.exports = {
     roomMapHasRoom,
     getChordProFromUrl,
     chordProFormat,
-    getActiveRooms
 }
