@@ -99,6 +99,8 @@ socket.on('displayFollowerLyrics', (room) => {
 
 > On `displayFollowerLyrics` event, retrieve `lyrics`, `title`, and `artist` from `roomMap`. Emit `displayLyrics` event to client `socket.id`, passing on `lyrics`, `title`, and `artist`.
 
+<br />
+
 ```js
 socket.on('scroll', (room, visibleTables) => {
     let vt = visibleTables;
@@ -582,7 +584,7 @@ socket.on('displayLyrics', (lyrics, title, artist) => {
 });
 ```
 
->
+>Displays the lyrics, session name, and song information.
 
 ```js
 socket.on('enableScroll', () => {
