@@ -16,8 +16,13 @@ let postBackButton = document.getElementById('postBackButton');
 let firstMenu = document.getElementById('firstMenu');
 let portrait = document.getElementById('portrait');
 let formLink = document.getElementById('formLink');
-
-
+let darkMode = document.getElementById('darkMode')
+let darkModeLyrics = document.getElementById('darkModeLyrics')
+let logo = document.getElementById('logo')
+let staticImage = document.getElementById('staticImage');
+let screen = document.getElementById('screen')
+let paragraph = document.querySelectorAll('.paragraph');
+let sessionName = document.getElementById('session-name');
 
 
 if (initialCreateButton.click = true) {
@@ -54,6 +59,11 @@ startButton.addEventListener('click', function() {
     container.style.display = 'none';
     portrait.style.display='flex';
     formLink.style.color='black';
+    darkMode.style.display = 'none';
+    darkModeLyrics.style.display='block';
+    if(darkModeLyrics.checked==true){
+        darkModeLyrics.dispatchEvent(new Event('change'))
+    }
 })
 
 followerStartButton.addEventListener('click', function() {
@@ -61,7 +71,13 @@ followerStartButton.addEventListener('click', function() {
     container.style.display = 'none';
     portrait.style.display='flex';
     formLink.style.color='black';
-    
+    darkMode.style.display = 'none';
+    darkModeLyrics.style.display='block';
+    if(darkModeLyrics.checked==true){
+        darkModeLyrics.dispatchEvent(new Event('change'))
+    }
+  
+
 })
 
 initialCreateButton.addEventListener('click', function() {
@@ -82,3 +98,38 @@ initialJoinButton.addEventListener('click', function() {
     arrows.style.display='none';
     centeringCard.style.height = '25vh';
 });
+darkMode.addEventListener('change', function(e){
+    if(e.target.checked){
+        centeringCard.classList.add('dark-color-mode');
+        document.body.style.background = "url('css/pictures/darkGuitar.jpg')";
+        document.body.style.backgroundRepeat = 'no-repeat';
+        document.body.style.backgroundPosition = 'center';
+        document.body.style.backgroundSize = 'cover'
+        darkModeLyrics.checked=true;
+
+    }else{
+        centeringCard.classList.remove('dark-color-mode')
+        logo.classList.remove('dark-color-mode');
+        staticImage.classList.add('dark-color-mode');
+        document.body.style.background = "linear-gradient(rgba(255, 255, 255, 0.2),rgba(255, 255, 255, 0.2),rgba(255, 255, 255, 0.2),rgba(255, 255, 255, 0.2)),url('css/pictures/Ukelele.jpg')";
+        document.body.style.backgroundRepeat = 'no-repeat';
+        document.body.style.backgroundPosition = 'center';
+        document.body.style.backgroundSize = 'cover';
+
+    }});
+darkModeLyrics.addEventListener('change', function(e){
+        if(e.target.checked){    
+            screen.classList.add('dark-color-mode-lyrics')
+            document.body.style.background = 'black';
+            sessionName.style.color='#fff'
+        }else{
+            screen.classList.remove('dark-color-mode-lyrics')
+            document.body.style.background = '#fff';
+            sessionName.style.color='black'
+        }
+    }
+    );
+const changeEvent = new Event('change')
+if(darkModeLyrics.checked==true){   
+    alert('this');
+}
