@@ -10,15 +10,32 @@
 
 }
 .dark-mode{
-  position: absolute;
+  position: relative;
   right: 0;
   top: 0;
+  align-items: center;
+  color: #ffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.dark-mode-text{
+  width: fit-content;
+  color: #ffff;
+  margin-right: 5px;
+
+}
+.session-name{
+  left:0;
+  top:0;
+  position: absolute;
+  margin-bottom: 5px;
+}
+#darkModeTextLyrics{
+  display: none;
 }
 #darkModeLyrics{  
-  display: none;
-  position: absolute;
-  right: 0;
-  top: 0;
+  display: none;  
 }
 .dark-color-mode{
   filter: invert(85%);
@@ -357,6 +374,7 @@ body {
   align-items: center;
   flex-direction: column;
   background: rgb(202, 202, 202);
+  margin-top: 5px;
   width: 100%;
 }
 
@@ -383,6 +401,10 @@ body {
 
 .join-back-button {
   display: none;
+  cursor: pointer;
+}
+.first-back-button{
+  cursor: pointer;
 }
 
 .post-back-button {

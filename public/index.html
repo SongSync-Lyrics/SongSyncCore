@@ -19,12 +19,14 @@
         <h1 class='rotate'>Please Switch Your Device to Landscape</h1>
     </div>
     <div class="dark-mode">
+        <label class="dark-mode-text" id="darkModeText">Toggle Dark Mode</label>
         <input id="darkMode" type="checkbox">
     </div>
-    <div class="dark-mode-lyrics">
+    <div class="dark-mode-lyrics dark-mode">
+        <label class="dark-mode-text" id="darkModeTextLyrics">Toggle Dark Mode</label>
         <input id="darkModeLyrics" type="checkbox">
     </div>
-    <h2 id='session-name' style="color:black"></h2>
+    <h2 id='session-name' class='session-name' style="color:black"></h2>
     <div id='song-info'>
         <h1 id="song-title"></h1>
         <h2 id="song-artist"></h2>
@@ -63,8 +65,7 @@
 
                         </div>
                         <div class="join-back-button back-button" id="joinBackButton">
-                            <a href="javascript:window.location.href=window.location.href"
-                                class="join-back-button-link">Back</a>
+                            <a class="join-back-button-link">Back</a>
                         </div>
 
                     </form>
@@ -93,7 +94,7 @@
                                 </button>
                             </div>
                             <div class="back-button">
-                                <a href="javascript:window.location.href=window.location.href" class='first-back-button'
+                                <a class='first-back-button'
                                     id="backButton">Back</a>
                                 <button type="button" id="postBackButton" class="post-back-button">Back</button>
                                 <button type="button" id="nextButton" class="next-button"

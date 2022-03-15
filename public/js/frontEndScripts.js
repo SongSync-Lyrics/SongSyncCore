@@ -23,6 +23,8 @@ let staticImage = document.getElementById('staticImage');
 let screen = document.getElementById('screen')
 let paragraph = document.querySelectorAll('.paragraph');
 let sessionName = document.getElementById('session-name');
+let darkModeText = document.getElementById('darkModeText');
+let darkModeTextLyrics = document.getElementById('darkModeTextLyrics');
 
 
 if (initialCreateButton.click = true) {
@@ -61,6 +63,10 @@ startButton.addEventListener('click', function() {
     formLink.style.color='black';
     darkMode.style.display = 'none';
     darkModeLyrics.style.display='block';
+    darkModeText.style.display='none'
+    darkModeTextLyrics.style.display='block'
+    darkModeTextLyrics.style.color='black'
+
     if(darkModeLyrics.checked==true){
         darkModeLyrics.dispatchEvent(new Event('change'))
     }
@@ -73,6 +79,11 @@ followerStartButton.addEventListener('click', function() {
     formLink.style.color='black';
     darkMode.style.display = 'none';
     darkModeLyrics.style.display='block';
+    darkModeText.style.display='none'
+    darkModeTextLyrics.style.display='block'
+    darkModeTextLyrics.style.color='black'
+
+
     if(darkModeLyrics.checked==true){
         darkModeLyrics.dispatchEvent(new Event('change'))
     }
@@ -97,7 +108,22 @@ initialJoinButton.addEventListener('click', function() {
     joinBackButton.style.display = 'flex';
     arrows.style.display='none';
     centeringCard.style.height = '25vh';
+    followerStartButton.style.display='block'
 });
+
+backButton.addEventListener('click', function(){
+    chordProContainer.style.display='none';
+    centeringCard.style.display='flex'
+    subInputs.style.display='flex'
+})
+
+joinBackButton.addEventListener('click', function(){
+    sessionCode.style.display='none'
+    followerStartButton.style.display='none'
+    joinBackButton.style.display='none'
+    centeringCard.style.display='flex'
+    subInputs.style.display='flex'
+})
 darkMode.addEventListener('change', function(e){
     if(e.target.checked){
         centeringCard.classList.add('dark-color-mode');
@@ -116,20 +142,21 @@ darkMode.addEventListener('change', function(e){
         document.body.style.backgroundPosition = 'center';
         document.body.style.backgroundSize = 'cover';
 
+
     }});
 darkModeLyrics.addEventListener('change', function(e){
         if(e.target.checked){    
             screen.classList.add('dark-color-mode-lyrics')
             document.body.style.background = 'black';
             sessionName.style.color='#fff'
+            darkModeTextLyrics.classList.add('dark-color-mode')
+
         }else{
             screen.classList.remove('dark-color-mode-lyrics')
             document.body.style.background = '#fff';
             sessionName.style.color='black'
+            darkModeTextLyrics.classList.remove('dark-color-mode')
+
         }
     }
     );
-const changeEvent = new Event('change')
-if(darkModeLyrics.checked==true){   
-    alert('this');
-}
