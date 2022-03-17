@@ -27,9 +27,9 @@ let darkModeText = document.getElementById('darkModeText');
 let darkModeTextLyrics = document.getElementById('darkModeTextLyrics');
 
 
-if (initialCreateButton.click = true) {
+/* if (initialCreateButton.click = true) {
     centeringCard.style.height = '18vh';
-}
+} */
 
 postBackButton.addEventListener('click', function() {
     subChordProContainer.style.display='none';
@@ -86,6 +86,8 @@ followerStartButton.addEventListener('click', function() {
 
     if(darkModeLyrics.checked==true){
         darkModeLyrics.dispatchEvent(new Event('change'))
+    }else{
+        darkModeLyrics.dispatchEvent(new Event('change'))
     }
   
 
@@ -96,7 +98,7 @@ initialCreateButton.addEventListener('click', function() {
     chordProContainer.style.display = 'flex';
     subChordProContainer.style.display = 'none';
     startButton.style.display = 'none';
-    centeringCard.style.height = '30vh';
+    //centeringCard.style.height = '30vh';
     arrows.style.display='flex';
 
 });
@@ -107,7 +109,7 @@ initialJoinButton.addEventListener('click', function() {
     enterSession.style.display = 'flex';
     joinBackButton.style.display = 'flex';
     arrows.style.display='none';
-    centeringCard.style.height = '25vh';
+    //centeringCard.style.height = '25vh';
     followerStartButton.style.display='block'
 });
 

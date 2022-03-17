@@ -6,13 +6,10 @@
   margin: 0;
   font-family: Montserrat;
   font-size: 1.5rem;
-  ;
 
 }
 .dark-mode{
   position: relative;
-  right: 0;
-  top: 0;
   align-items: center;
   color: #ffff;
   display: flex;
@@ -23,12 +20,14 @@
   width: fit-content;
   color: #ffff;
   margin-right: 5px;
+  font-size: 1.1rem !important;
 
 }
 .session-name{
   left:0;
   top:0;
   position: absolute;
+  font-size:1.1rem !important;
   margin-bottom: 5px;
 }
 #darkModeTextLyrics{
@@ -54,14 +53,15 @@ body {
   background-size: cover;
   background-attachment: fixed;
   height: 100vh;
+  overflow-y: hidden;
 }
-.background-attributes{
+/* .background-attributes{
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
   height: 100vh;
-}
+} */
 
 .card-body {
   flex-direction: row;
@@ -79,7 +79,7 @@ body {
 
 .centering-card {
   width: 30vw;
-  height: 18vh;
+  height: 35vh;
   display: flex;
   justify-content: center;
   border-radius: 1.25rem;
@@ -140,7 +140,7 @@ body {
 }
 
 .logo {
-  width: 40vw;
+  width: 50vw;
   padding-bottom: 20px;
   display: flex;
   align-self: center;
@@ -151,7 +151,7 @@ body {
   background-color: #ffff;
   width: 100%;
   align-self: center;
-  height: 5vh;
+  height: 8vh;
   text-align: center;
   border-radius: 0.5rem;
   vertical-align: middle;
@@ -199,7 +199,7 @@ body {
   align-self: center;
   cursor: pointer;
   border-radius: 0.5rem;
-  height: 200%;
+  height: 12vh;
   font-size: 1.5rem;
   border: 1px solid black;
   transition: all 0.35s;
@@ -259,7 +259,7 @@ body {
 .sub-chord-pro-container>.enter-button {
   justify-content: center;
   align-content: center;
-  height: 5vh;
+  height: 8vh;
   width: 100%;
 }
 
@@ -270,7 +270,7 @@ body {
 
 .enter-session>.enter-button {
   width: 100%;
-  height: 5vh;
+  height: 8vh;
 }
 
 .lyrics {
@@ -314,7 +314,7 @@ body {
 }
 
 #screen {
-  margin: 2.5%;
+ /*  margin: 2.5%; */
   position: absolute;
   height: 60%;
   width: 95%;
@@ -432,6 +432,7 @@ body {
 }
 
 .form-link {
+  z-index: -10;
   opacity: 0% !important;
   position: fixed;
   right: 0;
@@ -485,12 +486,13 @@ body {
 
 @media only screen and (max-width: 1280px) and (max-height: 720px) and (orientation:landscape){
     .logo{
-        width: 30vw !important;
+        width: 40vw !important;
     }
 }
 @media only screen and (max-width:360px) and (max-height: 900px) and (orientation:portrait){
     .centering-card{
-        height: 16vh !important;
+        height: 28vh !important;
+        width: 85vw !important;
     }
 }
 @media only screen and (min-width: 1500px) {
@@ -559,25 +561,24 @@ body {
 
 @media only screen and (max-width:750px) and (max-height:440px){
   .centering-card{
-    height: 40vh !important;
+    height: 60vh !important;
+    width: 70vw !important;
   }
-}
-
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
-  .centering-card {
-    height: 65vh important;
+  .chord-pro-text{
+    font-size: 1rem !important;
+  }
+  .next-button{
+    font-size: 1rem !important;
 
   }
-
-  label {
-    font-size: 1.6rem;
+  .first-back-button{
+    font-size: 1rem !important ;
   }
-
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
   .centering-card {
-    height: 15vh !important;
+    height: 28vh !important;
 
   }
 
@@ -586,6 +587,7 @@ body {
   }
 
 }
+
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-max-device-pixel-ratio: 1) and (orientation: landscape) {
   .centering-card {
@@ -596,12 +598,19 @@ body {
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1366px) {
-    *{font-size: 1.1rem !important;}
+    *{font-size: 1.3rem !important;}
+    .logo{
+      width: 40vw;
+    }
+
 }
 
 @media screen and (max-width: 1250px) {
   * {
-    font-size: 1.2vw;
+    font-size: 1.3rem !important;
+  }
+  .logo{
+    width: 50vw;
   }
 
   .sub-chord-pro-container {
@@ -609,7 +618,7 @@ body {
   }
 
   .centering-card {
-    width: 40vw;
+    width: 60vw;
   }
 }
 
@@ -620,7 +629,7 @@ body {
   }
 
   .centering-card {
-    width: 40vw;
+    width: 60vw;
   }
 
   .main-text>p {
@@ -658,12 +667,12 @@ body {
 
 @media screen and (max-width: 600px) {
   * {
-    font-size: 2.5vw;
+    font-size: 1rem !important;
   }
 
   .centering-card {
-    width: 60vw;
-    height: 22vh;
+    width: 85vw;
+    height: 26vh;
   }
 
   .main-text {
@@ -679,7 +688,7 @@ body {
   }
 
   .logo {
-    width: 45vw;
+    width: 75vw;
   }
 }
 
@@ -741,19 +750,29 @@ body {
   .back-arrow {
     padding-bottom: 30%;
   }
+  .chord-pro-text{
+    font-size: 1rem !important;
+  }
+  .first-back-button{
+    font-size: 1rem !important;
+
+  }
+  .next-button{
+    font-size: 1rem !important;
+  }
 
   .centering-card {
     width: 60vw;
-    height: 40vh !important;
+    height: 55vh !important;
   }
 
   .enter-button {
-    height: 12vh !important;
+    height: 15vh !important;  
 
   }
 
   .input-code {
-    height: 12vh !important;
+    height: 20vh !important;
   }
   .logo{
       width: 50vw !important;
@@ -768,7 +787,7 @@ body {
 
 @media screen and (max-width: 400px) {
   * {
-    font-size: 3vw;
+    font-size: 1rem !important;
   }
 
   .centering-card {
@@ -796,6 +815,54 @@ body {
 }
 @media screen and (max-width: 320px) and (max-height: 568px){
     .centering-card{
-        height: 22vh !important;
+        height: 25vh !important;
     }
+}
+@media only screen and (max-width: 1200px) and (min-height: 800){
+  .chord-pro-text{
+    font-size: 1.2rem !important;
+  }
+}
+@media screen and (max-width: 1100px) and (max-height: 400px) and (orientation:landscape){
+  .centering-card{
+    width: 80vw !important;
+    height: 70vh !important;
+  }
+  .chord-pro-text{
+    font-size: 1rem !important;
+  }
+  .next-button{
+    font-size: 1rem !important;
+
+  }
+  .first-back-button{
+    font-size: 1rem !important ;
+  }
+  .enter-button{
+    height: 20vh !important;
+  }
+}
+/*ipad pro*/
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+  *{
+    font-size: 1.4rem !important  ;
+  }
+
+}
+@media only screen and (min-device-width: 1024px) and (max-device-height: 768px) and (-webkit-min-device-pixel-ratio: 1) {
+  *{
+    font-size: 1.4rem !important;
+  }
+  .chord-pro-text{
+    font-size: 1.4rem !important;
+
+  }
+  .first-back-button{
+    font-size: 1.4rem;
+
+  }
+  .next-button{
+    font-size: 1.4rem;
+  }
+
 }
