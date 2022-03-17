@@ -25,6 +25,9 @@ let paragraph = document.querySelectorAll('.paragraph');
 let sessionName = document.getElementById('session-name');
 let darkModeText = document.getElementById('darkModeText');
 let darkModeTextLyrics = document.getElementById('darkModeTextLyrics');
+let joinBackButtonLink = document.getElementById('joinBackButtonLink');
+let leaveSession = document.getElementById('leaveSession')
+let leaveSessionLink = document.getElementById('leaveSessionLink')
 
 
 /* if (initialCreateButton.click = true) {
@@ -39,6 +42,8 @@ postBackButton.addEventListener('click', function() {
     postBackButton.style.display = 'none';
     backButton.style.display='flex';
     nextButton.style.display='flex';
+    sessionCode.value=''
+
 
 })
 
@@ -66,6 +71,9 @@ startButton.addEventListener('click', function() {
     darkModeText.style.display='none'
     darkModeTextLyrics.style.display='block'
     darkModeTextLyrics.style.color='black'
+    leaveSession.style.display='flex'
+    leaveSessionLink.style.color='black'
+
 
     if(darkModeLyrics.checked==true){
         darkModeLyrics.dispatchEvent(new Event('change'))
@@ -82,11 +90,11 @@ followerStartButton.addEventListener('click', function() {
     darkModeText.style.display='none'
     darkModeTextLyrics.style.display='block'
     darkModeTextLyrics.style.color='black'
+    leaveSession.style.display='flex'
+    leaveSessionLink.style.color='black';
 
 
     if(darkModeLyrics.checked==true){
-        darkModeLyrics.dispatchEvent(new Event('change'))
-    }else{
         darkModeLyrics.dispatchEvent(new Event('change'))
     }
   
@@ -102,7 +110,6 @@ initialCreateButton.addEventListener('click', function() {
     arrows.style.display='flex';
 
 });
-
 initialJoinButton.addEventListener('click', function() {
     sessionCode.style.display = 'flex';
     subInputs.style.display = 'none';
@@ -117,6 +124,8 @@ backButton.addEventListener('click', function(){
     chordProContainer.style.display='none';
     centeringCard.style.display='flex'
     subInputs.style.display='flex'
+    sessionCode.value=''
+
 })
 
 joinBackButton.addEventListener('click', function(){
@@ -125,6 +134,7 @@ joinBackButton.addEventListener('click', function(){
     joinBackButton.style.display='none'
     centeringCard.style.display='flex'
     subInputs.style.display='flex'
+    sessionCode.value=''
 })
 darkMode.addEventListener('change', function(e){
     if(e.target.checked){
@@ -133,6 +143,7 @@ darkMode.addEventListener('change', function(e){
         document.body.style.backgroundRepeat = 'no-repeat';
         document.body.style.backgroundPosition = 'center';
         document.body.style.backgroundSize = 'cover'
+
         darkModeLyrics.checked=true;
 
     }else{
@@ -145,6 +156,7 @@ darkMode.addEventListener('change', function(e){
         document.body.style.backgroundSize = 'cover';
 
 
+
     }});
 darkModeLyrics.addEventListener('change', function(e){
         if(e.target.checked){    
@@ -152,12 +164,16 @@ darkModeLyrics.addEventListener('change', function(e){
             document.body.style.background = 'black';
             sessionName.style.color='#fff'
             darkModeTextLyrics.classList.add('dark-color-mode')
+            leaveSessionLink.style.color='#ffff'
+
 
         }else{
             screen.classList.remove('dark-color-mode-lyrics')
             document.body.style.background = '#fff';
             sessionName.style.color='black'
             darkModeTextLyrics.classList.remove('dark-color-mode')
+            leaveSessionLink.style.color='black'
+
 
         }
     }

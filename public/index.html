@@ -26,11 +26,15 @@
         <label class="dark-mode-text" id="darkModeTextLyrics">Toggle Dark Mode</label>
         <input id="darkModeLyrics" type="checkbox">
     </div>
+    <div class="leave-session" id="leaveSession">
+        <a href="javascript:window.location.href=window.location.href" id="leaveSessionLink">Leave Session</a>
+    </div>
     <h2 id='session-name' class='session-name' style="color:black"></h2>
     <div id='song-info'>
         <h1 id="song-title"></h1>
         <h2 id="song-artist"></h2>
     </div>
+
     <div id='screen' id="screen" >
         <div class="arrows" id="arrows">
             <button type="button" class="arrow-button" id="upArrowButton">
@@ -65,7 +69,7 @@
 
                         </div>
                         <div class="join-back-button back-button" id="joinBackButton">
-                            <a class="join-back-button-link">Back</a>
+                            <a class="join-back-button-link" id="joinBackButtonLink">Back</a>
                         </div>
 
                     </form>

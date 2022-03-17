@@ -30,6 +30,20 @@
   font-size:1.1rem !important;
   margin-bottom: 5px;
 }
+.leave-session{
+  display: none;
+  width: fit-content;
+}
+.leave-session>a{
+  color: #ffff;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 1.1rem !important;
+  padding-top:5px
+}
+.leave-session:hover{
+  text-decoration: underline;
+}
 #darkModeTextLyrics{
   display: none;
 }
@@ -379,17 +393,19 @@ body {
 }
 
 #song-title {
-  font-size: 4vw;
+  font-size: 1.1rem !important;
   font-family: "Shippori Antique B1", sans-serif;
 }
 
 #song-artist {
+  font-size: 1.1rem !important;
   font-family: "Shippori Antique B1", sans-serif;
 }
 
 #session-name {
   font-family: "Shippori Antique B1", sans-serif;
 }
+
 
 .back-button>button {
   text-decoration: none;
@@ -767,7 +783,7 @@ body {
   }
 
   .enter-button {
-    height: 15vh !important;  
+    height: 20vh !important;  
 
   }
 
@@ -837,6 +853,9 @@ body {
   }
   .first-back-button{
     font-size: 1rem !important ;
+  }
+  .input-code{
+    height: 20vh !important;
   }
   .enter-button{
     height: 20vh !important;
