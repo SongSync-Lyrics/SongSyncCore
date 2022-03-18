@@ -18,24 +18,26 @@
         <img src="./css/pictures/Rotate_Phone_Symbol.png" id='staticImage' alt="Rotate phone to landscape." width="60%">
         <h1 class='rotate'>Please Switch Your Device to Landscape</h1>
     </div>
-    <div class="dark-mode">
-        <label class="dark-mode-text" id="darkModeText">Toggle Dark Mode</label>
-        <input id="darkMode" type="checkbox">
-    </div>
-    <div class="dark-mode-lyrics dark-mode">
-        <label class="dark-mode-text" id="darkModeTextLyrics">Toggle Dark Mode</label>
-        <input id="darkModeLyrics" type="checkbox">
-    </div>
-    <div class="leave-session" id="leaveSession">
-        <a href="javascript:window.location.href=window.location.href" id="leaveSessionLink">Leave Session</a>
-    </div>
+
+        <div class="dark-mode">
+            <label class="dark-mode-text" id="darkModeText">Toggle Dark Mode</label>
+            <input id="darkMode" type="checkbox">
+        </div>
+        <div class="dark-mode-lyrics dark-mode">
+            <label class="dark-mode-text" id="darkModeTextLyrics">Toggle Dark Mode</label>
+            <input id="darkModeLyrics" type="checkbox">
+        </div>
+        <div class="leave-session" id="leaveSession">
+            <a href="javascript:window.location.href=window.location.href" id="leaveSessionLink">Leave Session</a>
+        </div>
+
     <h2 id='session-name' class='session-name' style="color:black"></h2>
     <div id='song-info'>
         <h1 id="song-title"></h1>
         <h2 id="song-artist"></h2>
     </div>
 
-    <div id='screen' id="screen" >
+    <div id='screen' id="screen">
         <div class="arrows" id="arrows">
             <button type="button" class="arrow-button" id="upArrowButton">
                 <i class="fas fa-arrow-up arrow"></i>
@@ -98,8 +100,7 @@
                                 </button>
                             </div>
                             <div class="back-button">
-                                <a class='first-back-button'
-                                    id="backButton">Back</a>
+                                <a class='first-back-button' id="backButton">Back</a>
                                 <button type="button" id="postBackButton" class="post-back-button">Back</button>
                                 <button type="button" id="nextButton" class="next-button"
                                     disabled='disabled'>Next</button>
@@ -110,10 +111,16 @@
             </div>
         </div>
 
+
+
         <!-- Front End Javscript reference-->
 
 
     </section>
+    <div class="landing-page" id="landingPage">
+        <a href="/info.htm" target="__blank" id="landingPageInfo" class="landing-page-links">Information about us</a>
+        <a href="/support.htm" target="__blank" id="landingPageSupport" class="landing-page-links support-link">Support Us!</a>
+    </div>
     <a href="https://forms.gle/j6Vup9v7D9KTTUHf7" class="form-link" target="__blank" id="formLink">To report an issue
         please click here</a>
     <script src='/js/frontEndScripts.js'></script>

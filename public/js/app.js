@@ -208,13 +208,13 @@ socket.on('startSession', () => {
 socket.on('displayLyrics', (lyrics, title, artist) => {
     document.getElementById('screen').style.display = 'flex';
     document.getElementById('display').style.display = 'block';
-    document.getElementById('song-info').style.display = 'flex';
+/*     document.getElementById('song-info').style.display = 'flex'; */
     document.getElementById('display').innerHTML = lyrics;
-    document.getElementById('session-name').innerHTML = "Session: " + room;
-    document.getElementById('song-title').innerHTML = title;
-    if (artist != 'Undefined') {
+/*     document.getElementById('session-name').innerHTML = "Session: " + room;
+    document.getElementById('song-title').innerHTML = title; */
+/*     if (artist != 'Undefined') {
         document.getElementById('song-artist').innerHTML = "By " + artist;
-    }
+    } */
     //document.getElementById('song-title').innerHTML = song["title"];
     var elements = document.querySelectorAll('.row');
     for (let i = 0; i < elements.length; i++) {

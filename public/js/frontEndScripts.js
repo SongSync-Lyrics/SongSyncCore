@@ -28,6 +28,10 @@ let darkModeTextLyrics = document.getElementById('darkModeTextLyrics');
 let joinBackButtonLink = document.getElementById('joinBackButtonLink');
 let leaveSession = document.getElementById('leaveSession')
 let leaveSessionLink = document.getElementById('leaveSessionLink')
+let landingPage = document.getElementById('landingPage')
+let landingPageInfo = document.getElementById('landingPageInfo')
+let landingPageSupport = document.getElementById('landingPageSupport')
+
 
 
 /* if (initialCreateButton.click = true) {
@@ -73,6 +77,10 @@ startButton.addEventListener('click', function() {
     darkModeTextLyrics.style.color='black'
     leaveSession.style.display='flex'
     leaveSessionLink.style.color='black'
+    landingPageInfo.style.color='black'
+    landingPageSupport.style.color='black'
+
+
 
 
     if(darkModeLyrics.checked==true){
@@ -92,6 +100,9 @@ followerStartButton.addEventListener('click', function() {
     darkModeTextLyrics.style.color='black'
     leaveSession.style.display='flex'
     leaveSessionLink.style.color='black';
+    landingPageInfo.style.color='black'
+    landingPageSupport.style.color='black'
+
 
 
     if(darkModeLyrics.checked==true){
@@ -143,7 +154,6 @@ darkMode.addEventListener('change', function(e){
         document.body.style.backgroundRepeat = 'no-repeat';
         document.body.style.backgroundPosition = 'center';
         document.body.style.backgroundSize = 'cover'
-
         darkModeLyrics.checked=true;
 
     }else{
@@ -165,6 +175,10 @@ darkModeLyrics.addEventListener('change', function(e){
             sessionName.style.color='#fff'
             darkModeTextLyrics.classList.add('dark-color-mode')
             leaveSessionLink.style.color='#ffff'
+            landingPageInfo.classList.add('dark-color-mode')
+            landingPageSupport.classList.add('dark-color-mode')
+
+
 
 
         }else{
@@ -173,6 +187,10 @@ darkModeLyrics.addEventListener('change', function(e){
             sessionName.style.color='black'
             darkModeTextLyrics.classList.remove('dark-color-mode')
             leaveSessionLink.style.color='black'
+            landingPageInfo.classList.remove('dark-color-mode')
+            landingPageSupport.classList.remove('dark-color-mode')
+
+
 
 
         }
