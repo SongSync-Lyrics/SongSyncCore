@@ -20,6 +20,7 @@ Share lyrics with friends. Featuring online rooms.
 * Mocha & Chai
 * Http & Path
 * Cucumber.io
+* csv-parser
 
 ## License
 
