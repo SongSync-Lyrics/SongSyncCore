@@ -9,7 +9,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
 const publicPath = path.join(__dirname, '/../public');
-const port = process.env.PORT || 20411;
+const port = process.env.PORT || 80;
 
 const ChordSheetJS = require('chordsheetjs').default;
 const roomMap = new Map();
@@ -59,6 +59,16 @@ io.on('connection', (socket) => {
         let artist = roomMap.get(room)[3];
 
         io.to(socket.id).emit('displayLyrics', lyrics, title, artist);
+    });
+
+    socket.on('displayNextLyrics', (room, song) => {
+        let lyrics = chordProFormat(song['lyrics']);
+        let title = song['title'];
+        let artist = song['artist'];
+        let posAndLeader = [lyrics, socket.id, title, artist];
+        roomMap.set(room, posAndLeader);
+        
+        io.to(room).emit('displayLyrics', lyrics, title, artist);
     });
 
     // vt is included to prevent wonky behavior

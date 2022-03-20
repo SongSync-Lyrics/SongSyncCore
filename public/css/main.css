@@ -430,7 +430,17 @@ body {
 #session-name {
   font-family: "Shippori Antique B1", sans-serif;
 }
+#nextSong {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: rgb(218, 218, 218);
+  border-radius: 25px;
+}
 
+#nextSongFile, #nextSongURL, #nextSongButton, #confirmNextSong, #selectNextSong {
+  display: none;
+}
 
 .back-button>button {
   text-decoration: none;
@@ -541,7 +551,8 @@ body {
     width: 49vw;
     height: 23vh !important;
   }
-  *{
+
+  * {
     font-size: 1.2rem;
   }
   .lyrics{
@@ -555,28 +566,33 @@ body {
     }
 }
 
-@media only screen and (max-height: 800px) and (min-width: 1300px) and (orientation:landscape){
-  .centering-card{
-    height: 50vh !important;
+@media only screen and (max-height: 800px) and (min-width: 1300px) and (orientation:landscape) {
+  .centering-card {
+    height: 65vh !important;
   }
-  .enter-button{
+
+  .enter-button {
     height: 15vh !important;
   }
-  .input-code{
+
+  .input-code {
     height: 15vh !important;
   }
   *{
       font-size: 1.5rem !important;
   }
 }
-@media only screen and (max-height: 360px) and (max-width:1000px) and (orientation:landscape){
-  .centering-card{
+
+@media only screen and (max-height: 360px) and (max-width:1000px) and (orientation:landscape) {
+  .centering-card {
     height: 50vh !important;
   }
-  .enter-button{
+
+  .enter-button {
     height: 15vh !important;
   }
-  .input-code{
+
+  .input-code {
     height: 15vh !important;
   }
 }
@@ -603,7 +619,27 @@ body {
 @media only screen and (max-width:750px) and (max-height:440px){
   .centering-card{
     height: 60vh !important;
-    width: 70vw !important;
+    width: 70vw !important;}
+
+@media only screen and (min-device-width: 1024px) and (max-device-height: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation:portrait) {
+  .enter-button {
+    height: 300%;
+  }
+
+  .centering-card {
+    width: 40vw;
+  }
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-height: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation:landscape) {
+  .centering-card {
+    width: 40vw;
+  }
+}
+
+@media only screen and (max-width:750px) and (max-height:440px) {
+  .centering-card {
+    height: 40vh !important;
   }
   .chord-pro-text{
     font-size: 1rem !important;
@@ -786,8 +822,7 @@ body {
   }
 }
 
-
-@media only screen and (max-width:1200px) and (min-height: 375px) and (orientation:landscape){
+@media only screen and (max-width:1200px) and (min-height: 375px) and (orientation:landscape) {
   .back-arrow {
     padding-bottom: 30%;
   }
