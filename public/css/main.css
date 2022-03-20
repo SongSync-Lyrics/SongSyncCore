@@ -391,7 +391,6 @@ body {
 }
 
 .back-button {
-
   width: 100%;
   text-align: left;
   text-decoration: none;
@@ -619,7 +618,9 @@ body {
 @media only screen and (max-width:750px) and (max-height:440px){
   .centering-card{
     height: 60vh !important;
-    width: 70vw !important;}
+    width: 70vw !important;
+  }
+}
 
 @media only screen and (min-device-width: 1024px) and (max-device-height: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation:portrait) {
   .enter-button {
@@ -943,5 +944,4 @@ body {
   .next-button{
     font-size: 1.4rem;
   }
-
 }
