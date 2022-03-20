@@ -39,7 +39,7 @@ socket.on('disconnect', () => {
     });
 ```
 
-> On client disconnect, run `removeLeaderIfDisconnected()` & `removeEmptyRooms()`
+> When a user disconnects, run the following code:`removeLeaderIfDisconnected()` & `removeEmptyRooms()`
 
 <br/>
 
