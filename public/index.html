@@ -14,6 +14,13 @@
 </head>
 
 <body>
+    <div id="nextSong">
+        <button id="nextSongButton">Next Song</button>
+        <input type="file" id="nextSongFile" autocomplete="off" accept=".cho,.crd,.chopro,.chord,.pro">
+        <input type="text" id="nextSongURL">
+        <button id="selectNextSong">Select</button>
+        <button id="confirmNextSong">Confirm</button>
+    </div>
     <div id='portrait'>
         <img src="./css/pictures/Rotate_Phone_Symbol.png" alt="Rotate phone to landscape." width="60%">
         <h1 class='rotate'>Please Switch Your Device to Landscape</h1>
@@ -65,7 +72,8 @@
                     <form id="leaderCreateForm" onkeydown="return event.key != 'Enter';">
                         <div class='chord-pro-container' id='chordProContainer'>
                             <div class="first-menu" id="firstMenu">
-                                <label class='chord-pro-text' id="chordProText">To create a session please upload a
+                                <label class='chord-pro-text' id="chordProText">To create a session please
+                                    upload a
                                     chord
                                     pro
                                     file:
@@ -74,10 +82,12 @@
                                 </label>
 
                                 <div class="url-container" id="urlContainer">
-                                    <label class="chord-pro-text"> Or you can enter a valid URL from a website: </label>
+                                    <label class="chord-pro-text"> Or you can enter a valid URL from a website:
+                                    </label>
                                     <input type="text" autocomplete="off" class="url-input" id="chordProUrl"
                                         placeholder="URL goes here" />
-                                    <label class="not-valid-url" id="notValidUrl">Url entered is not valid!</label>
+                                    <label class="not-valid-url" id="notValidUrl">Url entered is not
+                                        valid!</label>
                                 </div>
                             </div>
 
@@ -103,7 +113,8 @@
 
 
     </section>
-    <a href="https://forms.gle/j6Vup9v7D9KTTUHf7" class="form-link" target="__blank" id="formLink">To report an issue
+    <a href="https://forms.gle/j6Vup9v7D9KTTUHf7" class="form-link" target="__blank" id="formLink">To report an
+        issue
         please click here</a>
     <script src='/js/frontEndScripts.js'></script>
     <!-- Socket.IO Javacript -->
