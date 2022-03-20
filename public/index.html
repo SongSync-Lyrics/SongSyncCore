@@ -22,15 +22,29 @@
         <button id="confirmNextSong">Confirm</button>
     </div>
     <div id='portrait'>
-        <img src="./css/pictures/Rotate_Phone_Symbol.png" alt="Rotate phone to landscape." width="60%">
+        <img src="./css/pictures/Rotate_Phone_Symbol.png" id='staticImage' alt="Rotate phone to landscape." width="60%">
         <h1 class='rotate'>Please Switch Your Device to Landscape</h1>
     </div>
-    <h2 id='session-name' style="color:black"></h2>
+
+        <div class="dark-mode">
+            <label class="dark-mode-text" id="darkModeText">Toggle Dark Mode</label>
+            <input id="darkMode" type="checkbox">
+        </div>
+        <div class="dark-mode-lyrics dark-mode">
+            <label class="dark-mode-text" id="darkModeTextLyrics">Toggle Dark Mode</label>
+            <input id="darkModeLyrics" type="checkbox">
+        </div>
+        <div class="leave-session" id="leaveSession">
+            <a href="javascript:window.location.href=window.location.href" id="leaveSessionLink">Leave Session</a>
+        </div>
+
+    <h2 id='session-name' class='session-name' style="color:black"></h2>
     <div id='song-info'>
         <h1 id="song-title"></h1>
         <h2 id="song-artist"></h2>
     </div>
-    <div id='screen'>
+
+    <div id='screen' id="screen">
         <div class="arrows" id="arrows">
             <button type="button" class="arrow-button" id="upArrowButton">
                 <i class="fas fa-arrow-up arrow"></i>
@@ -43,7 +57,7 @@
     </div>
     <section class='container' id="container">
         <div class='main-text'>
-            <img class="logo" src="./css/pictures/SongSync_Logo.png">
+            <img class="logo" id='logo' src="./css/pictures/SongSync_Logo.png">
             <div class='centering-card' id="centeringCard">
                 <div class='inputs' id='inputs'>
                     <div class='sub-inputs' id='subInputs'>
@@ -64,8 +78,7 @@
 
                         </div>
                         <div class="join-back-button back-button" id="joinBackButton">
-                            <a href="javascript:window.location.href=window.location.href"
-                                class="join-back-button-link">Back</a>
+                            <a class="join-back-button-link" id="joinBackButtonLink">Back</a>
                         </div>
 
                     </form>
@@ -97,8 +110,7 @@
                                 </button>
                             </div>
                             <div class="back-button">
-                                <a href="javascript:window.location.href=window.location.href" class='first-back-button'
-                                    id="backButton">Back</a>
+                                <a class='first-back-button' id="backButton">Back</a>
                                 <button type="button" id="postBackButton" class="post-back-button">Back</button>
                                 <button type="button" id="nextButton" class="next-button"
                                     disabled='disabled'>Next</button>
@@ -109,17 +121,21 @@
             </div>
         </div>
 
+
+
         <!-- Front End Javscript reference-->
 
 
     </section>
-    <a href="https://forms.gle/j6Vup9v7D9KTTUHf7" class="form-link" target="__blank" id="formLink">To report an
-        issue
-        please click here</a>
+    <div class="landing-page" id="landingPage">
+        <a href="/info.htm" target="__blank" id="landingPageInfo" class="landing-page-links">Information about us</a>
+        <a href="/support.htm" target="__blank" id="landingPageSupport" class="landing-page-links support-link">Support Us!</a>
+    </div>
+    <a href="https://forms.gle/j6Vup9v7D9KTTUHf7" class="form-link" target="__blank" id="formLink">To report an issue
+      please click here. </a>
     <script src='/js/frontEndScripts.js'></script>
     <!-- Socket.IO Javacript -->
     <script src='/socket.io/socket.io.js'></script>
     <script src='/js/app.js' charset='utf-8'></script>
 </body>
-
 </html>
