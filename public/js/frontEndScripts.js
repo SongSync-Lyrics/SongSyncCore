@@ -24,24 +24,24 @@ if (initialCreateButton.click = true) {
     centeringCard.style.height = '18vh';
 }
 
-postBackButton.addEventListener('click', function() {
-    subChordProContainer.style.display='none';
-    firstMenu.style.display='block'
-    startButton.style.display='none'
-    sessionCode.style.display='none';
+postBackButton.addEventListener('click', function () {
+    subChordProContainer.style.display = 'none';
+    firstMenu.style.display = 'block'
+    startButton.style.display = 'none'
+    sessionCode.style.display = 'none';
     postBackButton.style.display = 'none';
-    backButton.style.display='flex';
-    nextButton.style.display='flex';
+    backButton.style.display = 'flex';
+    nextButton.style.display = 'flex';
 
 })
 
 
 
-nextButton.addEventListener('click', function() {
+nextButton.addEventListener('click', function () {
     sessionCode.style.display = 'flex';
     startButton.style.display = 'flex';
     subChordProContainer.style.display = 'flex';
-    firstMenu.style.display='none';
+    firstMenu.style.display = 'none';
     startButton.style.width = "100%";
     backButton.style.display = 'none';
     nextButton.style.display = 'none';
@@ -49,36 +49,36 @@ nextButton.addEventListener('click', function() {
 
 });
 
-startButton.addEventListener('click', function() {
+startButton.addEventListener('click', function () {
     document.body.style.background = '#fff';
     container.style.display = 'none';
-    portrait.style.display='flex';
-    formLink.style.color='black';
+    portrait.style.display = 'flex';
+    formLink.style.color = 'black';
+    nextSongButton.style.display = "flex";
 })
 
-followerStartButton.addEventListener('click', function() {
+followerStartButton.addEventListener('click', function () {
     document.body.style.background = '#fff';
     container.style.display = 'none';
-    portrait.style.display='flex';
-    formLink.style.color='black';
-    
+    portrait.style.display = 'flex';
+    formLink.style.color = 'black';
+
 })
 
-initialCreateButton.addEventListener('click', function() {
+initialCreateButton.addEventListener('click', function () {
     subInputs.style.display = 'none';
     chordProContainer.style.display = 'flex';
     subChordProContainer.style.display = 'none';
     startButton.style.display = 'none';
     centeringCard.style.height = '30vh';
-    arrows.style.display='flex';
-
+    arrows.style.display = 'flex';
 });
 
-initialJoinButton.addEventListener('click', function() {
+initialJoinButton.addEventListener('click', function () {
     sessionCode.style.display = 'flex';
     subInputs.style.display = 'none';
     enterSession.style.display = 'flex';
     joinBackButton.style.display = 'flex';
-    arrows.style.display='none';
+    arrows.style.display = 'none';
     centeringCard.style.height = '25vh';
 });
