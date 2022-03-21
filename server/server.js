@@ -61,6 +61,16 @@ io.on('connection', (socket) => {
         io.to(socket.id).emit('displayLyrics', lyrics, title, artist);
     });
 
+    socket.on('displayNextLyrics', (room, song) => {
+        let lyrics = chordProFormat(song['lyrics']);
+        let title = song['title'];
+        let artist = song['artist'];
+        let posAndLeader = [lyrics, socket.id, title, artist];
+        roomMap.set(room, posAndLeader);
+        
+        io.to(room).emit('displayLyrics', lyrics, title, artist);
+    });
+
     // vt is included to prevent wonky behavior
     socket.on('scroll', (room, visibleTables) => {
         let vt = visibleTables;

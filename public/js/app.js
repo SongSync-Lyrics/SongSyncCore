@@ -11,6 +11,12 @@ let downArrow = document.getElementById('downArrowButton');
 let upArrow = document.getElementById('upArrowButton')
 let arrows = document.getElementById('arrows');
 
+let nextSongButton = document.getElementById('nextSongButton');
+let nextSongFileInput = document.getElementById('nextSongFile');
+let nextSongURLInput = document.getElementById('nextSongURL');
+let nextSongSelect = document.getElementById('selectNextSong');
+let nextSongConfirm = document.getElementById('confirmNextSong');
+
 let song;
 let validFile = true;
 var visibleTables = [];
@@ -18,7 +24,9 @@ var vtl;
 
 let room;
 let fileUpload = false;
+let nextFileUpload = false;
 
+//Primary Upload
 uploadButton.addEventListener('click', async() => {
     if (chordproFileInput != null || (chordproUrlInput != null)) {
         if (fileUpload) {
@@ -208,14 +216,15 @@ socket.on('startSession', () => {
 socket.on('displayLyrics', (lyrics, title, artist) => {
     document.getElementById('screen').style.display = 'flex';
     document.getElementById('display').style.display = 'block';
-    document.getElementById('song-info').style.display = 'flex';
+/*     document.getElementById('song-info').style.display = 'flex'; */
     document.getElementById('display').innerHTML = lyrics;
-    document.getElementById('session-name').innerHTML = "Session: " + room;
-    document.getElementById('song-title').innerHTML = title;
-    if (artist != 'Undefined') {
+/*     document.getElementById('session-name').innerHTML = "Session: " + room;
+    document.getElementById('song-title').innerHTML = title; */
+/*     if (artist != 'Undefined') {
         document.getElementById('song-artist').innerHTML = "By " + artist;
-    }
+    } */
     //document.getElementById('song-title').innerHTML = song["title"];
+    visibleTables = [];
     var elements = document.querySelectorAll('.row');
     for (let i = 0; i < elements.length; i++) {
         elements[i].id = i;
@@ -586,4 +595,117 @@ function getDuration(song) {
         }
     }
     return "Undefined";
+}
+
+//NEXT SONG FUNCTIONS
+
+//Next Song Button
+nextSongButton.onclick = function () {
+    nextSongFileInput.value = '';
+    nextSongURLInput.value = '';
+    nextSongFileInput.style.display = "flex";
+    nextSongURLInput.style.display = "flex";
+    nextSongSelect.style.display = "flex";
+    nextSongButton.style.display = "none";
+}
+
+nextSongFileInput.addEventListener('change', () => {
+    nextFileUpload = true;
+});
+
+nextSongURLInput.addEventListener('input', function() {
+    nextFileUpload = false;
+    let trueExtension = nextSongURLInput.value.split('.').pop();
+    let notValidUrlLabel = document.getElementById('notValidUrl');
+    if (nextFileUpload.value != '') {
+        alert('Please select one option');
+        nextFileUpload.value = '';
+    } else if (!acceptedExtensions.includes(trueExtension)) {
+        notValidUrlLabel.style.display = 'block';
+        nextButton.setAttribute('disabled', 'disabled');
+    } else {
+        notValidUrlLabel.style.display = 'none';
+        nextButton.removeAttribute('disabled', 'disabled');
+    }
+})
+
+//Next Song Upload
+nextSongSelect.addEventListener('click', async() => {
+    nextSongFileInput.style.display = "none";
+    nextSongURLInput.style.display = "none";
+    nextSongSelect.style.display = "none";
+    nextSongConfirm.style.display = "flex";
+    if (nextSongFileInput != null || (nextSongURLInput != null)) {
+        if (nextFileUpload) {
+            console.log("file upload");
+            parseNextChordProFile();
+        } else {
+            console.log("Url upload")
+            await retrieveNextUrl();
+        }
+    }
+})
+
+async function retrieveNextUrl() {
+    let url = nextSongURLInput.value;
+    if (url.substring(url.includes(acceptedExtensions.values))) {
+        await socket.emit('getChordProFromUrl', (url));
+    } else {
+        alert("This is not a valid ChordPro file");
+        validFile = false;
+        chordproUrlInput.value = '';
+    }
+}
+
+//Parse Next ChordPro File
+function parseNextChordProFile() {
+    let fileName = nextSongFileInput.files[0].name;
+    if (fileName.substring(fileName.includes(acceptedExtensions.values))) {
+        let fr = new FileReader();
+        fr.onload = function() {
+            console.log("NEXT");
+            let chordProInput = fr.result;
+            let title = getTitle(chordProInput);
+            let subtitle = getSubtitle(chordProInput);
+            let artist = getArtist(chordProInput);
+            let composer = getComposer(chordProInput);
+            let lyricist = getLyricist(chordProInput);
+            let copyright = getCopyright(chordProInput);
+            let album = getAlbum(chordProInput);
+            let year = getYear(chordProInput);
+            let key = getKey(chordProInput);
+            let time = getTime(chordProInput);
+            let tempo = getTempo(chordProInput);
+            let duration = getDuration(chordProInput);
+            lyrics = getLyrics(chordProInput);
+
+            song = {};
+            song["title"] = title;
+            song["subtitle"] = subtitle;
+            song["artist"] = artist;
+            song["composer"] = composer;
+            song["lyricist"] = lyricist;
+            song["copyright"] = copyright;
+            song["album"] = album;
+            song["year"] = year;
+            song["key"] = key;
+            song["time"] = time;
+            song["tempo"] = tempo;
+            song["duration"] = duration;
+            song["lyrics"] = lyrics;
+        }
+        fr.readAsText(nextSongFileInput.files[0]);
+        validFile = true;
+    } else {
+        alert("This is not a valid ChordPro file");
+        validFile = false;
+        chordproFileInput.value = null;
+    }
+}
+
+//Display Next Song
+nextSongConfirm.onclick = function() {
+    socket.emit('displayNextLyrics', room, song);
+    nextSongConfirm.style.display = "none";
+    nextSongButton.style.display = "flex";
 }
