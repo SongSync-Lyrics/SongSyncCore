@@ -428,6 +428,8 @@ body {
 
 #session-name {
   font-family: "Shippori Antique B1", sans-serif;
+  position: relative;
+  top: 5px;
 }
 #nextSong {
   position: absolute;
