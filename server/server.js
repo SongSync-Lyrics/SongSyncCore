@@ -9,7 +9,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
 const publicPath = path.join(__dirname, '/../public');
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 8080;
 
 const ChordSheetJS = require('chordsheetjs').default;
 const roomMap = new Map();
