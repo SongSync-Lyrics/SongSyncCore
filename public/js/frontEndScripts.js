@@ -129,7 +129,7 @@ initialCreateButton.addEventListener('click', function () {
 
 });
 initialJoinButton.addEventListener('click', function() {
-    centeringCard.style.height = '30vh';
+    //centeringCard.style.height = '30vh';
     arrows.style.display = 'flex';
 });
 
@@ -143,7 +143,7 @@ initialJoinButton.addEventListener('click', function () {
     followerStartButton.style.display='block'
 
     arrows.style.display = 'none';
-    centeringCard.style.height = '25vh';
+   // centeringCard.style.height = '25vh';
 });
 
 backButton.addEventListener('click', function(){
