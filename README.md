@@ -20,6 +20,7 @@ Share lyrics with friends. Featuring online rooms.
 * Mocha & Chai
 * Http & Path
 * Cucumber.io
+* csv-parser
 
 ## License
 
@@ -39,7 +40,7 @@ socket.on('disconnect', () => {
     });
 ```
 
-> On client disconnect, run `removeLeaderIfDisconnected()` & `removeEmptyRooms()`
+> When a user disconnects, run the following code:`removeLeaderIfDisconnected()` & `removeEmptyRooms()`
 
 <br/>
 
