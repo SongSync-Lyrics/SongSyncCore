@@ -81,6 +81,8 @@ startButton.addEventListener('click', function () {
     leaveSessionLink.style.color='black'
     landingPageInfo.style.color='black'
     landingPageSupport.style.color='black'
+    landingPageInfo.style.display='none'
+    landingPageSupport.style.display='none'
 
 
 
@@ -105,8 +107,9 @@ followerStartButton.addEventListener('click', function () {
     darkModeTextLyrics.style.color='black'
     leaveSession.style.display='flex'
     leaveSessionLink.style.color='black';
-    landingPageInfo.style.color='black'
-    landingPageSupport.style.color='black'
+    landingPageInfo.style.display='none'
+    landingPageSupport.style.display='none'
+    
 
 
 
@@ -195,9 +198,6 @@ darkModeLyrics.addEventListener('change', function(e){
             landingPageInfo.classList.add('dark-color-mode')
             landingPageSupport.classList.add('dark-color-mode')
 
-
-
-
         }else{
             screen.classList.remove('dark-color-mode-lyrics')
             document.body.style.background = '#fff';
@@ -206,9 +206,6 @@ darkModeLyrics.addEventListener('change', function(e){
             leaveSessionLink.style.color='black'
             landingPageInfo.classList.remove('dark-color-mode')
             landingPageSupport.classList.remove('dark-color-mode')
-
-
-
 
         }
     }

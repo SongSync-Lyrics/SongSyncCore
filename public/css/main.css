@@ -991,13 +991,20 @@ body {
   }
   .chord-pro-text{
     font-size: 1.4rem !important;
-
   }
   .first-back-button{
     font-size: 1.4rem;
-
   }
   .next-button{
     font-size: 1.4rem;
+  }
+  .dark-color-mode-lyrics{
+    font-size: 1rem !important;
+  }
+  .dark-mode-text{
+    font-size: 1rem !important;
+  }
+  .landing-page-links{
+    font-size: 1rem !important;
   }
 }
