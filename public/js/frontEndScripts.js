@@ -151,6 +151,8 @@ backButton.addEventListener('click', function(){
     centeringCard.style.display='flex'
     subInputs.style.display='flex'
     sessionCode.value=''
+    chordproFileInput.value='';
+    chordproUrlInput.value=''
 
 })
 
