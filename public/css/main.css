@@ -561,6 +561,22 @@ body {
     .logo{
         width: 40vw !important;
     }
+    .centering-card{
+      width: 45vw;
+      height: 50vh;
+    }
+    .enter-button{
+      height: 27vh;
+    }
+    .input-code{
+      height: 18vh;
+    }
+    .enter-session>.enter-button{
+      height: 18vh;
+    }
+    .sub-chord-pro-container>.enter-button{
+      height: 18vh;
+    }
 }
 @media only screen and (max-width:360px) and (max-height: 900px) and (orientation:portrait){
     .centering-card{
