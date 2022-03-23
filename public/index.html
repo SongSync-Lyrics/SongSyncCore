@@ -14,17 +14,17 @@
 </head>
 
 <body>
-    <div id="nextSong">
-        <button id="nextSongButton">Next Song</button>
-        <input type="file" id="nextSongFile" autocomplete="off" accept=".cho,.crd,.chopro,.chord,.pro">
-        <input type="text" id="nextSongURL">
-        <button id="selectNextSong">Select</button>
-        <button id="confirmNextSong">Confirm</button>
-    </div>
+
+
     <div id='portrait'>
         <img src="./css/pictures/Rotate_Phone_Symbol.png" id='staticImage' alt="Rotate phone to landscape." width="60%">
         <h1 class='rotate'>Please Switch Your Device to Landscape</h1>
     </div>
+    <div class="top-header">
+        <div class="leave-session" id="leaveSession">
+            <button><a href="javascript:window.location.href=window.location.href"
+             id="leaveSessionLink">Leave Session</a></button>
+        </div>
 
         <div class="dark-mode">
             <label class="dark-mode-text" id="darkModeText">Toggle Dark Mode</label>
@@ -34,15 +34,24 @@
             <label class="dark-mode-text" id="darkModeTextLyrics">Toggle Dark Mode</label>
             <input id="darkModeLyrics" type="checkbox">
         </div>
-        <div class="leave-session" id="leaveSession">
-            <a href="javascript:window.location.href=window.location.href" id="leaveSessionLink">Leave Session</a>
+        <h2 id='session-name' class='session-name' style="color:black"></h2>
+        <div id="nextSong">
+            <button id="nextSongButton">Next Song</button>
+            <input type="file" id="nextSongFile" autocomplete="off" accept=".cho,.crd,.chopro,.chord,.pro">
+            <input type="text" id="nextSongURL">
+            <button id="selectNextSong">Select</button>
+            <button id="confirmNextSong">Confirm</button>
         </div>
+        <!-- <div id='song-info'>
+            <h1 id="song-title"></h1>
+            <h2 id="song-artist"></h2>
+        </div> -->
 
-    <h2 id='session-name' class='session-name' style="color:black"></h2>
-    <div id='song-info'>
-        <h1 id="song-title"></h1>
-        <h2 id="song-artist"></h2>
+
     </div>
+
+
+
 
     <div id='screen' id="screen">
         <div class="arrows" id="arrows">

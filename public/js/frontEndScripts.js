@@ -81,6 +81,8 @@ startButton.addEventListener('click', function () {
     leaveSessionLink.style.color='black'
     landingPageInfo.style.color='black'
     landingPageSupport.style.color='black'
+    landingPageInfo.style.display='none'
+    landingPageSupport.style.display='none'
 
 
 
@@ -105,8 +107,9 @@ followerStartButton.addEventListener('click', function () {
     darkModeTextLyrics.style.color='black'
     leaveSession.style.display='flex'
     leaveSessionLink.style.color='black';
-    landingPageInfo.style.color='black'
-    landingPageSupport.style.color='black'
+    landingPageInfo.style.display='none'
+    landingPageSupport.style.display='none'
+    
 
 
 
@@ -151,6 +154,8 @@ backButton.addEventListener('click', function(){
     centeringCard.style.display='flex'
     subInputs.style.display='flex'
     sessionCode.value=''
+    chordproFileInput.value='';
+    chordproUrlInput.value=''
 
 })
 
@@ -189,12 +194,8 @@ darkModeLyrics.addEventListener('change', function(e){
             document.body.style.background = 'black';
             sessionName.style.color='#fff'
             darkModeTextLyrics.classList.add('dark-color-mode')
-            leaveSessionLink.style.color='#ffff'
             landingPageInfo.classList.add('dark-color-mode')
             landingPageSupport.classList.add('dark-color-mode')
-
-
-
 
         }else{
             screen.classList.remove('dark-color-mode-lyrics')
@@ -204,9 +205,6 @@ darkModeLyrics.addEventListener('change', function(e){
             leaveSessionLink.style.color='black'
             landingPageInfo.classList.remove('dark-color-mode')
             landingPageSupport.classList.remove('dark-color-mode')
-
-
-
 
         }
     }

@@ -8,6 +8,13 @@
   font-size: 1.5rem;
 
 }
+.chord-sheet{
+  padding-top:20px;
+  padding-bottom:20px;
+}
+/* .paragraph{
+  padding-bottom:30px;
+} */
 .landing-page{
   display: flex;
   flex-direction: column;
@@ -15,10 +22,11 @@
   position: absolute;
   top: 30px;
   right: 0;
+  margin-right:5px;
+  margin-top:5px;
 }
 .landing-page-links{
   text-decoration: none;
-  font-size: .8rem !important;
   color: #ffff;
 }
 .landing-page-links:hover{
@@ -38,34 +46,36 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  margin-right:5px;
 }
 .dark-mode-text{
+  right:0;
   width: fit-content;
   color: #ffff;
   margin-right: 5px;
-  font-size: .8rem !important;
 
 }
 .session-name{
-  left:0;
-  top:0;
-  position: absolute;
-  font-size:1rem !important;
   margin-bottom: 5px;
+  font-weight: normal;
 }
 .leave-session{
   display: none;
   width: fit-content;
+  padding-left: 20px;
+  padding-right:20px;
+  padding-bottom:5px;
+  height: fit-content;
 }
-.leave-session>a{
+.leave-session> button > a{
+  text-decoration: none;
+}
+.leave-session>button{
+  top: 0;
   color: #ffff;
   text-decoration: none;
   cursor: pointer;
-  font-size: 1.1rem !important;
   vertical-align: top;
-}
-.leave-session:hover{
-  text-decoration: underline;
 }
 #darkModeTextLyrics{
   display: none;
@@ -257,6 +267,8 @@ body {
   position: absolute;
   display: none;
   width: 90%;
+  padding-top:20px;
+  padding-bottom:50px;
 }
 
 .sub-inputs {
@@ -338,6 +350,7 @@ body {
 .chord {
   padding-right: 1vw;
   /*font-family: 'Concert One', cursive;*/
+
   font-family: "Shippori Antique B1", sans-serif;
 }
 
@@ -348,14 +361,14 @@ body {
 .chord {
   font-size: 2vw;
   color: red;
+  font-size: 1rem !important;
 }
-
 #screen {
- /*  margin: 2.5%; */
-  padding-top:10px;
-  margin-top:20px;
+  padding-top:20px;
+  margin-top: 25px;
+  padding-bottom:20px;
   position: absolute;
-  height: 60%;
+  height: 80%;
   width: 95%;
   overflow-y: hidden;
   overflow-x: hidden;
@@ -405,6 +418,13 @@ body {
   border: none;
   color: inherit;
 }
+.top-header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 
 #song-info {
   display: flex;
@@ -426,17 +446,18 @@ body {
   font-family: "Shippori Antique B1", sans-serif;
 }
 
-#session-name {
+/* #session-name {
   font-family: "Shippori Antique B1", sans-serif;
   position: relative;
-  top: 5px;
-}
+} */
 #nextSong {
-  position: absolute;
-  left: 0;
-  bottom: 0;
+  font-size: 1.1rem !important;
   background: rgb(218, 218, 218);
   border-radius: 25px;
+  z-index: 10;
+  margin-right: 20px;
+  margin-left: 20px;
+  width: fit-content;
 }
 
 #nextSongFile, #nextSongURL, #nextSongButton, #confirmNextSong, #selectNextSong {
@@ -738,8 +759,29 @@ body {
   .enter-button {
     font-size: 1.3rem;
   }
+  .top-header > button{
+    font-size: .9rem !important;
+  }
+  .top-header > h2{
+    font-size: .9rem !important;
+  }
+  .top-header > .leave-session > a{
+    font-size: .9rem !important;
+  }
   .lyrics{
-      font-size: 1.1rem !important;
+      font-size: .8rem !important;
+  }
+  #nextSong input {
+    font-size: .9rem !important;
+  }
+  #nextSong button {
+    font-size: .9rem !important;
+  }
+  .landing-page-links{
+    font-size:.9rem !important;
+  }
+  .dark-mode-text{
+    font-size: .9rem !important;
   }
 }
 
@@ -824,20 +866,20 @@ body {
     width: 100%;
   }
 }
-
+/*ipad air*/
 @media only screen and (max-width:1200px) and (min-height: 375px) and (orientation:landscape) {
   .back-arrow {
     padding-bottom: 30%;
   }
   .chord-pro-text{
-    font-size: 1rem !important;
+    font-size: 1.2rem !important;
   }
   .first-back-button{
-    font-size: 1rem !important;
+    font-size: 1.2rem !important;
 
   }
   .next-button{
-    font-size: 1rem !important;
+    font-size: 1.2rem !important;
   }
 
   .centering-card {
@@ -846,12 +888,12 @@ body {
   }
 
   .enter-button {
-    height: 20vh !important;  
+    height: 12vh !important;  
 
   }
 
   .input-code {
-    height: 20vh !important;
+    height: 12vh !important;
   }
   .logo{
       width: 50vw !important;
@@ -927,8 +969,20 @@ body {
 /*ipad pro*/
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
   *{
-    font-size: 1.4rem !important  ;
+    font-size: 1.1rem !important;
   }
+   .lyrics{
+    font-size: 1.1rem !important;
+  } 
+
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation:portrait) and (-webkit-min-device-pixel-ratio: 1) {
+  *{
+    font-size: 1.3rem !important;
+  }
+   .lyrics{
+    font-size: 1.3rem !important;
+  } 
 
 }
 @media only screen and (min-device-width: 1024px) and (max-device-height: 768px) and (-webkit-min-device-pixel-ratio: 1) {
@@ -937,13 +991,20 @@ body {
   }
   .chord-pro-text{
     font-size: 1.4rem !important;
-
   }
   .first-back-button{
     font-size: 1.4rem;
-
   }
   .next-button{
     font-size: 1.4rem;
+  }
+  .dark-color-mode-lyrics{
+    font-size: 1rem !important;
+  }
+  .dark-mode-text{
+    font-size: 1rem !important;
+  }
+  .landing-page-links{
+    font-size: 1rem !important;
   }
 }
