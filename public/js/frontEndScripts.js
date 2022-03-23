@@ -194,7 +194,6 @@ darkModeLyrics.addEventListener('change', function(e){
             document.body.style.background = 'black';
             sessionName.style.color='#fff'
             darkModeTextLyrics.classList.add('dark-color-mode')
-            leaveSessionLink.style.color='#ffff'
             landingPageInfo.classList.add('dark-color-mode')
             landingPageSupport.classList.add('dark-color-mode')
 

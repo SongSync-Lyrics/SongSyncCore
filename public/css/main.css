@@ -67,15 +67,15 @@
   padding-bottom:5px;
   height: fit-content;
 }
-.leave-session>a{
+.leave-session> button > a{
+  text-decoration: none;
+}
+.leave-session>button{
   top: 0;
   color: #ffff;
   text-decoration: none;
   cursor: pointer;
   vertical-align: top;
-}
-.leave-session:hover{
-  text-decoration: underline;
 }
 #darkModeTextLyrics{
   display: none;
