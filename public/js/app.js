@@ -230,10 +230,13 @@ socket.on('displayLyrics', (lyrics, title, artist) => {
         elements[i].id = i;
         visibleTables.push(0);
     }
+    while (!(visibleTables.length % 4 == 0)) {
+        visibleTables.push(0);
+    }
     for (let i = 0; i < 4; i++) {
         visibleTables[i] = 1;
-    }
-    vtl = elements.length;
+    } 
+    vtl = visibleTables.length;
     displayTables();
 });
 
@@ -269,7 +272,13 @@ function moveDown() {
             }
         }
         visibleTables[temp] = 0;
+        visibleTables[temp + 1] = 0;
+        visibleTables[temp + 2] = 0;
+        visibleTables[temp + 3] = 0; 
         visibleTables[temp + 4] = 1;
+        visibleTables[temp + 5] = 1;
+        visibleTables[temp + 6] = 1;
+        visibleTables[temp + 7] = 1;
     }
 }
 
@@ -283,7 +292,13 @@ function moveUp() {
             }
         }
         visibleTables[temp] = 0;
+        visibleTables[temp - 1] = 0;
+        visibleTables[temp - 2] = 0;
+        visibleTables[temp - 3] = 0; 
         visibleTables[temp - 4] = 1;
+        visibleTables[temp - 5] = 1;
+        visibleTables[temp - 6] = 1;
+        visibleTables[temp - 7] = 1;
     }
 }
 downArrow.addEventListener('click', function() {
