@@ -31,6 +31,9 @@ let leaveSessionLink = document.getElementById('leaveSessionLink')
 let landingPage = document.getElementById('landingPage')
 let landingPageInfo = document.getElementById('landingPageInfo')
 let landingPageSupport = document.getElementById('landingPageSupport')
+let nextSongFileText = document.getElementById('nextSongFileText')
+
+
 
 
 
@@ -47,7 +50,6 @@ postBackButton.addEventListener('click', function () {
     backButton.style.display='flex';
     nextButton.style.display='flex';
     sessionCode.value=''
-
     backButton.style.display = 'flex';
     nextButton.style.display = 'flex';
 
@@ -65,61 +67,43 @@ nextButton.addEventListener('click', function () {
     nextButton.style.display = 'none';
     postBackButton.style.display = 'flex';
 
-});
-
+}); 
 startButton.addEventListener('click', function () {
-    document.body.style.background = '#fff';
     container.style.display = 'none';
     portrait.style.display='flex';
     formLink.style.color='black';
     darkMode.style.display = 'none';
-    darkModeLyrics.style.display='block';
-    darkModeText.style.display='none'
-    darkModeTextLyrics.style.display='block'
-    darkModeTextLyrics.style.color='black'
     leaveSession.style.display='flex'
     leaveSessionLink.style.color='black'
     landingPageInfo.style.color='black'
     landingPageSupport.style.color='black'
     landingPageInfo.style.display='none'
-    landingPageSupport.style.display='none'
-
-
-
-
-    if(darkModeLyrics.checked==true){
-        darkModeLyrics.dispatchEvent(new Event('change'))
-    }
+    onLyricsPage=true;
     portrait.style.display = 'flex';
     formLink.style.color = 'black';
     nextSongButton.style.display = "flex";
+    document.body.style.background='none';
+    nextSongFile.value=''    
+    chordproFileInput.value=''
+    arrows.style.display='flex'
+    if(!darkModeIsClicked){
+        document.body.style.backgroundColor='black'
+    }
 })
 
 followerStartButton.addEventListener('click', function () {
-    document.body.style.background = '#fff';
     container.style.display = 'none';
     portrait.style.display='flex';
-    formLink.style.color='black';
-    darkMode.style.display = 'none';
-    darkModeLyrics.style.display='block';
-    darkModeText.style.display='none'
-    darkModeTextLyrics.style.display='block'
-    darkModeTextLyrics.style.color='black'
     leaveSession.style.display='flex'
-    leaveSessionLink.style.color='black';
     landingPageInfo.style.display='none'
-    landingPageSupport.style.display='none'
-    
-
-
-
-    if(darkModeLyrics.checked==true){
-        darkModeLyrics.dispatchEvent(new Event('change'))
-    }
-  
+    landingPageSupport.style.color='black'
+    document.body.style.background='none'
+    onLyricsPage=true;
+    document.body.style.background='none';
     portrait.style.display = 'flex';
-    formLink.style.color = 'black';
-
+    if(!darkModeIsClicked){
+        document.body.style.backgroundColor='black'
+    }
 })
 
 initialCreateButton.addEventListener('click', function () {
@@ -128,7 +112,6 @@ initialCreateButton.addEventListener('click', function () {
     subChordProContainer.style.display = 'none';
     startButton.style.display = 'none';
     //centeringCard.style.height = '30vh';
-    arrows.style.display='flex';
 
 });
 initialJoinButton.addEventListener('click', function() {
@@ -167,45 +150,63 @@ joinBackButton.addEventListener('click', function(){
     subInputs.style.display='flex'
     sessionCode.value=''
 })
-darkMode.addEventListener('change', function(e){
-    if(e.target.checked){
+
+let darkModeIsClicked = true;
+let onLyricsPage=false;
+
+let darkModeButton = document.getElementById('darkModeButton');
+darkModeButton.addEventListener('click', function(){
+    darkMode.dispatchEvent(new Event('change'))
+    console.log(onLyricsPage)
+    darkMode.checked;
+})
+darkMode.addEventListener('change', function(){
+    if(darkModeIsClicked){
+        darkModeButton.innerHTML='Light'
+        if(!onLyricsPage){
+            document.body.style.background = "url('css/pictures/darkGuitar.jpg')";
+        }
         centeringCard.classList.add('dark-color-mode');
-        document.body.style.background = "url('css/pictures/darkGuitar.jpg')";
         document.body.style.backgroundRepeat = 'no-repeat';
         document.body.style.backgroundPosition = 'center';
         document.body.style.backgroundSize = 'cover'
-        darkModeLyrics.checked=true;
+        screen.classList.add('dark-color-mode-lyrics')
+        document.body.style.backgroundColor='black'
+        sessionName.style.color='#fff'
+        landingPageInfo.classList.add('dark-color-mode')
+        landingPageSupport.classList.add('dark-color-mode')
+        arrows.classList.add('dark-color-mode')
+        darkModeIsClicked=false;
 
-    }else{
+    }else if(!darkModeIsClicked){
+        darkModeButton.innerHTML='Dark'
+
+        if(!onLyricsPage){
+            document.body.style.background = "linear-gradient(rgba(255, 255, 255, 0.2),rgba(255, 255, 255, 0.2),rgba(255, 255, 255, 0.2),rgba(255, 255, 255, 0.2)),url('css/pictures/Ukelele.jpg')";
+        }
+        landingPage.classList.remove('dark-color-mode')
+        landingPageInfo.classList.remove('dark-color-mode')
+        landingPageSupport.classList.remove('dark-color-mode')
         centeringCard.classList.remove('dark-color-mode')
         logo.classList.remove('dark-color-mode');
         staticImage.classList.add('dark-color-mode');
-        document.body.style.background = "linear-gradient(rgba(255, 255, 255, 0.2),rgba(255, 255, 255, 0.2),rgba(255, 255, 255, 0.2),rgba(255, 255, 255, 0.2)),url('css/pictures/Ukelele.jpg')";
         document.body.style.backgroundRepeat = 'no-repeat';
         document.body.style.backgroundPosition = 'center';
         document.body.style.backgroundSize = 'cover';
-
-
-
-    }});
-darkModeLyrics.addEventListener('change', function(e){
-        if(e.target.checked){    
-            screen.classList.add('dark-color-mode-lyrics')
-            document.body.style.background = 'black';
-            sessionName.style.color='#fff'
-            darkModeTextLyrics.classList.add('dark-color-mode')
-            landingPageInfo.classList.add('dark-color-mode')
-            landingPageSupport.classList.add('dark-color-mode')
-
-        }else{
-            screen.classList.remove('dark-color-mode-lyrics')
+        screen.classList.remove('dark-color-mode-lyrics')
+        if(onLyricsPage){
             document.body.style.background = '#fff';
-            sessionName.style.color='black'
-            darkModeTextLyrics.classList.remove('dark-color-mode')
-            leaveSessionLink.style.color='black'
-            landingPageInfo.classList.remove('dark-color-mode')
-            landingPageSupport.classList.remove('dark-color-mode')
-
         }
+        sessionName.style.color='black'
+        leaveSessionLink.style.color='black'
+        landingPageInfo.classList.remove('dark-color-mode')
+        landingPageSupport.classList.remove('dark-color-mode')
+        arrows.classList.remove('dark-color-mode')
+        darkModeIsClicked=true;
+
     }
-    );
+});
+let nextSongFile = document.getElementById('nextSongFile');
+nextSongFile.addEventListener('change', function(){
+    nextSongFileText.innerHTML=nextSongFile.value.split(/(\\|\/)/g).pop();
+})

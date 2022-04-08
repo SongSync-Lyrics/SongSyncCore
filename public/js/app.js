@@ -607,6 +607,7 @@ nextSongButton.onclick = function () {
     nextSongURLInput.style.display = "flex";
     nextSongSelect.style.display = "flex";
     nextSongButton.style.display = "none";
+    nextSongFileText.style.display='flex'
 }
 
 nextSongFileInput.addEventListener('change', () => {
@@ -617,8 +618,9 @@ nextSongURLInput.addEventListener('input', function() {
     nextFileUpload = false;
     let trueExtension = nextSongURLInput.value.split('.').pop();
     let notValidUrlLabel = document.getElementById('notValidUrl');
-    if (nextFileUpload.value != '') {
+    if (nextSongFile.value != '' ) {
         alert('Please select one option');
+        console.log('this is getting called')
         nextFileUpload.value = '';
     } else if (!acceptedExtensions.includes(trueExtension)) {
         notValidUrlLabel.style.display = 'block';
@@ -634,7 +636,9 @@ nextSongSelect.addEventListener('click', async() => {
     nextSongFileInput.style.display = "none";
     nextSongURLInput.style.display = "none";
     nextSongSelect.style.display = "none";
+    nextSongFileText.style.display='none'
     nextSongConfirm.style.display = "flex";
+    nextSongFileText.innerHTML='Choose Local File'
     if (nextSongFileInput != null || (nextSongURLInput != null)) {
         if (nextFileUpload) {
             console.log("file upload");
@@ -644,6 +648,10 @@ nextSongSelect.addEventListener('click', async() => {
             await retrieveNextUrl();
         }
     }
+    setTimeout(() => {
+        nextSongConfirm.dispatchEvent(new Event('click'))
+
+    }, 500);
 })
 
 async function retrieveNextUrl() {
@@ -708,4 +716,8 @@ nextSongConfirm.onclick = function() {
     socket.emit('displayNextLyrics', room, song);
     nextSongConfirm.style.display = "none";
     nextSongButton.style.display = "flex";
+    nextSongSelect.value=''
+    nextSongFileInput.value=''
+    nextSongFile.value=''
+
 }

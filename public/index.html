@@ -14,46 +14,35 @@
 </head>
 
 <body>
-
-
     <div id='portrait'>
         <img src="./css/pictures/Rotate_Phone_Symbol.png" id='staticImage' alt="Rotate phone to landscape." width="60%">
         <h1 class='rotate'>Please Switch Your Device to Landscape</h1>
     </div>
     <div class="top-header">
-        <div class="leave-session" id="leaveSession">
-            <button><a href="javascript:window.location.href=window.location.href"
-             id="leaveSessionLink">Leave Session</a></button>
-        </div>
-
-        <div class="dark-mode">
-            <label class="dark-mode-text" id="darkModeText">Toggle Dark Mode</label>
-            <input id="darkMode" type="checkbox">
-        </div>
-        <div class="dark-mode-lyrics dark-mode">
-            <label class="dark-mode-text" id="darkModeTextLyrics">Toggle Dark Mode</label>
-            <input id="darkModeLyrics" type="checkbox">
-        </div>
         <h2 id='session-name' class='session-name' style="color:black"></h2>
+        <div class="landing-page" id="landingPage">
+            <a href="/info.htm" target="__blank" id="landingPageInfo" class="landing-page-links">Information</a>
+            <a href="/support.htm" target="__blank" id="landingPageSupport"
+                class="landing-page-links support-link">$upport Us!</a>
+        </div>
+        <div class="dark-mode">
+            <!-- <label class="dark-mode-text" id="darkModeText">Dark Mode</label> -->
+            <input id="darkMode" type="checkbox">
+            <button class="dark-mode-text" id="darkModeButton">Dark</button>
+        </div>
         <div id="nextSong">
             <button id="nextSongButton">Next Song</button>
-            <input type="file" id="nextSongFile" autocomplete="off" accept=".cho,.crd,.chopro,.chord,.pro">
-            <input type="text" id="nextSongURL">
+            <label id="nextSongFileText" class="next-song-file-text" for="nextSongFile">Choose Local File</label>
+            <input type="file" id="nextSongFile" style="display: none;" autocomplete="off"
+                accept=".cho,.crd,.chopro,.chord,.pro">
+            <input type="text" id="nextSongURL" placeholder="Enter a URL">
             <button id="selectNextSong">Select</button>
             <button id="confirmNextSong">Confirm</button>
         </div>
-        <!-- <div id='song-info'>
-            <h1 id="song-title"></h1>
-            <h2 id="song-artist"></h2>
-        </div> -->
-
-
-    </div>
-
-
-
-
-    <div id='screen' id="screen">
+        <div class="leave-session" id="leaveSession">
+            <button><a href="javascript:window.location.href=window.location.href"
+                    id="leaveSessionLink">Quit</a></button>
+        </div>
         <div class="arrows" id="arrows">
             <button type="button" class="arrow-button" id="upArrowButton">
                 <i class="fas fa-arrow-up arrow"></i>
@@ -62,6 +51,9 @@
                 <i class="fas fa-arrow-down arrow"></i>
             </button>
         </div>
+    </div>
+
+    <div id='screen' id="screen">
         <div id='display'></div>
     </div>
     <section class='container' id="container">
@@ -136,15 +128,13 @@
 
 
     </section>
-    <div class="landing-page" id="landingPage">
-        <a href="/info.htm" target="__blank" id="landingPageInfo" class="landing-page-links">Information about us</a>
-        <a href="/support.htm" target="__blank" id="landingPageSupport" class="landing-page-links support-link">Support Us!</a>
-    </div>
+
     <a href="https://forms.gle/j6Vup9v7D9KTTUHf7" class="form-link" target="__blank" id="formLink">To report an issue
-      please click here. </a>
+        please click here. </a>
     <script src='/js/frontEndScripts.js'></script>
     <!-- Socket.IO Javacript -->
     <script src='/socket.io/socket.io.js'></script>
     <script src='/js/app.js' charset='utf-8'></script>
 </body>
+
 </html>
