@@ -846,10 +846,8 @@ body {
   .lyrics{
       font-size: .8rem !important;
   }
+ 
   #nextSong input {
-    font-size: .9rem !important;
-  }
-  #nextSong button {
     font-size: .9rem !important;
   }
   .landing-page-links{
