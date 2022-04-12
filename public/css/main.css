@@ -20,7 +20,6 @@
   flex-direction: column;
   text-align: right;
   width: max-content;
-  margin-bottom: 5px;
   margin-right: 5px;
 }
 .landing-page-links{
@@ -60,17 +59,18 @@
   width: 100%;
   align-self: center;
   justify-content: flex-end;
+  margin-top: 5px;
   margin-bottom: 5px;
 }
 .dark-mode-text{
   width: fit-content;
   color: black;
   margin-right: 5px;
-  margin-bottom: 10px;
-
+  margin-bottom: 5px;
 }
 .session-name{
   margin-bottom: 5px;
+  margin-right: 5px;
   text-align: right;
   font-weight: normal;
 }
@@ -79,7 +79,7 @@
   width: fit-content;
   padding-bottom:5px;
   height: fit-content;
-  margin-top:10px;
+  margin-top:5px;
   margin-right: 5px;
   color: black;
 

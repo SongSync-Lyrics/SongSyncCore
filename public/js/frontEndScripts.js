@@ -1,3 +1,4 @@
+
 let startButton = document.getElementById('startButton');
 let initialCreateButton = document.getElementById('initialCreateButton');
 let subInputs = document.getElementById('subInputs');
@@ -59,6 +60,8 @@ nextButton.addEventListener('click', function () {
     backButton.style.display = 'none';
     nextButton.style.display = 'none';
     postBackButton.style.display = 'flex';
+    input.focus();
+
 
 }); 
 startButton.addEventListener('click', function () {
@@ -95,30 +98,27 @@ followerStartButton.addEventListener('click', function () {
     onLyricsPage=true;
     document.body.style.background='none';
     portrait.style.display = 'flex';
+    landingPageInfoButton.style.display='none'
     if(!darkModeIsClicked){
         document.body.style.backgroundColor='black'
     }
 })
-
 initialCreateButton.addEventListener('click', function () {
     subInputs.style.display = 'none';
     chordProContainer.style.display = 'flex';
     subChordProContainer.style.display = 'none';
     startButton.style.display = 'none';
 });
-initialJoinButton.addEventListener('click', function() {
-    arrows.style.display = 'flex';
-});
+
 
 initialJoinButton.addEventListener('click', function () {
     sessionCode.style.display = 'flex';
     subInputs.style.display = 'none';
     enterSession.style.display = 'flex';
     joinBackButton.style.display = 'flex';
-    arrows.style.display='none';
     followerStartButton.style.display='block'
-
     arrows.style.display = 'none';
+    input.focus();
 });
 
 backButton.addEventListener('click', function(){
