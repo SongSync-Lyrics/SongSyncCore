@@ -659,6 +659,15 @@ body {
   .lyrics{
       font-size: 1.7rem !important;
   }
+  .next-song-file-text{
+    font-size: 3vw !important;
+  }
+  .next-song-url::placeholder{
+    font-size: 2vw !important;
+  }
+  #selectNextSong{
+    font-size: 2vw !important;
+  }
 
 }
 @media only screen and (max-width:1366px) and (max-height: 1024px) and (orientation:landscape){
