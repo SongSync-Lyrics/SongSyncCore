@@ -21,21 +21,20 @@
     <div class="top-header">
         <h2 id='session-name' class='session-name' style="color:black"></h2>
         <div class="landing-page" id="landingPage">
-            <a href="/info.htm" target="__blank" id="landingPageInfo" class="landing-page-links">Information</a>
-            <a href="/support.htm" target="__blank" id="landingPageSupport"
-                class="landing-page-links support-link">$upport Us!</a>
+            <button class="landing-page-buttons" id="landingPageInfoButton"><a href="/info.htm" target="__blank" id="landingPageInfo" class="landing-page-links">Information</a></button>
+            <button class="landing-page-buttons"><a href="/support.htm" target="__blank" id="landingPageSupport"
+                class="landing-page-links support-link">$Support Us!</a></button>
         </div>
         <div class="dark-mode">
-            <!-- <label class="dark-mode-text" id="darkModeText">Dark Mode</label> -->
             <input id="darkMode" type="checkbox">
             <button class="dark-mode-text" id="darkModeButton">Dark</button>
         </div>
         <div id="nextSong">
             <button id="nextSongButton">Next Song</button>
-            <label id="nextSongFileText" class="next-song-file-text" for="nextSongFile">Choose Local File</label>
+            <label id="nextSongFileText" class="next-song-file-text" for="nextSongFile">Open Local File</label>
             <input type="file" id="nextSongFile" style="display: none;" autocomplete="off"
                 accept=".cho,.crd,.chopro,.chord,.pro">
-            <input type="text" id="nextSongURL" placeholder="Enter a URL">
+            <input type="text" class="next-song-url" id="nextSongURL" placeholder="Or Enter a URL">
             <button id="selectNextSong">Select</button>
             <button id="confirmNextSong">Confirm</button>
         </div>

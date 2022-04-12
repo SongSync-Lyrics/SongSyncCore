@@ -638,7 +638,7 @@ nextSongSelect.addEventListener('click', async() => {
     nextSongSelect.style.display = "none";
     nextSongFileText.style.display='none'
     nextSongConfirm.style.display = "flex";
-    nextSongFileText.innerHTML='Choose Local File'
+    nextSongFileText.innerHTML='Open Local File'
     if (nextSongFileInput != null || (nextSongURLInput != null)) {
         if (nextFileUpload) {
             console.log("file upload");

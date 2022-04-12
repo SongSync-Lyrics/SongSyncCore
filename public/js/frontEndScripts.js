@@ -32,14 +32,10 @@ let landingPage = document.getElementById('landingPage')
 let landingPageInfo = document.getElementById('landingPageInfo')
 let landingPageSupport = document.getElementById('landingPageSupport')
 let nextSongFileText = document.getElementById('nextSongFileText')
+let landingPageButtons = document.querySelectorAll('.landingPageButtons')
+let landingPageInfoButton = document.getElementById('landingPageInfoButton')
+let nextSong = document.getElementById('nextSong')
 
-
-
-
-
-/* if (initialCreateButton.click = true) {
-    centeringCard.style.height = '18vh';
-} */
 
 postBackButton.addEventListener('click', function () {
     subChordProContainer.style.display = 'none';
@@ -52,10 +48,7 @@ postBackButton.addEventListener('click', function () {
     sessionCode.value=''
     backButton.style.display = 'flex';
     nextButton.style.display = 'flex';
-
 })
-
-
 
 nextButton.addEventListener('click', function () {
     sessionCode.style.display = 'flex';
@@ -86,6 +79,7 @@ startButton.addEventListener('click', function () {
     nextSongFile.value=''    
     chordproFileInput.value=''
     arrows.style.display='flex'
+    landingPageInfoButton.style.display='none'
     if(!darkModeIsClicked){
         document.body.style.backgroundColor='black'
     }
@@ -111,11 +105,8 @@ initialCreateButton.addEventListener('click', function () {
     chordProContainer.style.display = 'flex';
     subChordProContainer.style.display = 'none';
     startButton.style.display = 'none';
-    //centeringCard.style.height = '30vh';
-
 });
 initialJoinButton.addEventListener('click', function() {
-    //centeringCard.style.height = '30vh';
     arrows.style.display = 'flex';
 });
 
@@ -125,11 +116,9 @@ initialJoinButton.addEventListener('click', function () {
     enterSession.style.display = 'flex';
     joinBackButton.style.display = 'flex';
     arrows.style.display='none';
-    //centeringCard.style.height = '25vh';
     followerStartButton.style.display='block'
 
     arrows.style.display = 'none';
-   // centeringCard.style.height = '25vh';
 });
 
 backButton.addEventListener('click', function(){
@@ -173,14 +162,17 @@ darkMode.addEventListener('change', function(){
         screen.classList.add('dark-color-mode-lyrics')
         document.body.style.backgroundColor='black'
         sessionName.style.color='#fff'
-        landingPageInfo.classList.add('dark-color-mode')
-        landingPageSupport.classList.add('dark-color-mode')
         arrows.classList.add('dark-color-mode')
+        landingPageSupport.style.color='black';
+        //landingPageButtons.forEach(landingPageButtons=>landingPageButtons.classList.add('dark-color-mode'))
+        leaveSession.classList.add('dark-color-mode')
+        landingPage.classList.add('dark-color-mode')
+        darkModeButton.classList.add('dark-color-mode')
+        nextSong.classList.add('dark-color-mode')
         darkModeIsClicked=false;
 
     }else if(!darkModeIsClicked){
         darkModeButton.innerHTML='Dark'
-
         if(!onLyricsPage){
             document.body.style.background = "linear-gradient(rgba(255, 255, 255, 0.2),rgba(255, 255, 255, 0.2),rgba(255, 255, 255, 0.2),rgba(255, 255, 255, 0.2)),url('css/pictures/Ukelele.jpg')";
         }
@@ -202,6 +194,9 @@ darkMode.addEventListener('change', function(){
         landingPageInfo.classList.remove('dark-color-mode')
         landingPageSupport.classList.remove('dark-color-mode')
         arrows.classList.remove('dark-color-mode')
+        darkModeButton.classList.remove('dark-color-mode')
+        leaveSession.classList.remove('dark-color-mode')
+        nextSong.classList.remove('dark-color-mode')
         darkModeIsClicked=true;
 
     }
