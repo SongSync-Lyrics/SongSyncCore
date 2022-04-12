@@ -503,6 +503,8 @@ body {
   padding-top: 10px;
   margin-top: 5px;
   margin-left: 5px;
+  border-radius: 10px;
+  border: 1px solid black;
 }
 .next-song-url::placeholder{
   font-size: 4vw !important;
@@ -512,6 +514,8 @@ body {
   padding-left:5px;
   font-size: 4vw !important;
   margin-top: 5px;
+  display: none;
+  margin-left: 5px;
 }
 .next-song-file-text{
   display: none;

@@ -620,19 +620,25 @@ nextSongButton.onclick = function () {
     nextSongURLInput.value = '';
     nextSongFileInput.style.display = "flex";
     nextSongURLInput.style.display = "flex";
-    nextSongSelect.style.display = "flex";
     nextSongButton.style.display = "none";
-    nextSongFileText.style.display='flex'
+    nextSongFileText.style.display='flex'    
+    nextSong.style.paddingBottom='5px'
+    nextSong.style.paddingLeft='5px'
+
+
 }
 
 nextSongFileInput.addEventListener('change', () => {
     nextFileUpload = true;
+    nextSongSelect.style.display='flex'    
 });
 
 nextSongURLInput.addEventListener('input', function() {
     nextFileUpload = false;
     let trueExtension = nextSongURLInput.value.split('.').pop();
     let notValidUrlLabel = document.getElementById('notValidUrl');
+    nextSongSelect.style.display='flex'
+    nextSong.style.paddingLeft='5px'
     if (nextSongFile.value != '' ) {
         alert('Please select one option');
         console.log('this is getting called')
@@ -653,6 +659,8 @@ nextSongSelect.addEventListener('click', async() => {
     nextSongSelect.style.display = "none";
     nextSongFileText.style.display='none'
     nextSongConfirm.style.display = "flex";
+    nextSong.style.paddingBottom='0px'
+    nextSong.style.paddingLeft='0px'
     nextSongFileText.innerHTML='Open Local File'
     if (nextSongFileInput != null || (nextSongURLInput != null)) {
         if (nextFileUpload) {
