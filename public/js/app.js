@@ -230,10 +230,13 @@ socket.on('displayLyrics', (lyrics, title, artist) => {
         elements[i].id = i;
         visibleTables.push(0);
     }
+    while (!(visibleTables.length % 4 == 0)) {
+        visibleTables.push(0);
+    }
     for (let i = 0; i < 4; i++) {
         visibleTables[i] = 1;
-    }
-    vtl = elements.length;
+    } 
+    vtl = visibleTables.length;
     displayTables();
 });
 
@@ -269,7 +272,13 @@ function moveDown() {
             }
         }
         visibleTables[temp] = 0;
+        visibleTables[temp + 1] = 0;
+        visibleTables[temp + 2] = 0;
+        visibleTables[temp + 3] = 0; 
         visibleTables[temp + 4] = 1;
+        visibleTables[temp + 5] = 1;
+        visibleTables[temp + 6] = 1;
+        visibleTables[temp + 7] = 1;
     }
 }
 
@@ -283,7 +292,13 @@ function moveUp() {
             }
         }
         visibleTables[temp] = 0;
+        visibleTables[temp - 1] = 0;
+        visibleTables[temp - 2] = 0;
+        visibleTables[temp - 3] = 0; 
         visibleTables[temp - 4] = 1;
+        visibleTables[temp - 5] = 1;
+        visibleTables[temp - 6] = 1;
+        visibleTables[temp - 7] = 1;
     }
 }
 downArrow.addEventListener('click', function() {
@@ -605,20 +620,28 @@ nextSongButton.onclick = function () {
     nextSongURLInput.value = '';
     nextSongFileInput.style.display = "flex";
     nextSongURLInput.style.display = "flex";
-    nextSongSelect.style.display = "flex";
     nextSongButton.style.display = "none";
+    nextSongFileText.style.display='flex'    
+    nextSong.style.paddingBottom='5px'
+    nextSong.style.paddingLeft='5px'
+
+
 }
 
 nextSongFileInput.addEventListener('change', () => {
     nextFileUpload = true;
+    nextSongSelect.style.display='flex'    
 });
 
 nextSongURLInput.addEventListener('input', function() {
     nextFileUpload = false;
     let trueExtension = nextSongURLInput.value.split('.').pop();
     let notValidUrlLabel = document.getElementById('notValidUrl');
-    if (nextFileUpload.value != '') {
+    nextSongSelect.style.display='flex'
+    nextSong.style.paddingLeft='5px'
+    if (nextSongFile.value != '' ) {
         alert('Please select one option');
+        console.log('this is getting called')
         nextFileUpload.value = '';
     } else if (!acceptedExtensions.includes(trueExtension)) {
         notValidUrlLabel.style.display = 'block';
@@ -634,7 +657,11 @@ nextSongSelect.addEventListener('click', async() => {
     nextSongFileInput.style.display = "none";
     nextSongURLInput.style.display = "none";
     nextSongSelect.style.display = "none";
+    nextSongFileText.style.display='none'
     nextSongConfirm.style.display = "flex";
+    nextSong.style.paddingBottom='0px'
+    nextSong.style.paddingLeft='0px'
+    nextSongFileText.innerHTML='Open Local File'
     if (nextSongFileInput != null || (nextSongURLInput != null)) {
         if (nextFileUpload) {
             console.log("file upload");
@@ -644,6 +671,10 @@ nextSongSelect.addEventListener('click', async() => {
             await retrieveNextUrl();
         }
     }
+    setTimeout(() => {
+        nextSongConfirm.dispatchEvent(new Event('click'))
+
+    }, 500);
 })
 
 async function retrieveNextUrl() {
@@ -708,4 +739,8 @@ nextSongConfirm.onclick = function() {
     socket.emit('displayNextLyrics', room, song);
     nextSongConfirm.style.display = "none";
     nextSongButton.style.display = "flex";
+    nextSongSelect.value=''
+    nextSongFileInput.value=''
+    nextSongFile.value=''
+
 }

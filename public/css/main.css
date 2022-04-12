@@ -18,12 +18,9 @@
 .landing-page{
   display: flex;
   flex-direction: column;
-  float: right;
-  position: absolute;
-  top: 30px;
-  right: 0;
-  margin-right:5px;
-  margin-top:5px;
+  text-align: right;
+  width: max-content;
+  margin-right: 5px;
 }
 .landing-page-links{
   text-decoration: none;
@@ -33,42 +30,63 @@
   color:blue;
   text-decoration: underline;
 }
-.support-link{
+.landing-page-buttons{
+  display: flex;
+  margin-bottom: 5px;
+  color: black;
+  align-items: center;
+  justify-content: center;
+}
+.landing-page-buttons>a{
+  color: black;
+}
+.landing-page-buttons>a:focus{
+  color: black;
+  text-decoration: none;
+}
+/* .support-link{
   text-align: right;
+  text-decoration: none;
+} */
+.support-link:focus{
+  color: black;
+  text-decoration: none;
 }
 .dark-mode{
-  position: absolute;
-  align-items: center;
-  width: fit-content;
-  top:0;
-  right: 0;
-  color: #ffff;
   display: flex;
-  flex-direction: row;
+  text-align: right;
+  align-items: center;
+  width: 100%;
+  align-self: center;
   justify-content: flex-end;
-  margin-right:5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 .dark-mode-text{
-  right:0;
   width: fit-content;
-  color: #ffff;
+  color: black;
   margin-right: 5px;
-
+  margin-bottom: 5px;
 }
 .session-name{
   margin-bottom: 5px;
+  margin-right: 5px;
+  text-align: right;
   font-weight: normal;
 }
 .leave-session{
   display: none;
   width: fit-content;
-  padding-left: 20px;
-  padding-right:20px;
   padding-bottom:5px;
   height: fit-content;
+  margin-top:5px;
+  margin-right: 5px;
+  color: black;
+
 }
 .leave-session> button > a{
   text-decoration: none;
+  color: black;
 }
 .leave-session>button{
   top: 0;
@@ -76,6 +94,9 @@
   text-decoration: none;
   cursor: pointer;
   vertical-align: top;
+}
+#darkMode{
+  visibility:hidden !important;
 }
 #darkModeTextLyrics{
   display: none;
@@ -387,12 +408,17 @@ body {
   height: 100%;
   justify-content: space-around;
   align-items: center;
+  display: none;
+  margin-right: 5px;
+  padding-top: 30px;
+  margin-top: 30px;
 }
 
 .arrow-button {
   text-decoration: none;
   background-color: inherit;
   border: none;
+  margin-bottom:20px;
 }
 
 .arrow-button:hover {
@@ -419,10 +445,15 @@ body {
   color: inherit;
 }
 .top-header{
+  float: right;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
+  flex-direction: column;
+  margin-right: 5px;
+  z-index: 100;
+  position: relative;
+  width: 100vw;
+  position: absolute;
+  align-items: flex-end;
 }
 
 
@@ -454,14 +485,46 @@ body {
   font-size: 1.1rem !important;
   background: rgb(218, 218, 218);
   border-radius: 25px;
-  z-index: 10;
-  margin-right: 20px;
-  margin-left: 20px;
+  z-index: 100;
+  float: right;
+  text-align: right;
   width: fit-content;
+  margin-bottom: 5px;
+  margin-right: 5px;
 }
 
 #nextSongFile, #nextSongURL, #nextSongButton, #confirmNextSong, #selectNextSong {
   display: none;
+}
+#nextSongFile{
+  display: none !important;
+}
+.next-song-url{
+  padding-top: 10px;
+  margin-top: 5px;
+  margin-left: 5px;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+.next-song-url::placeholder{
+  font-size: 4vw !important;
+  margin-left: 5px;
+}
+#selectNextSong{
+  padding-left:5px;
+  font-size: 4vw !important;
+  margin-top: 5px;
+  display: none;
+  margin-left: 5px;
+}
+.next-song-file-text{
+  display: none;
+  border: 1px solid black;
+  border-radius: .9rem;
+  background-color: rgb(210,210,210);
+  margin-left: 5px;
+  font-size: 2.0rem !important;
+  padding-left: 5px;
 }
 
 .back-button>button {
@@ -787,10 +850,8 @@ body {
   .lyrics{
       font-size: .8rem !important;
   }
+ 
   #nextSong input {
-    font-size: .9rem !important;
-  }
-  #nextSong button {
     font-size: .9rem !important;
   }
   .landing-page-links{
@@ -904,12 +965,12 @@ body {
   }
 
   .enter-button {
-    height: 12vh !important;  
+    height: 15vh !important;  
 
   }
 
   .input-code {
-    height: 12vh !important;
+    height: 15vh !important;
   }
   .logo{
       width: 50vw !important;
@@ -988,7 +1049,8 @@ body {
     font-size: 1.1rem !important;
   }
    .lyrics{
-    font-size: 1.1rem !important;
+    font-size: 1.3rem !important;
+
   } 
 
 }
@@ -1018,6 +1080,9 @@ body {
     font-size: 1rem !important;
   }
   .dark-mode-text{
+    font-size: 1rem !important;
+  }
+  .session-name{
     font-size: 1rem !important;
   }
   .landing-page-links{
