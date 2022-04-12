@@ -499,11 +499,19 @@ body {
 #nextSongFile{
   display: none !important;
 }
+.next-song-url{
+  padding-top: 10px;
+  margin-top: 5px;
+  margin-left: 5px;
+}
 .next-song-url::placeholder{
-  font-size: 1.6rem !important;
+  font-size: 4vw !important;
+  margin-left: 5px;
 }
 #selectNextSong{
   padding-left:5px;
+  font-size: 4vw !important;
+  margin-top: 5px;
 }
 .next-song-file-text{
   display: none;
