@@ -9,7 +9,7 @@ const csvParser = require('csv-parser');
 const fs = require('fs');
 const ArrayKeyedMap = require('array-keyed-map');
 const nodemailer = require('nodemailer');
-const { Z_ASCII } = require('zlib');
+const cron = require('cron').CronJob;
 
 const app = express();
 const server = http.createServer(app);
@@ -21,6 +21,10 @@ const ChordSheetJS = require('chordsheetjs').default;
 const roomMap = new Map();
 const songMap = new ArrayKeyedMap();
 const filePath = 'server/csv/songs.csv';
+const date = new Date();
+const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+];
 
 app.use(express.static(publicPath));
 server.listen(port, () => {
@@ -29,7 +33,11 @@ server.listen(port, () => {
 
 readFromCsv();
 
-sendEmail().catch(console.error);
+const job = new cron('0 0 1 */1 *', function() {
+    console.log("Running scheduled task");
+    sendEmail().catch(console.error);
+}, null, true, 'America/Indianapolis');
+job.start();
 
 // Start Socket.IO connection with clients
 io.on('connection', (socket) => {
@@ -82,6 +90,8 @@ io.on('connection', (socket) => {
         let posAndLeader = [lyrics, socket.id, title, artist];
         roomMap.set(room, posAndLeader);
 
+        checkSongOnCsv(title, artist);
+
         io.to(room).emit('displayLyrics', lyrics, title, artist);
     });
 
@@ -99,17 +109,13 @@ io.on('connection', (socket) => {
 });
 
 async function sendEmail() {
-    // Generate test SMTP service account from ethereal.email
-    // Only needed if you don't have a real mail account for testing
-    let testAccount = await nodemailer.createTestAccount();
-
     let transporter = nodemailer.createTransport({
         host: "smtp-mail.outlook.com", // hostname
         secureConnection: false, // TLS requires secureConnection to be false
         port: 587, // port for secure SMTP
         auth: {
             user: "songsyncapp@outlook.com",
-            pass: "SongSession22"
+            pass: ""
         },
         tls: {
             ciphers: 'SSLv3'
@@ -119,7 +125,7 @@ async function sendEmail() {
     // send mail with defined transport object
     let info = await transporter.sendMail({
         from: '"SongSync App" <songsyncapp@outlook.com>', // sender address
-        to: "songsyncapp@gmail.com, plowry@bsu.edu", // list of receivers
+        to: "songsyncapp@gmail.com, luvlythinking@gmail.com", // list of receivers
         subject: "SongSync CSV", // Subject line
         text: "This is an automated message containing a list of songs played through SongSync", // plain text body
         attachments: [{
@@ -228,6 +234,8 @@ function saveSongMapToCsv() {
                 { id: 'title', title: 'title' },
                 { id: 'artist', title: 'artist' },
                 { id: 'count', title: 'count' },
+                { id: 'month', title: 'month' },
+                { id: 'year', title: 'year' }
             ]
         });
 
@@ -235,8 +243,10 @@ function saveSongMapToCsv() {
         for (let [key, value] of songMap) {
             let title = key[0];
             let artist = key[1];
-            let count = songMap.get(key);
-            data.push({ title: title, artist: artist, count: count })
+            let count = value[0];
+            let month = value[1];
+            let year = value[2];
+            data.push({ title: title, artist: artist, count: count, month: month, year: year })
         }
 
         songMapToCsv
@@ -254,9 +264,13 @@ function readFromCsv() {
             let title = row['title'];
             let artist = row['artist'];
             let count = Number(row['count']);
+            let month = row['month'];
+            let year = row['year'];
+
             if (title != undefined) {
                 let songKey = [title, artist];
-                songMap.set(songKey, count)
+                let songValue = [count, month, year]
+                songMap.set(songKey, songValue)
             }
         })
         .on('end', () => {
@@ -268,17 +282,20 @@ function readFromCsv() {
 
 function updateSongMap(songMapKey) {
     console.log("updating songmap")
-    let count = songMap.get(songMapKey);
-    count = count + 1;
+    let songMapValue = songMap.get(songMapKey);
+    songMapValue[0] = songMapValue[0] + 1;
     songMap.delete(songMapKey);
-    songMap.set(songMapKey, count);
+    songMap.set(songMapKey, songMapValue);
     console.log(songMap);
 }
 
 
 function addSongMapEntry(songMapKey) {
     console.log("adding song to songmap")
-    songMap.set(songMapKey, 1);
+    let month = monthNames[date.getMonth()];
+    let year = date.getFullYear();
+    let songMapValue = [1, month, year]
+    songMap.set(songMapKey, songMapValue);
     console.log(songMap);
 }
 
@@ -303,8 +320,6 @@ function checkSongOnCsv(title, artist) {
         addSongMapEntry(newSongEntry);
     }
 }
-
-
 
 module.exports = {
     io,
