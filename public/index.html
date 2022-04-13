@@ -35,7 +35,10 @@
             <input type="file" id="nextSongFile" style="display: none;" autocomplete="off"
                 accept=".cho,.crd,.chopro,.chord,.pro">
             <input type="text" class="next-song-url" id="nextSongURL" placeholder="Or Enter a URL">
-            <button id="selectNextSong">Select</button>
+            <div class="next-song-nav" id="nextSongNav">
+                <button id="selectNextSong">Select</button>
+                <button id="nextSongClose">Close</button>
+            </div>
             <button id="confirmNextSong">Confirm</button>
         </div>
         <div class="leave-session" id="leaveSession">
@@ -68,9 +71,10 @@
                             Join Session
                         </button>
                     </div>
+
                     <form id="followerJoinForm" onkeydown="return event.key != 'Enter';">
                         <input type='text' autocomplete="off" id='input' name='input' class='input-code'
-                            placeholder='Enter Session Code' />
+                        placeholder='Enter Session Code' />
                         <div class='enter-session' id='enterSession'>
                             <button type='submit' id='followerStartButton' disabled='disabled' class='enter-button'>
                                 Join Session
