@@ -83,6 +83,7 @@ startButton.addEventListener('click', function () {
     chordproFileInput.value=''
     arrows.style.display='flex'
     landingPageInfoButton.style.display='none'
+    nextSong.style.display='block'
     if(!darkModeIsClicked){
         document.body.style.backgroundColor='black'
     }
@@ -109,7 +110,9 @@ initialCreateButton.addEventListener('click', function () {
     subChordProContainer.style.display = 'none';
     startButton.style.display = 'none';
 });
-
+initialJoinButton.addEventListener('click', function() {
+    input.focus();
+});
 
 initialJoinButton.addEventListener('click', function () {
     sessionCode.style.display = 'flex';
@@ -204,4 +207,6 @@ darkMode.addEventListener('change', function(){
 let nextSongFile = document.getElementById('nextSongFile');
 nextSongFile.addEventListener('change', function(){
     nextSongFileText.innerHTML=nextSongFile.value.split(/(\\|\/)/g).pop();
+    nextSongFileText.style.fontSize = '1.5vw'
 })
+nextSongFileText

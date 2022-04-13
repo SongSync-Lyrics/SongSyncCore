@@ -16,6 +16,8 @@ let nextSongFileInput = document.getElementById('nextSongFile');
 let nextSongURLInput = document.getElementById('nextSongURL');
 let nextSongSelect = document.getElementById('selectNextSong');
 let nextSongConfirm = document.getElementById('confirmNextSong');
+let nextSongClose = document.getElementById('nextSongClose')
+let nextSongNav = document.getElementById('nextSongNav')
 
 let song;
 let validFile = true;
@@ -624,20 +626,22 @@ nextSongButton.onclick = function () {
     nextSongFileText.style.display='flex'    
     nextSong.style.paddingBottom='5px'
     nextSong.style.paddingLeft='5px'
-
-
+    nextSongClose.style.display='flex'
+    nextSongNav.style.display='flex'
+    nextSongSelect.style.visibility='hidden'
 }
 
 nextSongFileInput.addEventListener('change', () => {
     nextFileUpload = true;
-    nextSongSelect.style.display='flex'    
+    nextSongSelect.style.visibility='visible'    
+
 });
 
 nextSongURLInput.addEventListener('input', function() {
     nextFileUpload = false;
     let trueExtension = nextSongURLInput.value.split('.').pop();
     let notValidUrlLabel = document.getElementById('notValidUrl');
-    nextSongSelect.style.display='flex'
+    nextSongSelect.style.visibility='visible'    
     nextSong.style.paddingLeft='5px'
     if (nextSongFile.value != '' ) {
         alert('Please select one option');
@@ -653,15 +657,31 @@ nextSongURLInput.addEventListener('input', function() {
 })
 
 //Next Song Upload
+nextSongClose.addEventListener('click',function(){
+    nextSongFileInput.value = '';
+    nextSongURLInput.value = '';
+    nextSongFileInput.style.display = "none";
+    nextSongURLInput.style.display = "none";
+    nextSongButton.style.display = "flex";
+    nextSongFileText.style.display='none'    
+    nextSongClose.style.display='none'
+    nextSongNav.style.display='none'
+    nextSongSelect.style.visibility='hidden'
+    nextSong.style.paddingBottom='0px'
+    nextSong.style.paddingLeft='0px'
+    
+
+})
 nextSongSelect.addEventListener('click', async() => {
     nextSongFileInput.style.display = "none";
     nextSongURLInput.style.display = "none";
-    nextSongSelect.style.display = "none";
     nextSongFileText.style.display='none'
     nextSongConfirm.style.display = "flex";
     nextSong.style.paddingBottom='0px'
     nextSong.style.paddingLeft='0px'
     nextSongFileText.innerHTML='Open Local File'
+    nextSongNav.style.display='none'
+    nextSongSelect.visibility='hidden'
     if (nextSongFileInput != null || (nextSongURLInput != null)) {
         if (nextFileUpload) {
             console.log("file upload");
