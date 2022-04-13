@@ -428,6 +428,7 @@ body {
   width: fit-content;
   margin-bottom: 5px;
   display: none;
+  flex-direction: column;
 }
 
 #nextSongFile, #nextSongURL, #nextSongButton, #confirmNextSong, #nextSongClose {
@@ -437,8 +438,8 @@ body {
   display: none !important;
 }
 .next-song-url{
-  padding-top: 10px;
-  margin-top: 5px;
+  padding: 5px 0px;
+  margin-top: 10px;
   margin-left: 5px;
   margin-right: 5px;
   border-radius: 10px;
@@ -446,9 +447,16 @@ body {
 }
 .next-song-url::placeholder{
   margin-left: 5px;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+  padding-left: 5px;
+  padding: 5px 0px;
+}
+input[type=text]{
+  transform:translateY(-5px);
 }
 #selectNextSong{
-  padding-left:5px;
   margin-top: 5px;
   margin-left: 5px;
   visibility: hidden;
@@ -470,10 +478,8 @@ body {
   border: 1px solid black;
   border-radius: .9rem;
   background-color: rgb(210,210,210);
-  margin-left: 5px;
-  padding-left: 5px;
-  margin-right: 5px;
-  margin-top: 5px;
+  margin:5px 5px 0px;
+  padding:5px;
 }
 
 .back-button>button {
