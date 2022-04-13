@@ -5,25 +5,31 @@
   padding: 0;
   margin: 0;
   font-family: Montserrat;
-  font-size: 1.5rem;
+  font-size: 3vw !important;
 
+}
+
+body {
+  background: linear-gradient(rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.2)),
+    url("pictures/Ukelele.jpg") no-repeat center;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+  overflow-y: hidden;
 }
 .chord-sheet{
   padding-top:20px;
   padding-bottom:20px;
 }
-/* .paragraph{
-  padding-bottom:30px;
-} */
 .landing-page{
   display: flex;
   flex-direction: column;
-  float: right;
-  position: absolute;
-  top: 30px;
-  right: 0;
-  margin-right:5px;
-  margin-top:5px;
+  text-align: right;
+  width: max-content;
+  margin-right: 5px;
 }
 .landing-page-links{
   text-decoration: none;
@@ -33,42 +39,60 @@
   color:blue;
   text-decoration: underline;
 }
-.support-link{
-  text-align: right;
+.landing-page-buttons{
+  display: flex;
+  margin-bottom: 5px;
+  color: black;
+  align-items: center;
+  justify-content: center;
+}
+.landing-page-buttons>a{
+  color: black;
+}
+.landing-page-buttons>a:focus{
+  color: black;
+  text-decoration: none;
+}
+
+.support-link:focus{
+  color: black;
+  text-decoration: none;
 }
 .dark-mode{
-  position: absolute;
-  align-items: center;
-  width: fit-content;
-  top:0;
-  right: 0;
-  color: #ffff;
   display: flex;
-  flex-direction: row;
+  text-align: right;
+  align-items: center;
+  width: 100%;
+  align-self: center;
   justify-content: flex-end;
-  margin-right:5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 .dark-mode-text{
-  right:0;
   width: fit-content;
-  color: #ffff;
+  color: black;
   margin-right: 5px;
-
+  margin-bottom: 5px;
 }
 .session-name{
   margin-bottom: 5px;
+  margin-right: 5px;
+  text-align: right;
   font-weight: normal;
 }
 .leave-session{
   display: none;
   width: fit-content;
-  padding-left: 20px;
-  padding-right:20px;
   padding-bottom:5px;
   height: fit-content;
+  margin-top:5px;
+  margin-right: 5px;
+  color: black;
+
 }
 .leave-session> button > a{
   text-decoration: none;
+  color: black;
 }
 .leave-session>button{
   top: 0;
@@ -76,6 +100,9 @@
   text-decoration: none;
   cursor: pointer;
   vertical-align: top;
+}
+#darkMode{
+  visibility:hidden !important;
 }
 #darkModeTextLyrics{
   display: none;
@@ -89,26 +116,6 @@
 .dark-color-mode-lyrics{
   filter: invert(100%);
 }
-
-
-body {
-  background: linear-gradient(rgba(255, 255, 255, 0.2),
-      rgba(255, 255, 255, 0.2),
-      rgba(255, 255, 255, 0.2),
-      rgba(255, 255, 255, 0.2)),
-    url("pictures/Ukelele.jpg") no-repeat center;
-  background-size: cover;
-  background-attachment: fixed;
-  height: 100vh;
-  overflow-y: hidden;
-}
-/* .background-attributes{
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  background-attachment: fixed;
-  height: 100vh;
-} */
 
 .card-body {
   flex-direction: row;
@@ -125,8 +132,12 @@ body {
 }
 
 .centering-card {
-  width: 30vw;
-  height: 35vh;
+  width:max-content;
+  max-width: 65vw;
+  min-width: 50vw;
+  height: max-content;
+  min-height: 50vh;
+  max-height: 80vh;
   display: flex;
   justify-content: center;
   border-radius: 1.25rem;
@@ -137,6 +148,7 @@ body {
   -o-object-fit: cover;
   object-fit: cover;
   flex-wrap: wrap;
+  padding:15px;
 }
 
 .main-text {
@@ -149,43 +161,12 @@ body {
 }
 
 .inputs {
-  display: flex;
-  flex-direction: column;
   width: 100%;
-  padding-right: 50px;
-  padding-left: 50px;
-  justify-content: space-between;
-  align-content: center;
-  justify-content: center;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 5px;
+  flex-direction: column;
 }
-
-.main-text>p {
-  font-size: 3.5rem;
-  vertical-align: top;
-  margin-bottom: 20px;
-  font-style: italic;
-  color: #f2f2f2;
-  font-weight: 600;
-  width: 30vw;
-  text-align: center;
-}
-
-.chord-pro-file {
-  font-size: 1rem !important;
-  padding-bottom: 1rem;
-  text-align: left;
-  /*   padding-bottom:10px; */
-}
-.chord-pro-file input{
-  height: 15vh;
-}
-
-@media (max-width: 1025px) {
-  .card {
-    width: 30vw;
-  }
-}
-
 .logo {
   width: 50vw;
   padding-bottom: 20px;
@@ -193,21 +174,7 @@ body {
   align-self: center;
 }
 
-.input-code {
-  color: gray;
-  background-color: #ffff;
-  width: 100%;
-  align-self: center;
-  height: 8vh;
-  text-align: center;
-  border-radius: 0.5rem;
-  vertical-align: middle;
-  font-size: 1.75rem;
-  font-weight: 600;
-  border: 1px solid black;
-  margin-top: 5px;
-  display: none;
-}
+
 
 ::-webkit-input-placeholder {
   color: gray;
@@ -242,22 +209,39 @@ body {
 .enter-button {
   color: #ffffff;
   margin-top: 5px;
-  width: 49%;
+  width: 48%;
   align-self: center;
   cursor: pointer;
   border-radius: 0.5rem;
-  height: 12vh;
+  height: 100%;
+  min-height: 20vh;
   font-size: 1.5rem;
   border: 1px solid black;
   transition: all 0.35s;
   background-color: #6c757d;
   align-items: center;
+  justify-content: center;
 }
 .enter-button:hover{
     background-color: #9299a0;
 }
 .enter-button:active{
     background-color: #535a5f;
+}
+.input-code {
+  color: gray;
+  background-color: #ffff;
+  width: 100%;
+  align-self: center;
+  min-height: 20vh;
+  text-align: center;
+  border-radius: 0.5rem;
+  vertical-align: middle;
+  font-size: 1.75rem;
+  font-weight: 600;
+  border: 1px solid black;
+  margin-top: 5px;
+  display: none;
 }
 
 #display {
@@ -270,12 +254,15 @@ body {
   padding-top:20px;
   padding-bottom:50px;
 }
-
+.url-input{
+  width: fit-content;
+}
 .sub-inputs {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-shrink: 1;
+  width: 100%;
 }
 
 .chord-pro-container {
@@ -305,41 +292,16 @@ body {
   align-self: center;
 }
 
-.sub-chord-pro-container>.enter-button {
-  justify-content: center;
-  align-content: center;
-  height: 8vh;
-  width: 100%;
-}
-
 .enter-session {
   display: none;
   width: 100%;
 }
-
-.enter-session>.enter-button {
+.enter-session>.enter-button{
   width: 100%;
-  height: 8vh;
 }
 
 .lyrics {
   font-weight: 600;
-  font-size: 1.3rem !important;
-}
-
-.left-arrow {
-  max-width: -webkit-min-content;
-  max-width: -moz-min-content;
-  max-width: min-content;
-  color: black;
-  align-self: flex-start;
-}
-
-.back-arrow {
-  align-self: flex-start;
-  position: fixed;
-  padding-bottom: 8%;
-  padding-left: 10px;
 }
 
 .enter-button:focus-visible {
@@ -350,7 +312,7 @@ body {
 .chord {
   padding-right: 1vw;
   /*font-family: 'Concert One', cursive;*/
-
+  font-size: 2.5vw !important;
   font-family: "Shippori Antique B1", sans-serif;
 }
 
@@ -359,17 +321,13 @@ body {
 }
 
 .chord {
-  font-size: 2vw;
   color: red;
-  font-size: 1rem !important;
 }
 #screen {
-  padding-top:20px;
-  margin-top: 25px;
   padding-bottom:20px;
   position: absolute;
-  height: 80%;
-  width: 95%;
+  height: 100%;
+  width: 80%;
   overflow-y: hidden;
   overflow-x: hidden;
   background: white;
@@ -387,12 +345,17 @@ body {
   height: 100%;
   justify-content: space-around;
   align-items: center;
+  display: none;
+  margin-right: 5px;
+  padding-top: 30px;
+  margin-top: 30px;
 }
 
 .arrow-button {
   text-decoration: none;
   background-color: inherit;
   border: none;
+  margin-bottom:20px;
 }
 
 .arrow-button:hover {
@@ -419,10 +382,15 @@ body {
   color: inherit;
 }
 .top-header{
+  float: right;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
+  flex-direction: column;
+  margin-right: 5px;
+  z-index: 100;
+  position: relative;
+  width: 100vw;
+  position: absolute;
+  align-items: flex-end;
 }
 
 
@@ -454,14 +422,64 @@ body {
   font-size: 1.1rem !important;
   background: rgb(218, 218, 218);
   border-radius: 25px;
-  z-index: 10;
-  margin-right: 20px;
-  margin-left: 20px;
+  z-index: 100;
+  float: right;
+  text-align: right;
   width: fit-content;
+  margin-bottom: 5px;
+  display: none;
+  flex-direction: column;
 }
 
-#nextSongFile, #nextSongURL, #nextSongButton, #confirmNextSong, #selectNextSong {
+#nextSongFile, #nextSongURL, #nextSongButton, #confirmNextSong, #nextSongClose {
   display: none;
+}
+#nextSongFile{
+  display: none !important;
+}
+.next-song-url{
+  padding: 5px 0px;
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+.next-song-url::placeholder{
+  margin-left: 5px;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+  padding-left: 5px;
+  padding: 5px 0px;
+}
+input[type=text]{
+  transform:translateY(-5px);
+}
+#selectNextSong{
+  margin-top: 5px;
+  margin-left: 5px;
+  visibility: hidden;
+  align-self: center;
+}
+#nextSongClose{
+  margin-left: 5px;
+  margin-right: 10px;
+  align-self: center;
+}
+.next-song-nav{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  display: none;
+}
+.next-song-file-text{
+  display: none;
+  border: 1px solid black;
+  border-radius: .9rem;
+  background-color: rgb(210,210,210);
+  margin:5px 5px 0px;
+  padding:5px;
 }
 
 .back-button>button {
@@ -493,7 +511,7 @@ body {
 }
 
 .url-container {
-  padding-bottom: 15px;
+  padding:15px 0;
 }
 
 .join-back-button-link {
@@ -523,319 +541,6 @@ body {
   font-size: 1rem !important;
   display: none;
 }
-
-/* Responsive css */
-@media only screen and (max-width: 1200px) and (max-height: 300px){
-    .centering-card{
-        height: 50vh !important;
-    }
-    .input-code{
-        height: 15vh !important;
-    }
-    .enter-button{
-        height: 15vh !important;
-    }
-    
-}
-
-@media only screen and (max-width: 375px) and (max-height: 667px){
-    .back-arrow {
-      padding-bottom: 30%;
-    }
-  
-    .centering-card {
-      width: 60vw;
-      height: 21vh !important;
-    }
-  
-    .main-text {
-      display: flex;
-      align-content: center;
-      flex-wrap: wrap;
-      flex-direction: column;
-      width: 100%;
-    }
-  }
-
-@media only screen and (max-width: 1280px) and (max-height: 720px) and (orientation:landscape){
-    .logo{
-        width: 40vw !important;
-    }
-    .centering-card{
-      width: 45vw;
-      height: 50vh;
-    }
-    .enter-button{
-      height: 27vh;
-    }
-    .input-code{
-      height: 18vh;
-    }
-    .enter-session>.enter-button{
-      height: 18vh;
-    }
-    .sub-chord-pro-container>.enter-button{
-      height: 18vh;
-    }
-}
-@media only screen and (max-width:360px) and (max-height: 900px) and (orientation:portrait){
-    .centering-card{
-        height: 28vh !important;
-        width: 85vw !important;
-    }
-}
-@media only screen and (min-width: 1500px) {
-  .centering-card {
-    width: 49vw;
-    height: 23vh !important;
-  }
-
-  * {
-    font-size: 1.2rem;
-  }
-  .lyrics{
-      font-size: 1.7rem !important;
-  }
-
-}
-@media only screen and (max-width:1366px) and (max-height: 1024px) and (orientation:landscape){
-    *{
-        font-size: 1.1rem !important;
-    }
-}
-
-@media only screen and (max-height: 800px) and (min-width: 1300px) and (orientation:landscape) {
-  .centering-card {
-    height: 65vh !important;
-  }
-
-  .enter-button {
-    height: 15vh !important;
-  }
-
-  .input-code {
-    height: 15vh !important;
-  }
-  *{
-      font-size: 1.5rem !important;
-  }
-}
-
-@media only screen and (max-height: 360px) and (max-width:1000px) and (orientation:landscape) {
-  .centering-card {
-    height: 50vh !important;
-  }
-
-  .enter-button {
-    height: 15vh !important;
-  }
-
-  .input-code {
-    height: 15vh !important;
-  }
-}
-@media only screen 
-  and (min-device-width: 1024px)
-  and (max-device-height: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) and (orientation:portrait) {
-    .enter-button{
-      height:300%;
-    }
-    .centering-card{
-      width: 40vw;
-    }
-  }
-  @media only screen 
-  and (min-device-width: 1024px)
-  and (max-device-height: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) and (orientation:landscape) {
-    .centering-card{
-      width: 40vw;
-    }
-  }
-
-@media only screen and (max-width:750px) and (max-height:440px){
-  .centering-card{
-    height: 60vh !important;
-    width: 70vw !important;
-  }
-}
-
-@media only screen and (min-device-width: 1024px) and (max-device-height: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation:portrait) {
-  .enter-button {
-    height: 300%;
-  }
-
-  .centering-card {
-    width: 40vw;
-  }
-}
-
-@media only screen and (min-device-width: 1024px) and (max-device-height: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation:landscape) {
-  .centering-card {
-    width: 40vw;
-  }
-}
-
-@media only screen and (max-width:750px) and (max-height:440px) {
-  .centering-card {
-    height: 40vh !important;
-  }
-  .chord-pro-text{
-    font-size: 1rem !important;
-  }
-  .next-button{
-    font-size: 1rem !important;
-
-  }
-  .first-back-button{
-    font-size: 1rem !important ;
-  }
-}
-
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
-  .centering-card {
-    height: 28vh !important;
-
-  }
-
-  label {
-    font-size: 1.6rem;
-  }
-
-}
-
-
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-max-device-pixel-ratio: 1) and (orientation: landscape) {
-  .centering-card {
-    height: 19vh !important;
-
-  }
-
-}
-
-@media only screen and (min-device-width: 768px) and (max-device-width: 1366px) {
-    *{font-size: 1.3rem !important;}
-    .logo{
-      width: 40vw;
-    }
-
-}
-
-@media screen and (max-width: 1250px) {
-  * {
-    font-size: 1.3rem !important;
-  }
-  .logo{
-    width: 50vw;
-  }
-
-  .sub-chord-pro-container {
-    flex-flow: wrap;
-  }
-
-  .centering-card {
-    width: 60vw;
-  }
-}
-
-@media screen and (max-width: 1000px) {
-  .inputs {
-    padding-right: 25px;
-    padding-left: 25px;
-  }
-
-  .centering-card {
-    width: 60vw;
-  }
-
-  .main-text>p {
-    width: auto;
-  }
-}
-
-
-@media screen and (max-width: 760px) {
-  .back-arrow {
-    padding-bottom: 12%;
-  }
-
-  .sub-chord-pro-container {
-    flex-flow: wrap;
-  }
-
-  .centering-card {
-    width: 40vw;
-  }
-
-  .main-text>p {
-    width: auto;
-  }
-
-  .enter-button {
-    font-size: 1.3rem;
-  }
-  .top-header > button{
-    font-size: .9rem !important;
-  }
-  .top-header > h2{
-    font-size: .9rem !important;
-  }
-  .top-header > .leave-session > a{
-    font-size: .9rem !important;
-  }
-  .lyrics{
-      font-size: .8rem !important;
-  }
-  #nextSong input {
-    font-size: .9rem !important;
-  }
-  #nextSong button {
-    font-size: .9rem !important;
-  }
-  .landing-page-links{
-    font-size:.9rem !important;
-  }
-  .dark-mode-text{
-    font-size: .9rem !important;
-  }
-}
-
-
-
-@media screen and (max-width: 600px) {
-  * {
-    font-size: 1rem !important;
-  }
-
-  .centering-card {
-    width: 85vw;
-    height: 26vh;
-  }
-
-  .main-text {
-    display: flex;
-    align-content: center;
-    flex-wrap: wrap;
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .back-arrow {
-    padding-bottom: 15%;
-  }
-
-  .logo {
-    width: 75vw;
-  }
-}
-
-.rotate {
-  font-family: "Shippori Antique B1", sans-serif;
-  font-size: 4.5vw;
-  padding-top: 5%;
-}
-
 @media screen and (orientation: portrait) {
   #portrait {
     color: white;
@@ -857,170 +562,84 @@ body {
     font-family: "Shippori Antique B1", sans-serif;
   }
 }
-
-@media only screen and (min-width: 816px) and (max-height: 1350px) {
-  .back-arrow {
-    padding-bottom: 8%;
+@media screen and (max-width:1024px) and (max-height:1366px){
+  *{
+    font-size: 4vw !important;
+  }
+  .centering-card{
+    min-width: 70vw;
+    min-height: 40vh;
   }
 }
-
-@media only screen and (min-width: 375px) and (max-height: 926px) and (-webkit-device-pixel-ratio: 3) {
-  .back-arrow {
-    padding-bottom: 30%;
-  }
-
-  .centering-card {
+@media screen and (max-width:1024px){
+  .centering-card{
     width: 60vw;
-    height: 21vh !important;
-  }
-
-  .main-text {
-    display: flex;
-    align-content: center;
-    flex-wrap: wrap;
-    flex-direction: column;
-    width: 100%;
   }
 }
-/*ipad air*/
-@media only screen and (max-width:1200px) and (min-height: 375px) and (orientation:landscape) {
-  .back-arrow {
-    padding-bottom: 30%;
+/* Responsive css */
+@media screen and (max-width: 900px){
+  *{
+    font-size: 4vw !important;
   }
-  .chord-pro-text{
-    font-size: 1.2rem !important;
+  .centering-card{
+    min-width: 75vw;
+    min-height: 40vh;
   }
-  .first-back-button{
-    font-size: 1.2rem !important;
-
+  .arrows{
+    padding-top:10x !important;
+    margin-top:10px !important;
   }
-  .next-button{
-    font-size: 1.2rem !important;
-  }
-
-  .centering-card {
-    width: 60vw;
-    height: 55vh !important;
-  }
-
-  .enter-button {
-    height: 12vh !important;  
-
-  }
-
-  .input-code {
-    height: 12vh !important;
-  }
-  .logo{
-      width: 50vw !important;
+  .input-code, .enter-button{
+    min-height: 15vh;
   }
 }
-@media only screen and (max-width:1200px) and (min-height: 800px) and (orientation:landscape){
-    .centering-card{
-        height: 30vh !important;
-    }
-}
-
-
-@media screen and (max-width: 400px) {
-  * {
-    font-size: 1rem !important;
+@media screen and (max-width: 768px){
+  .centering-card{
+    min-width: 70vw;
   }
-
-  .centering-card {
-    width: 80vw;
+  .arrows{
+    padding-top:10x !important;
+    margin-top:10px !important;
+  }
+}
+@media screen and (max-width: 768px) and (orientation:landscape){
+  *{
+    font-size: 2.5vw !important;
+  }
+  .lyrics{
+    font-size: 2.5vw !important;
+  }
+  .centering-card{
+    min-width: 70vw;
+    min-height: 50vh;
+  }
+  .input-code,.enter-button{
     height: 22vh;
   }
-
-  .logo {
-    width: 75vw;
-  }
-
-  .main-text {
-    display: flex;
-    align-content: center;
-    flex-wrap: wrap;
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .main-text>p {
-    font-size: 3rem;
-    width: auto;
-  }
-
-}
-@media screen and (max-width: 320px) and (max-height: 568px){
-    .centering-card{
-        height: 25vh !important;
-    }
-}
-@media only screen and (max-width: 1200px) and (min-height: 800){
-  .chord-pro-text{
-    font-size: 1.2rem !important;
+  .arrows{
+    padding-top:10x !important;
+    margin-top:10px !important;
   }
 }
-@media screen and (max-width: 1100px) and (max-height: 400px) and (orientation:landscape){
+@media screen and (max-width: 500px){
+  *{
+    font-size: 4.5vw !important;
+  }
+
   .centering-card{
-    width: 80vw !important;
-    height: 70vh !important;
+    width: 90vw;
+    min-width: 90vw;
+    min-height: 40vh;
+    
   }
-  .chord-pro-text{
-    font-size: 1rem !important;
+  .enter-button, .input-code{
+    min-height: 15vh;
   }
-  .next-button{
-    font-size: 1rem !important;
-
-  }
-  .first-back-button{
-    font-size: 1rem !important ;
-  }
-  .input-code{
-    height: 20vh !important;
-  }
-  .enter-button{
-    height: 20vh !important;
-  }
-}
-/*ipad pro*/
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
-  *{
-    font-size: 1.1rem !important;
-  }
-   .lyrics{
-    font-size: 1.1rem !important;
-  } 
 
 }
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation:portrait) and (-webkit-min-device-pixel-ratio: 1) {
-  *{
-    font-size: 1.3rem !important;
-  }
-   .lyrics{
-    font-size: 1.3rem !important;
-  } 
-
-}
-@media only screen and (min-device-width: 1024px) and (max-device-height: 768px) and (-webkit-min-device-pixel-ratio: 1) {
-  *{
-    font-size: 1.4rem !important;
-  }
-  .chord-pro-text{
-    font-size: 1.4rem !important;
-  }
-  .first-back-button{
-    font-size: 1.4rem;
-  }
-  .next-button{
-    font-size: 1.4rem;
-  }
-  .dark-color-mode-lyrics{
-    font-size: 1rem !important;
-  }
-  .dark-mode-text{
-    font-size: 1rem !important;
-  }
-  .landing-page-links{
-    font-size: 1rem !important;
+@media screen and (max-height:315px){
+  .arrows{
+    padding: 0;
+    margin: 0;
   }
 }
