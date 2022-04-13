@@ -83,7 +83,7 @@ startButton.addEventListener('click', function () {
     chordproFileInput.value=''
     arrows.style.display='flex'
     landingPageInfoButton.style.display='none'
-    nextSong.style.display='block'
+    nextSong.style.display='flex'
     if(!darkModeIsClicked){
         document.body.style.backgroundColor='black'
     }
