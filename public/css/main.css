@@ -620,13 +620,15 @@ tbody{
 }
 @media screen and (max-width: 500px){
   *{
-    font-size: 4.5vw !important;
+    font-size: 5.5vw !important;
   }
-
+  .logo{
+    width: 80vw;
+  }
   .centering-card{
     width: 90vw;
-    min-width: 90vw;
-    min-height: 40vh;
+    min-width: 80vw !important;
+    min-height: 20vh !important;
     
   }
   .enter-button, .input-code{
@@ -635,8 +637,21 @@ tbody{
 
 }
 
+@media screen and (max-width:1024px) and (min-height:768px){
+  *{
+    font-size: 3.5vw !important;
+  }
+  #screen{
+    height: 80%;
+  }
+  .centering-card{
+    min-width: 70vw;
+    min-height: 40vh;
+  }
+}
+
 /*ipad air*/
-@media screen and (max-width:1024px) and (max-height:1366px){
+@media screen and (max-width:1024px) and (min-height:1366px){
   *{
     font-size: 3.5vw !important;
   }
@@ -649,7 +664,7 @@ tbody{
   }
 }
 /*ipad pro*/
-@media screen and (max-width:1366px) and (max-height:1024px){
+@media screen and (max-width:1366px) and (min-height:1024px){
   *{
     font-size: 3.5vw !important;
   }
@@ -657,26 +672,14 @@ tbody{
     height: 80%;
   }
   .centering-card{
-    min-width: 70vw;
-    min-height: 40vh;
+    min-width: 65vw;
+    min-height: 35vh;
   }
-}
-
-@media screen and (max-width: 900px) and (orientation:landscape){
-  *{
-    font-size: 3vw !important;
-  }
-  #screen{
-    height: 120%;
-  }
-  .centering-card{
-    min-width: 75vw;
-    min-height: 40vh;
-  }
-  .input-code, .enter-button{
+  .input-code{
+    min-height: 15vh;
+  }.enter-button{
     min-height: 15vh;
   }
-
 }
 
 @media screen and (max-width: 768px) and (orientation:landscape){
@@ -701,22 +704,22 @@ tbody{
     margin-top:10px !important;
   }
 }
-/*iphone XR*/
+/*iphone XR landscape*/
 @media screen and (max-width:900px) and (max-height:415px) and (-webkit-device-pixel-ratio:2){
   #screen{
-    height: 80%;
+    height: 80% !important;
   }
 }
-/*iphone 12 Pro*/
+/*iphone 12 Pro landscape*/
 @media screen and (max-width:844px) and (max-height:390px) and (-webkit-device-pixel-ratio:3){
   #screen{
-    height: 80%;
+    height: 80% !important;
   }
 }
-/*iphone 12 Pro*/
+/*iphone 12 Pro landscape*/
 @media screen and (max-width:854px) and (max-height:395px){
 
   #screen{
-    height: 80%;
+    height: 120% !important;
   }
 }
