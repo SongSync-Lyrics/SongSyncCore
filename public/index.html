@@ -23,7 +23,7 @@
         <div class="landing-page" id="landingPage">
             <button class="landing-page-buttons" id="landingPageInfoButton"><a href="/info.htm" target="__blank" id="landingPageInfo" class="landing-page-links">Information</a></button>
             <button class="landing-page-buttons"><a href="/support.htm" target="__blank" id="landingPageSupport"
-                class="landing-page-links support-link">$Support Us!</a></button>
+                class="landing-page-links support-link">$upport Us!</a></button>
         </div>
         <div class="dark-mode">
             <input id="darkMode" type="checkbox">
@@ -31,7 +31,7 @@
         </div>
         <div id="nextSong">
             <button id="nextSongButton">Next Song</button>
-            <label id="nextSongFileText" class="next-song-file-text" for="nextSongFile">Open Local File</label>
+            <button class="next-song-file-text" id="nextSongFileTextButton" ><label id="nextSongFileText" for="nextSongFile">Open Local File</label></button>
             <input type="file" id="nextSongFile" style="display: none;" autocomplete="off"
                 accept=".cho,.crd,.chopro,.chord,.pro">
             <input type="text" class="next-song-url" id="nextSongURL" placeholder="Or Enter a URL">
@@ -89,17 +89,15 @@
                     <form id="leaderCreateForm" onkeydown="return event.key != 'Enter';">
                         <div class='chord-pro-container' id='chordProContainer'>
                             <div class="first-menu" id="firstMenu">
-                                <label class='chord-pro-text' id="chordProText">To create a session please
-                                    upload a
-                                    chord
-                                    pro
-                                    file:
-                                    <input type='file' id='chordproFile' name='chordproFile' autocomplete="off"
-                                        class='chord-pro-file' accept=".cho,.crd,.chopro,.chord,.pro" />
+                                <label class='chord-pro-text' id="chordProText">Open chordpro file
                                 </label>
-
+                                <br />
+                                <button class="chord-pro-file-button"><label for="chordproFile">Open file</label></button>
+                                <input type='file' id='chordproFile' name='chordproFile' autocomplete="off"
+                                    class='chord-pro-file' accept=".cho,.crd,.chopro,.chord,.pro" />
+                                    <label class="change-file-name-after-upload" id="changeFileNameAfterUpload"></label>
                                 <div class="url-container" id="urlContainer">
-                                    <label class="chord-pro-text"> Or you can enter a valid URL from a website:
+                                    <label class="chord-pro-text"> URL
                                     </label>
                                     <input type="text" autocomplete="off" class="url-input" id="chordProUrl"
                                         placeholder="URL goes here" />

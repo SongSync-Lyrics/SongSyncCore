@@ -20,10 +20,11 @@ body {
   height: 100vh;
   overflow-y: hidden;
 }
-.chord-sheet{
-  padding-top:20px;
-  padding-bottom:20px;
+button{
+  border-radius: .4rem;
+  background-color: #c8ccd0;
 }
+
 .landing-page{
   display: flex;
   flex-direction: column;
@@ -48,15 +49,19 @@ body {
 }
 .landing-page-buttons>a{
   color: black;
+  text-decoration: none;
+}
+.landing-page-buttons>a:hover{
+  text-decoration: none;
+  color: black;
 }
 .landing-page-buttons>a:focus{
   color: black;
   text-decoration: none;
 }
-
-.support-link:focus{
-  color: black;
+.support-link{
   text-decoration: none;
+  color: black;
 }
 .dark-mode{
   display: flex;
@@ -67,6 +72,9 @@ body {
   justify-content: flex-end;
   margin-top: 5px;
   margin-bottom: 5px;
+}
+.dark-mode-text:hover{
+  cursor: pointer;
 }
 .dark-mode-text{
   width: fit-content;
@@ -244,16 +252,6 @@ body {
   display: none;
 }
 
-#display {
-  margin-left: 20px;
-  font-size: 1.5rem;
-  font-family: sans-serif;
-  position: absolute;
-  display: none;
-  width: 90%;
-  padding-top:20px;
-  padding-bottom:50px;
-}
 .url-input{
   width: fit-content;
 }
@@ -286,7 +284,19 @@ body {
   flex-shrink: 1;
   width: 100%;
 }
+.chord-pro-file{
+  display: none;
+}
+.chord-pro-file-button{
+  width: 53%;
+}
+.chord-pro-file-button:hover{
+  cursor: pointer;
+}
+.chord-pro-file-button>label:hover{
+  cursor: pointer;
 
+}
 .sub-chord-pro-container>.chord-pro-file {
   align-content: center;
   align-self: center;
@@ -303,6 +313,9 @@ body {
 .lyrics {
   font-weight: 600;
 }
+tbody{
+  padding-bottom: 5px;
+}
 
 .enter-button:focus-visible {
   box-shadow: 0 0 0.25rem rgb(130 138 145 / 50%);
@@ -314,6 +327,7 @@ body {
   /*font-family: 'Concert One', cursive;*/
   font-size: 2.5vw !important;
   font-family: "Shippori Antique B1", sans-serif;
+  z-index: 1000;
 }
 
 .row {
@@ -324,9 +338,9 @@ body {
   color: red;
 }
 #screen {
-  padding-bottom:20px;
+  margin-top:20px;
   position: absolute;
-  height: 100%;
+  height:100%;
   width: 80%;
   overflow-y: hidden;
   overflow-x: hidden;
@@ -336,6 +350,21 @@ body {
   align-items: center;
   justify-content: space-between;
   flex-direction: row-reverse;
+  z-index: 20;
+}
+
+#display {
+  margin-left: 20px;
+  font-size: 1.5rem;
+  font-family: sans-serif;
+  position: absolute;
+  display: none;
+  width: 90%;
+}
+.chord-sheet{
+  padding-top:5px;
+  padding-bottom: 38px;
+  z-index: 100;
 }
 
 .arrows {
@@ -347,8 +376,6 @@ body {
   align-items: center;
   display: none;
   margin-right: 5px;
-  padding-top: 30px;
-  margin-top: 30px;
 }
 
 .arrow-button {
@@ -429,6 +456,7 @@ body {
   margin-bottom: 5px;
   display: none;
   flex-direction: column;
+  margin-right: 5px;
 }
 
 #nextSongFile, #nextSongURL, #nextSongButton, #confirmNextSong, #nextSongClose {
@@ -453,7 +481,7 @@ body {
   padding-left: 5px;
   padding: 5px 0px;
 }
-input[type=text]{
+.next-song-url input[type=text]{
   transform:translateY(-5px);
 }
 #selectNextSong{
@@ -474,13 +502,10 @@ input[type=text]{
   display: none;
 }
 .next-song-file-text{
-  display: none;
-  border: 1px solid black;
-  border-radius: .9rem;
-  background-color: rgb(210,210,210);
+  display: none;  
   margin:5px 5px 0px;
   padding:5px;
-}
+} 
 
 .back-button>button {
   text-decoration: none;
@@ -512,6 +537,7 @@ input[type=text]{
 
 .url-container {
   padding:15px 0;
+  margin-top: 15px;
 }
 
 .join-back-button-link {
@@ -562,36 +588,26 @@ input[type=text]{
     font-family: "Shippori Antique B1", sans-serif;
   }
 }
-@media screen and (max-width:1024px) and (max-height:1366px){
-  *{
-    font-size: 4vw !important;
-  }
-  .centering-card{
-    min-width: 70vw;
-    min-height: 40vh;
-  }
-}
+/* Responsive css */
 @media screen and (max-width:1024px){
   .centering-card{
     width: 60vw;
   }
 }
-/* Responsive css */
+
+
 @media screen and (max-width: 900px){
   *{
-    font-size: 4vw !important;
+    font-size: 3.4vw !important;
   }
   .centering-card{
     min-width: 75vw;
     min-height: 40vh;
   }
-  .arrows{
-    padding-top:10x !important;
-    margin-top:10px !important;
-  }
   .input-code, .enter-button{
     min-height: 15vh;
   }
+
 }
 @media screen and (max-width: 768px){
   .centering-card{
@@ -602,9 +618,76 @@ input[type=text]{
     margin-top:10px !important;
   }
 }
+@media screen and (max-width: 500px){
+  *{
+    font-size: 5.5vw !important;
+  }
+  .logo{
+    width: 80vw;
+  }
+  .centering-card{
+    width: 90vw;
+    min-width: 80vw !important;
+    min-height: 20vh !important;
+    
+  }
+  .enter-button, .input-code{
+    min-height: 15vh;
+  }
+
+}
+
+@media screen and (max-width:1024px) and (min-height:768px){
+  *{
+    font-size: 3.5vw !important;
+  }
+  #screen{
+    height: 80%;
+  }
+  .centering-card{
+    min-width: 70vw;
+    min-height: 40vh;
+  }
+}
+
+/*ipad air*/
+@media screen and (max-width:1024px) and (min-height:1366px){
+  *{
+    font-size: 3.5vw !important;
+  }
+  #screen{
+    height: 80%;
+  }
+  .centering-card{
+    min-width: 70vw;
+    min-height: 40vh;
+  }
+}
+/*ipad pro*/
+@media screen and (max-width:1366px) and (min-height:1024px){
+  *{
+    font-size: 3.5vw !important;
+  }
+  #screen{
+    height: 80%;
+  }
+  .centering-card{
+    min-width: 65vw;
+    min-height: 35vh;
+  }
+  .input-code{
+    min-height: 15vh;
+  }.enter-button{
+    min-height: 15vh;
+  }
+}
+
 @media screen and (max-width: 768px) and (orientation:landscape){
   *{
-    font-size: 2.5vw !important;
+    font-size: 2.8vw !important;
+  }
+  #screen{
+    height: 100%;
   }
   .lyrics{
     font-size: 2.5vw !important;
@@ -621,25 +704,22 @@ input[type=text]{
     margin-top:10px !important;
   }
 }
-@media screen and (max-width: 500px){
-  *{
-    font-size: 4.5vw !important;
+/*iphone XR landscape*/
+@media screen and (max-width:900px) and (max-height:415px) and (-webkit-device-pixel-ratio:2){
+  #screen{
+    height: 80% !important;
   }
-
-  .centering-card{
-    width: 90vw;
-    min-width: 90vw;
-    min-height: 40vh;
-    
-  }
-  .enter-button, .input-code{
-    min-height: 15vh;
-  }
-
 }
-@media screen and (max-height:315px){
-  .arrows{
-    padding: 0;
-    margin: 0;
+/*iphone 12 Pro landscape*/
+@media screen and (max-width:844px) and (max-height:390px) and (-webkit-device-pixel-ratio:3){
+  #screen{
+    height: 80% !important;
+  }
+}
+/*iphone 12 Pro landscape*/
+@media screen and (max-width:854px) and (max-height:395px){
+
+  #screen{
+    height: 120% !important;
   }
 }

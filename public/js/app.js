@@ -6,6 +6,7 @@ let input = document.getElementById('input');
 let chordproFileInput = document.getElementById('chordproFile');
 let chordproUrlInput = document.getElementById('chordProUrl');
 let uploadButton = document.getElementById('nextButton');
+let changeFileNameAfterUpload = document.getElementById('changeFileNameAfterUpload')
 
 let downArrow = document.getElementById('downArrowButton');
 let upArrow = document.getElementById('upArrowButton')
@@ -43,6 +44,7 @@ uploadButton.addEventListener('click', async() => {
 
 chordproFileInput.addEventListener('change', () => {
     fileUpload = true;
+
 })
 
 let acceptedExtensions = ['cho', 'crd', 'chopro', 'chord', 'pro'];
@@ -50,6 +52,7 @@ let acceptedExtensions = ['cho', 'crd', 'chopro', 'chord', 'pro'];
 //check on file upload whether extension is valid remove disabled attribute to make button clickable if conditions are met
 chordproFileInput.addEventListener('change', function() {
     let trueExtension = chordproFileInput.value.split('.').pop();
+    changeFileNameAfterUpload.innerHTML=chordproFileInput.value.split(/(\\|\/)/g).pop();;
     if (!acceptedExtensions.includes(trueExtension)) {
         alert('Not a valid ChordPro File or you have pasted a URL');
         chordproFileInput.value = '';
@@ -629,6 +632,7 @@ nextSongButton.onclick = function () {
     nextSongClose.style.display='flex'
     nextSongNav.style.display='flex'
     nextSongSelect.style.visibility='hidden'
+    nextSongFileTextButton.style.display='block'
 }
 
 nextSongFileInput.addEventListener('change', () => {
@@ -669,6 +673,7 @@ nextSongClose.addEventListener('click',function(){
     nextSongSelect.style.visibility='hidden'
     nextSong.style.paddingBottom='0px'
     nextSong.style.paddingLeft='0px'
+    nextSongFileTextButton.style.display='none'
     
 
 })
@@ -682,6 +687,7 @@ nextSongSelect.addEventListener('click', async() => {
     nextSongFileText.innerHTML='Open Local File'
     nextSongNav.style.display='none'
     nextSongSelect.visibility='hidden'
+    nextSongFileTextButton.style.display='none'
     if (nextSongFileInput != null || (nextSongURLInput != null)) {
         if (nextFileUpload) {
             console.log("file upload");
