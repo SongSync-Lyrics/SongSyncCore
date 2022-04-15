@@ -204,9 +204,10 @@ darkMode.addEventListener('change', function(){
 
     }
 });
+
+let nextSongFileTextButton = document.getElementById('nextSongFileTextButton')
 let nextSongFile = document.getElementById('nextSongFile');
 nextSongFile.addEventListener('change', function(){
     nextSongFileText.innerHTML=nextSongFile.value.split(/(\\|\/)/g).pop();
     nextSongFileText.style.fontSize = '1.5vw'
 })
-nextSongFileText
