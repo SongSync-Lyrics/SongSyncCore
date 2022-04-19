@@ -109,6 +109,31 @@ button{
   cursor: pointer;
   vertical-align: top;
 }
+.quit-popup{
+  display: flex;  
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  display: none;
+  z-index: 1000;
+}
+.inner-quit-div{
+  border: 1px solid black;
+  padding: 30px 50px;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.5), 0 12px 20px 0 rgba(0, 0, 0, 0.5);
+  background-color: #dadada;
+  text-align: center;
+}
+.quit-buttons{
+  height: 10%;
+  margin:10px;
+  padding: 0px 15px;
+}
+.quit-buttons:hover{
+  cursor: pointer;
+}
 #darkMode{
   visibility:hidden !important;
 }
@@ -272,10 +297,15 @@ button{
   display: none;
   flex-shrink: 1;
 }
+.first-menu{
+  display: flex;
+  flex-direction: column;
+}
 
 .chord-pro-text {
   text-align: left;
   font-size: 1.3rem;
+  margin-bottom: 20px;
 }
 
 .sub-chord-pro-container {
@@ -313,8 +343,14 @@ button{
 .lyrics {
   font-weight: 600;
 }
-tbody{
+tr:nth-child(odd){
+  display: flex;
+  justify-content: space-between;
+}
+tr:nth-child(even){
   padding-bottom: 5px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .enter-button:focus-visible {
@@ -328,6 +364,7 @@ tbody{
   font-size: 2.5vw !important;
   font-family: "Shippori Antique B1", sans-serif;
   z-index: 1000;
+  width:max-content;
 }
 
 .row {
@@ -338,10 +375,11 @@ tbody{
   color: red;
 }
 #screen {
+  margin-left:50px;
   margin-top:20px;
   position: absolute;
   height:100%;
-  width: 80%;
+  width: 90%;
   overflow-y: hidden;
   overflow-x: hidden;
   background: white;
@@ -359,12 +397,13 @@ tbody{
   font-family: sans-serif;
   position: absolute;
   display: none;
-  width: 90%;
+  width: 100%;
 }
 .chord-sheet{
   padding-top:5px;
   padding-bottom: 38px;
   z-index: 100;
+ 
 }
 
 .arrows {
@@ -546,20 +585,6 @@ tbody{
 
 .post-back-button {
   padding-top: 5px;
-}
-
-.form-link {
-  z-index: -10;
-  opacity: 0% !important;
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  padding-bottom: 10px;
-  text-decoration: none;
-  padding-right: 10px;
-  display: block !important;
-  color: white;
-  font-weight: 700;
 }
 
 .not-valid-url {

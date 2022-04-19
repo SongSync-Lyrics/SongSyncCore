@@ -42,8 +42,7 @@
             <button id="confirmNextSong">Confirm</button>
         </div>
         <div class="leave-session" id="leaveSession">
-            <button><a href="javascript:window.location.href=window.location.href"
-                    id="leaveSessionLink">Quit</a></button>
+            <button id="initialQuitButton">Quit</button>
         </div>
         <div class="arrows" id="arrows">
             <button type="button" class="arrow-button" id="upArrowButton">
@@ -54,7 +53,14 @@
             </button>
         </div>
     </div>
+    <div class="quit-popup" id="quitPopup">
+        <div class="inner-quit-div">
+            <p>Are you sure?</p>
+            <button class="quit-buttons" id="quitYes">Yes</button>
+            <button class="quit-buttons" id="quitNo">No</button>
+        </div>
 
+    </div>
     <div id='screen' id="screen">
         <div id='display'></div>
     </div>
@@ -89,15 +95,14 @@
                     <form id="leaderCreateForm" onkeydown="return event.key != 'Enter';">
                         <div class='chord-pro-container' id='chordProContainer'>
                             <div class="first-menu" id="firstMenu">
-                                <label class='chord-pro-text' id="chordProText">Open chordpro file
+                                <label class='chord-pro-text' id="chordProText">Open chordpro file:
                                 </label>
-                                <br />
                                 <button class="chord-pro-file-button"><label for="chordproFile">Open file</label></button>
                                 <input type='file' id='chordproFile' name='chordproFile' autocomplete="off"
                                     class='chord-pro-file' accept=".cho,.crd,.chopro,.chord,.pro" />
                                     <label class="change-file-name-after-upload" id="changeFileNameAfterUpload"></label>
                                 <div class="url-container" id="urlContainer">
-                                    <label class="chord-pro-text"> URL
+                                    <label class="chord-pro-text">or URL:
                                     </label>
                                     <input type="text" autocomplete="off" class="url-input" id="chordProUrl"
                                         placeholder="URL goes here" />
@@ -123,19 +128,12 @@
             </div>
         </div>
 
-
-
         <!-- Front End Javscript reference-->
 
-
     </section>
-
-    <a href="https://forms.gle/j6Vup9v7D9KTTUHf7" class="form-link" target="__blank" id="formLink">To report an issue
-        please click here. </a>
     <script src='/js/frontEndScripts.js'></script>
     <!-- Socket.IO Javacript -->
     <script src='/socket.io/socket.io.js'></script>
     <script src='/js/app.js' charset='utf-8'></script>
 </body>
-
 </html>

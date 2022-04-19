@@ -16,7 +16,6 @@ let joinBackButton = document.getElementById('joinBackButton');
 let postBackButton = document.getElementById('postBackButton');
 let firstMenu = document.getElementById('firstMenu');
 let portrait = document.getElementById('portrait');
-let formLink = document.getElementById('formLink');
 let darkMode = document.getElementById('darkMode')
 let darkModeLyrics = document.getElementById('darkModeLyrics')
 let logo = document.getElementById('logo')
@@ -36,6 +35,8 @@ let nextSongFileText = document.getElementById('nextSongFileText')
 let landingPageButtons = document.querySelectorAll('.landingPageButtons')
 let landingPageInfoButton = document.getElementById('landingPageInfoButton')
 let nextSong = document.getElementById('nextSong')
+let initialQuitButton = document.getElementById('initialQuitButton')
+let quitPopup = document.getElementById('quitPopup')
 
 
 postBackButton.addEventListener('click', function () {
@@ -67,16 +68,14 @@ nextButton.addEventListener('click', function () {
 startButton.addEventListener('click', function () {
     container.style.display = 'none';
     portrait.style.display='flex';
-    formLink.style.color='black';
     darkMode.style.display = 'none';
     leaveSession.style.display='flex'
-    leaveSessionLink.style.color='black'
+    initialQuitButton.style.color='black'
     landingPageInfo.style.color='black'
     landingPageSupport.style.color='black'
     landingPageInfo.style.display='none'
     onLyricsPage=true;
     portrait.style.display = 'flex';
-    formLink.style.color = 'black';
     nextSongButton.style.display = "flex";
     document.body.style.background='none';
     nextSongFile.value=''    
@@ -167,7 +166,6 @@ darkMode.addEventListener('change', function(){
         sessionName.style.color='#fff'
         arrows.classList.add('dark-color-mode')
         landingPageSupport.style.color='black';
-        //landingPageButtons.forEach(landingPageButtons=>landingPageButtons.classList.add('dark-color-mode'))
         leaveSession.classList.add('dark-color-mode')
         landingPage.classList.add('dark-color-mode')
         darkModeButton.classList.add('dark-color-mode')
@@ -193,7 +191,7 @@ darkMode.addEventListener('change', function(){
             document.body.style.background = '#fff';
         }
         sessionName.style.color='black'
-        leaveSessionLink.style.color='black'
+        initialQuitButton.style.color='black'
         landingPageInfo.classList.remove('dark-color-mode')
         landingPageSupport.classList.remove('dark-color-mode')
         arrows.classList.remove('dark-color-mode')
@@ -204,6 +202,19 @@ darkMode.addEventListener('change', function(){
 
     }
 });
+
+initialQuitButton.addEventListener('click', function(){
+    quitPopup.style.display='block'
+})
+
+let quitYes = document.getElementById('quitYes')
+let quitNo = document.getElementById('quitNo')
+quitYes.addEventListener('click',function(){
+    location.reload(true);
+})
+quitNo.addEventListener('click',function(){
+    quitPopup.style.display='none'
+})
 
 let nextSongFileTextButton = document.getElementById('nextSongFileTextButton')
 let nextSongFile = document.getElementById('nextSongFile');
