@@ -95,17 +95,26 @@
                     <form id="leaderCreateForm" onkeydown="return event.key != 'Enter';">
                         <div class='chord-pro-container' id='chordProContainer'>
                             <div class="first-menu" id="firstMenu">
-                                <label class='chord-pro-text' id="chordProText">Open chordpro file:
-                                </label>
-                                <button class="chord-pro-file-button"><label for="chordproFile">Open file</label></button>
-                                <input type='file' id='chordproFile' name='chordproFile' autocomplete="off"
+                                <div class="file-upload-menu">
+                                    <label class='chord-pro-text' id="chordProText">Open chordpro file:
+                                    </label>
+                                    <button class="chord-pro-file-button"><label for="chordproFile">Local file</label></button>
+                                    <input type='file' id='chordproFile' name='chordproFile' autocomplete="off"
                                     class='chord-pro-file' accept=".cho,.crd,.chopro,.chord,.pro" />
                                     <label class="change-file-name-after-upload" id="changeFileNameAfterUpload"></label>
+                                </div>
+
+                                <div class="middle-menu" id="middleMenu">
+                                    <hr>
+                                    <p>or</p>
+                                    <hr>
+                                </div>
+                            
                                 <div class="url-container" id="urlContainer">
-                                    <label class="chord-pro-text">or URL:
+                                    <label class="chord-pro-text">
                                     </label>
                                     <input type="text" autocomplete="off" class="url-input" id="chordProUrl"
-                                        placeholder="URL goes here" />
+                                        placeholder="Enter URL" />
                                     <label class="not-valid-url" id="notValidUrl">Url entered is not
                                         valid!</label>
                                 </div>

@@ -37,11 +37,12 @@ let landingPageInfoButton = document.getElementById('landingPageInfoButton')
 let nextSong = document.getElementById('nextSong')
 let initialQuitButton = document.getElementById('initialQuitButton')
 let quitPopup = document.getElementById('quitPopup')
+let middleMenu = document.getElementById('middleMenu')
 
 
 postBackButton.addEventListener('click', function () {
     subChordProContainer.style.display = 'none';
-    firstMenu.style.display = 'block'
+    firstMenu.style.display = 'flex'
     startButton.style.display = 'none'
     sessionCode.style.display = 'none';
     postBackButton.style.display = 'none';
@@ -50,6 +51,7 @@ postBackButton.addEventListener('click', function () {
     sessionCode.value=''
     backButton.style.display = 'flex';
     nextButton.style.display = 'flex';
+    middleMenu.style.display='flex'
 })
 
 nextButton.addEventListener('click', function () {
@@ -61,6 +63,7 @@ nextButton.addEventListener('click', function () {
     backButton.style.display = 'none';
     nextButton.style.display = 'none';
     postBackButton.style.display = 'flex';
+    middleMenu.style.display='none';
     input.focus();
 
 
@@ -108,6 +111,7 @@ initialCreateButton.addEventListener('click', function () {
     chordProContainer.style.display = 'flex';
     subChordProContainer.style.display = 'none';
     startButton.style.display = 'none';
+    middleMenu.style.display='flex'
 });
 initialJoinButton.addEventListener('click', function() {
     input.focus();
@@ -130,6 +134,8 @@ backButton.addEventListener('click', function(){
     sessionCode.value=''
     chordproFileInput.value='';
     chordproUrlInput.value=''
+    middleMenu.style.display='none'
+    changeFileNameAfterUpload.innerHTML=''
 
 })
 
