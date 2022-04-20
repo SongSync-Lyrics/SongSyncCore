@@ -70,7 +70,7 @@ io.on('connection', (socket) => {
         let posAndLeader = [lyrics, socket.id, title, artist];
         roomMap.set(room, posAndLeader);
 
-        checkSongOnCsv(title, artist);
+        checkSongOnCsv(title, artist, song['lyricist'], song['composer']);
 
         io.to(socket.id).emit('displayLyrics', lyrics, title, artist);
     });
@@ -90,7 +90,7 @@ io.on('connection', (socket) => {
         let posAndLeader = [lyrics, socket.id, title, artist];
         roomMap.set(room, posAndLeader);
 
-        checkSongOnCsv(title, artist);
+        checkSongOnCsv(title, artist, song['lyricist'], song['composer']);
 
         io.to(room).emit('displayLyrics', lyrics, title, artist);
     });
@@ -110,21 +110,17 @@ io.on('connection', (socket) => {
 
 async function sendEmail() {
     let transporter = nodemailer.createTransport({
-        host: "smtp-mail.outlook.com", // hostname
-        secureConnection: false, // TLS requires secureConnection to be false
+        host: "smtp.sendgrid.net", // hostname
         port: 587, // port for secure SMTP
         auth: {
-            user: "songsyncapp@outlook.com",
-            pass: ""
+            user: "apikey",
+            pass: process.env.SENDGRID_API_KEY
         },
-        tls: {
-            ciphers: 'SSLv3'
-        }
     });
 
     // send mail with defined transport object
     let info = await transporter.sendMail({
-        from: '"SongSync App" <songsyncapp@outlook.com>', // sender address
+        from: '"SongSync App" <songsyncapp@songsync.org>', // sender address
         to: "songsyncapp@gmail.com, luvlythinking@gmail.com", // list of receivers
         subject: "SongSync CSV", // Subject line
         text: "This is an automated message containing a list of songs played through SongSync", // plain text body
@@ -233,6 +229,8 @@ function saveSongMapToCsv() {
             header: [
                 { id: 'title', title: 'title' },
                 { id: 'artist', title: 'artist' },
+                { id: 'lyricist', title: 'lyricist' },
+                { id: 'composer', title: 'composer' },
                 { id: 'count', title: 'count' },
                 { id: 'month', title: 'month' },
                 { id: 'year', title: 'year' }
@@ -243,10 +241,12 @@ function saveSongMapToCsv() {
         for (let [key, value] of songMap) {
             let title = key[0];
             let artist = key[1];
+            let lyricist = key[2];
+            let composer = key[3];
             let count = value[0];
             let month = value[1];
             let year = value[2];
-            data.push({ title: title, artist: artist, count: count, month: month, year: year })
+            data.push({ title: title, artist: artist, lyricist: lyricist, composer: composer, count: count, month: month, year: year })
         }
 
         songMapToCsv
@@ -263,12 +263,14 @@ function readFromCsv() {
         .on('data', (row) => {
             let title = row['title'];
             let artist = row['artist'];
+            let lyricist = row['lyricist'];
+            let composer = row['composer'];
             let count = Number(row['count']);
             let month = row['month'];
             let year = row['year'];
 
             if (title != undefined) {
-                let songKey = [title, artist];
+                let songKey = [title, artist, lyricist, composer];
                 let songValue = [count, month, year]
                 songMap.set(songKey, songValue)
             }
@@ -299,24 +301,27 @@ function addSongMapEntry(songMapKey) {
     console.log(songMap);
 }
 
-function scanSongMap(title, artist) {
+function scanSongMap(title, artist, lyricist, composer) {
     console.log("scanning")
     for (let [key, value] of songMap) {
         let existingTitle = key[0];
         let existingArtist = key[1];
-        if (existingTitle == title && existingArtist == artist) {
+        let existingLyricist = key[2];
+        let existingComposer = key[3];
+        if (existingTitle == title && existingArtist == artist && existingLyricist == lyricist && existingComposer == composer) {
             return true;
         }
     }
     return false;
 }
 
-function checkSongOnCsv(title, artist) {
+
+function checkSongOnCsv(title, artist, lyricist, composer) {
     console.log("checking song on csv")
-    let newSongEntry = [title, artist]
+    let newSongEntry = [title, artist, lyricist, composer]
     if (songMap.has(newSongEntry)) {
         updateSongMap(newSongEntry);
-    } else if (!(scanSongMap(title, artist))) {
+    } else if (!(scanSongMap(title, artist, lyricist, composer))) {
         addSongMapEntry(newSongEntry);
     }
 }
