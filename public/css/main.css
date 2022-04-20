@@ -1,10 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Shippori+Antique+B1&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: Montserrat;
+  font-family: 'Inter';
   font-size: 3vw !important;
 
 }
@@ -23,6 +24,12 @@ body {
 button{
   border-radius: .4rem;
   background-color: #c8ccd0;
+}
+button:hover{
+  cursor: pointer !important;
+}
+button > label:hover{
+  cursor: pointer;
 }
 
 .landing-page{
@@ -73,9 +80,6 @@ button{
   margin-top: 5px;
   margin-bottom: 5px;
 }
-.dark-mode-text:hover{
-  cursor: pointer;
-}
 .dark-mode-text{
   width: fit-content;
   color: black;
@@ -102,12 +106,36 @@ button{
   text-decoration: none;
   color: black;
 }
+#initialQuitButton{
+  color: black;
+}
 .leave-session>button{
   top: 0;
   color: #ffff;
   text-decoration: none;
-  cursor: pointer;
   vertical-align: top;
+}
+.quit-popup{
+  display: flex;  
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  display: none;
+  z-index: 1000;
+}
+.inner-quit-div{
+  border: 1px solid black;
+  padding: 30px 50px;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.5), 0 12px 20px 0 rgba(0, 0, 0, 0.5);
+  background-color: #dadada;
+  text-align: center;
+}
+.quit-buttons{
+  height: 10%;
+  margin:10px;
+  padding: 0px 15px;
 }
 #darkMode{
   visibility:hidden !important;
@@ -182,7 +210,10 @@ button{
   align-self: center;
 }
 
-
+#confirmNextSong{
+  background:white !important;
+  display: none;
+}
 
 ::-webkit-input-placeholder {
   color: gray;
@@ -219,7 +250,6 @@ button{
   margin-top: 5px;
   width: 48%;
   align-self: center;
-  cursor: pointer;
   border-radius: 0.5rem;
   height: 100%;
   min-height: 20vh;
@@ -235,6 +265,9 @@ button{
 }
 .enter-button:active{
     background-color: #535a5f;
+}
+#followerStartButton{
+  width: 100%;
 }
 .input-code {
   color: gray;
@@ -253,7 +286,8 @@ button{
 }
 
 .url-input{
-  width: fit-content;
+  width: 70%;
+  padding: 5px 0px 5px 15px;
 }
 .sub-inputs {
   display: flex;
@@ -267,15 +301,38 @@ button{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
   flex-wrap: wrap;
+  align-items: center;
   display: none;
   flex-shrink: 1;
 }
 
 .chord-pro-text {
-  text-align: left;
   font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+.first-menu{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.middle-menu{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top:15px;
+  flex-direction: row;
+}
+.middle-menu>p{
+  margin: 0px 15px;
+
+}
+hr{
+  width: 100%;
+  background-color: black;
+  margin-top: 5px;
 }
 
 .sub-chord-pro-container {
@@ -288,14 +345,12 @@ button{
   display: none;
 }
 .chord-pro-file-button{
-  width: 53%;
+  text-align: left;
+  padding: 5px 0px 5px 15px;
+  width: 70%;
 }
-.chord-pro-file-button:hover{
-  cursor: pointer;
-}
-.chord-pro-file-button>label:hover{
-  cursor: pointer;
-
+.chord-pro-file-button>label{
+  display: block;
 }
 .sub-chord-pro-container>.chord-pro-file {
   align-content: center;
@@ -306,15 +361,8 @@ button{
   display: none;
   width: 100%;
 }
-.enter-session>.enter-button{
-  width: 100%;
-}
-
 .lyrics {
   font-weight: 600;
-}
-tbody{
-  padding-bottom: 5px;
 }
 
 .enter-button:focus-visible {
@@ -328,6 +376,7 @@ tbody{
   font-size: 2.5vw !important;
   font-family: "Shippori Antique B1", sans-serif;
   z-index: 1000;
+  width:max-content;
 }
 
 .row {
@@ -338,10 +387,11 @@ tbody{
   color: red;
 }
 #screen {
+  margin-left:50px;
   margin-top:20px;
   position: absolute;
   height:100%;
-  width: 80%;
+  width: 90%;
   overflow-y: hidden;
   overflow-x: hidden;
   background: white;
@@ -359,12 +409,13 @@ tbody{
   font-family: sans-serif;
   position: absolute;
   display: none;
-  width: 90%;
+  width: 100%;
 }
 .chord-sheet{
   padding-top:5px;
   padding-bottom: 38px;
   z-index: 100;
+ 
 }
 
 .arrows {
@@ -385,9 +436,6 @@ tbody{
   margin-bottom:20px;
 }
 
-.arrow-button:hover {
-  cursor: pointer;
-}
 
 .arrow {
   font-size: 7vw !important;
@@ -447,7 +495,6 @@ tbody{
 } */
 #nextSong {
   font-size: 1.1rem !important;
-  background: rgb(218, 218, 218);
   border-radius: 25px;
   z-index: 100;
   float: right;
@@ -458,19 +505,27 @@ tbody{
   flex-direction: column;
   margin-right: 5px;
 }
-
-#nextSongFile, #nextSongURL, #nextSongButton, #confirmNextSong, #nextSongClose {
+.next-song-container{
+  width:50%;
   display: none;
+  align-self: center;
+  flex-direction: column;
+  background-color: #dadada;
+  padding:20px;
+  border-radius: 1.25rem;
+  top:25%;
+  position: fixed;
 }
-#nextSongFile{
-  display: none !important;
+.next-song-container>p{
+  text-align: center;
+}
+
+.url-input::placeholder{
+  font-size: 1rem !important;
 }
 .next-song-url{
-  padding: 5px 0px;
-  margin-top: 10px;
-  margin-left: 5px;
-  margin-right: 5px;
-  border-radius: 10px;
+  padding: 5px 5px;
+  margin: 10px 5px 5px;
   border: 1px solid black;
 }
 .next-song-url::placeholder{
@@ -481,14 +536,17 @@ tbody{
   padding-left: 5px;
   padding: 5px 0px;
 }
+#nextSongFileText{
+  display: block;
+}
 .next-song-url input[type=text]{
   transform:translateY(-5px);
 }
 #selectNextSong{
   margin-top: 5px;
   margin-left: 5px;
-  visibility: hidden;
-  align-self: center;
+/*   visibility: hidden;
+ */  align-self: center;
 }
 #nextSongClose{
   margin-left: 5px;
@@ -499,10 +557,9 @@ tbody{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  display: none;
 }
 .next-song-file-text{
-  display: none;  
+  text-align: left;
   margin:5px 5px 0px;
   padding:5px;
 } 
@@ -517,10 +574,10 @@ tbody{
 
 .join-back-button {
   display: none;
-  cursor: pointer;
+  cursor: pointer; 
 }
 .first-back-button{
-  cursor: pointer;
+   cursor: pointer;
 }
 
 .post-back-button {
@@ -536,8 +593,16 @@ tbody{
 }
 
 .url-container {
-  padding:15px 0;
-  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+.file-upload-menu{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
 }
 
 .join-back-button-link {
@@ -546,20 +611,6 @@ tbody{
 
 .post-back-button {
   padding-top: 5px;
-}
-
-.form-link {
-  z-index: -10;
-  opacity: 0% !important;
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  padding-bottom: 10px;
-  text-decoration: none;
-  padding-right: 10px;
-  display: block !important;
-  color: white;
-  font-weight: 700;
 }
 
 .not-valid-url {
