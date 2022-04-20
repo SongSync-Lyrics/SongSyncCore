@@ -176,6 +176,8 @@ darkMode.addEventListener('change', function(){
         landingPage.classList.add('dark-color-mode')
         darkModeButton.classList.add('dark-color-mode')
         nextSong.classList.add('dark-color-mode')
+        quitPopup.classList.add('dark-color-mode')
+        nextSongContainer.classList.add('dark-color-mode');
         darkModeIsClicked=false;
 
     }else if(!darkModeIsClicked){
@@ -193,6 +195,7 @@ darkMode.addEventListener('change', function(){
         document.body.style.backgroundPosition = 'center';
         document.body.style.backgroundSize = 'cover';
         screen.classList.remove('dark-color-mode-lyrics')
+        nextSongContainer.classList.remove('dark-color-mode');
         if(onLyricsPage){
             document.body.style.background = '#fff';
         }
@@ -204,6 +207,7 @@ darkMode.addEventListener('change', function(){
         darkModeButton.classList.remove('dark-color-mode')
         leaveSession.classList.remove('dark-color-mode')
         nextSong.classList.remove('dark-color-mode')
+        quitPopup.classList.remove('dark-color-mode')
         darkModeIsClicked=true;
 
     }
