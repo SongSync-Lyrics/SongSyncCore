@@ -618,23 +618,16 @@ function getDuration(song) {
 }
 
 //NEXT SONG FUNCTIONS
+let nextSongContainer = document.getElementById('nextSongContainer');
+
 
 //Next Song Button
 nextSongButton.onclick = function () {
     nextSongFileInput.value = '';
     nextSongURLInput.value = '';
-    nextSongFileInput.style.display = "flex";
-    nextSongURLInput.style.display = "flex";
-    nextSongButton.style.display = "none";
-    nextSongFileText.style.display='flex'    
-    nextSong.style.paddingBottom='5px'
-    nextSong.style.paddingLeft='5px'
-    nextSongClose.style.display='flex'
-    nextSongNav.style.display='flex'
-    nextSongSelect.style.visibility='hidden'
-    nextSongFileTextButton.style.display='block'
-}
+    nextSongContainer.style.display='flex'
 
+}
 nextSongFileInput.addEventListener('change', () => {
     nextFileUpload = true;
     nextSongSelect.style.visibility='visible'    
@@ -664,30 +657,13 @@ nextSongURLInput.addEventListener('input', function() {
 nextSongClose.addEventListener('click',function(){
     nextSongFileInput.value = '';
     nextSongURLInput.value = '';
-    nextSongFileInput.style.display = "none";
-    nextSongURLInput.style.display = "none";
-    nextSongButton.style.display = "flex";
-    nextSongFileText.style.display='none'    
-    nextSongClose.style.display='none'
-    nextSongNav.style.display='none'
-    nextSongSelect.style.visibility='hidden'
-    nextSong.style.paddingBottom='0px'
-    nextSong.style.paddingLeft='0px'
-    nextSongFileTextButton.style.display='none'
+    nextSongContainer.style.display='none'
     
 
 })
 nextSongSelect.addEventListener('click', async() => {
-    nextSongFileInput.style.display = "none";
-    nextSongURLInput.style.display = "none";
-    nextSongFileText.style.display='none'
-    nextSongConfirm.style.display = "flex";
-    nextSong.style.paddingBottom='0px'
-    nextSong.style.paddingLeft='0px'
     nextSongFileText.innerHTML='Open Local File'
-    nextSongNav.style.display='none'
-    nextSongSelect.visibility='hidden'
-    nextSongFileTextButton.style.display='none'
+    nextSongContainer.style.display='none'
     if (nextSongFileInput != null || (nextSongURLInput != null)) {
         if (nextFileUpload) {
             console.log("file upload");

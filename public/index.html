@@ -31,15 +31,26 @@
         </div>
         <div id="nextSong">
             <button id="nextSongButton">Next Song</button>
-            <button class="next-song-file-text" id="nextSongFileTextButton" ><label id="nextSongFileText" for="nextSongFile">Open Local File</label></button>
+            <button id="confirmNextSong">Confirm</button>
+        </div>
+        <div class="next-song-container" id="nextSongContainer">
+            <p>Open chordpro file:</p>
+            <button class="next-song-file-text" id="nextSongFileTextButton">
+                <label id="nextSongFileText" for="nextSongFile">Local File</label>
+            </button>
             <input type="file" id="nextSongFile" style="display: none;" autocomplete="off"
                 accept=".cho,.crd,.chopro,.chord,.pro">
+            <div class="middle-menu">
+                <hr>
+                <p>Or</p>
+                <hr>
+            </div>
+
             <input type="text" class="next-song-url" id="nextSongURL" placeholder="Or Enter a URL">
             <div class="next-song-nav" id="nextSongNav">
-                <button id="selectNextSong">Select</button>
                 <button id="nextSongClose">Close</button>
+                <button id="selectNextSong">Next</button>
             </div>
-            <button id="confirmNextSong">Confirm</button>
         </div>
         <div class="leave-session" id="leaveSession">
             <button id="initialQuitButton">Quit</button>
@@ -59,7 +70,6 @@
             <button class="quit-buttons" id="quitYes">Yes</button>
             <button class="quit-buttons" id="quitNo">No</button>
         </div>
-
     </div>
     <div id='screen' id="screen">
         <div id='display'></div>
