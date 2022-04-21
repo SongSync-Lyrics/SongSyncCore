@@ -10,6 +10,7 @@ const fs = require('fs');
 const ArrayKeyedMap = require('array-keyed-map');
 const nodemailer = require('nodemailer');
 const cron = require('cron').CronJob;
+require('dotenv').config();
 
 const app = express();
 const server = http.createServer(app);
@@ -20,7 +21,7 @@ const port = process.env.PORT || 8080;
 const ChordSheetJS = require('chordsheetjs').default;
 const roomMap = new Map();
 const songMap = new ArrayKeyedMap();
-const filePath = 'server/csv/songs.csv';
+const filePath = 'csv/songs.csv';
 const date = new Date();
 const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
@@ -33,7 +34,7 @@ server.listen(port, () => {
 
 readFromCsv();
 
-const job = new cron('0 0 1 */1 *', function() {
+const job = new cron('0 0 * * THU', function() {
     console.log("Running scheduled task");
     sendEmail().catch(console.error);
 }, null, true, 'America/Indianapolis');
@@ -126,7 +127,7 @@ async function sendEmail() {
         text: "This is an automated message containing a list of songs played through SongSync", // plain text body
         attachments: [{
                 filename: 'SongSync_SongsList.csv',
-                path: 'server/csv/songs.csv',
+                path: filePath,
             }] // html body
     });
 
