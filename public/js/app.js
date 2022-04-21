@@ -207,7 +207,7 @@ socket.on('roomAlreadyExists', (room) => {
 })
 
 socket.on('roomNotFound', (room) => {
-    if (alert("Room " + room + " not found. Please try a different room id.")) {} else window.location.reload();
+    if (alert("Session " + room + " Not Found")) {} else window.location.reload();
 })
 
 function hideStartButton() {

@@ -564,16 +564,9 @@ hr{
   padding:5px;
 } 
 
-.back-button>button {
-  text-decoration: none;
-  background: inherit;
-  border: none;
-  color: inherit;
-  text-align: right;
-}
-
 .join-back-button {
   display: none;
+  margin-top:15px;
   cursor: pointer; 
 }
 .first-back-button{
@@ -597,20 +590,13 @@ hr{
   flex-direction: column;
   width: 100%;
   align-items: center;
+  margin-bottom: 15px;
 }
 .file-upload-menu{
   display: flex;
   flex-direction: column;
   width: 100%;
   align-items: center;
-}
-
-.join-back-button-link {
-  padding-top: 15px;
-}
-
-.post-back-button {
-  padding-top: 5px;
 }
 
 .not-valid-url {
