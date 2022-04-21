@@ -7,7 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Title -->
-    <title>Song Sync Alpha</title>
+    <title>Song Sync - Sing Songs Together!</title>
+    <meta name="description" content="Sing Songs Together!"/>
+    <meta name="keywords" content="chordpro, sing, song, together"/>
     <!-- Links -->
     <script src="https://kit.fontawesome.com/d09eed82ec.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/main.css" />
@@ -42,10 +44,10 @@
                 accept=".cho,.crd,.chopro,.chord,.pro">
             <div class="middle-menu">
                 <hr>
-                <p>Or</p>
+                <p>or</p>
                 <hr>
             </div>
-            <input type="text" class="next-song-url" id="nextSongURL" placeholder="Or Enter a URL">
+            <input type="text" class="next-song-url" id="nextSongURL" placeholder="Enter a URL">
             <div class="next-song-nav" id="nextSongNav">
                 <button id="nextSongClose">Close</button>
                 <button id="selectNextSong">Next</button>
@@ -96,9 +98,10 @@
                             </button>
 
                         </div>
-                        <div class="join-back-button back-button" id="joinBackButton">
-                            <a class="join-back-button-link" id="joinBackButtonLink">Back</a>
-                        </div>
+<!--                         <div class="join-back-button" id="joinBackButton">
+                         </div> -->
+                         <button class="join-back-button" id="joinBackButton" type="button">Back</button>
+
 
                     </form>
                     <form id="leaderCreateForm" onkeydown="return event.key != 'Enter';">
@@ -107,10 +110,9 @@
                                 <div class="file-upload-menu">
                                     <label class='chord-pro-text' id="chordProText">Open chordpro file:
                                     </label>
-                                    <button class="chord-pro-file-button"><label for="chordproFile">Local file</label></button>
+                                    <button class="chord-pro-file-button"><label for="chordproFile" class="change-file-name-after-upload" id="changeFileNameAfterUpload">Local file</label></button>
                                     <input type='file' id='chordproFile' name='chordproFile' autocomplete="off"
                                     class='chord-pro-file' accept=".cho,.crd,.chopro,.chord,.pro" />
-                                    <label class="change-file-name-after-upload" id="changeFileNameAfterUpload"></label>
                                 </div>
 
                                 <div class="middle-menu" id="middleMenu">
@@ -135,7 +137,7 @@
                                 </button>
                             </div>
                             <div class="back-button">
-                                <a class='first-back-button' id="backButton">Back</a>
+                                <button type="button" class='first-back-button' id='backButton'>Back</button>
                                 <button type="button" id="postBackButton" class="post-back-button">Back</button>
                                 <button type="button" id="nextButton" class="next-button"
                                     disabled='disabled'>Next</button>

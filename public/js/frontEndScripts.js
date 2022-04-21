@@ -25,7 +25,6 @@ let paragraph = document.querySelectorAll('.paragraph');
 let sessionName = document.getElementById('session-name');
 let darkModeText = document.getElementById('darkModeText');
 let darkModeTextLyrics = document.getElementById('darkModeTextLyrics');
-let joinBackButtonLink = document.getElementById('joinBackButtonLink');
 let leaveSession = document.getElementById('leaveSession')
 let leaveSessionLink = document.getElementById('leaveSessionLink')
 let landingPage = document.getElementById('landingPage')
@@ -135,7 +134,7 @@ backButton.addEventListener('click', function(){
     chordproFileInput.value='';
     chordproUrlInput.value=''
     middleMenu.style.display='none'
-    changeFileNameAfterUpload.innerHTML=''
+    changeFileNameAfterUpload.innerHTML='Local File'
 
 })
 
