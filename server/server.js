@@ -21,7 +21,7 @@ const port = process.env.PORT || 8080;
 const ChordSheetJS = require('chordsheetjs').default;
 const roomMap = new Map();
 const songMap = new ArrayKeyedMap();
-const filePath = 'csv/songs.csv';
+const filePath = 'server/csv/songs.csv';
 const date = new Date();
 const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
@@ -232,6 +232,7 @@ function saveSongMapToCsv() {
                 { id: 'artist', title: 'artist' },
                 { id: 'lyricist', title: 'lyricist' },
                 { id: 'composer', title: 'composer' },
+                { id: 'publisher', title: 'publisher' },
                 { id: 'count', title: 'count' },
                 { id: 'month', title: 'month' },
                 { id: 'year', title: 'year' }
@@ -244,15 +245,15 @@ function saveSongMapToCsv() {
             let artist = key[1];
             let lyricist = key[2];
             let composer = key[3];
+            let publisher = key[4];
             let count = value[0];
             let month = value[1];
             let year = value[2];
-            data.push({ title: title, artist: artist, lyricist: lyricist, composer: composer, count: count, month: month, year: year })
+            data.push({ title: title, artist: artist, lyricist: lyricist, composer: composer, publisher: publisher, count: count, month: month, year: year })
         }
 
         songMapToCsv
-            .writeRecords(data)
-            .then(() => console.log('The CSV file was written successfully'));
+            .writeRecords(data);
     } catch (err) {
         console.error(err);
     }
@@ -266,50 +267,44 @@ function readFromCsv() {
             let artist = row['artist'];
             let lyricist = row['lyricist'];
             let composer = row['composer'];
+            let publisher = row['publisher'];
             let count = Number(row['count']);
             let month = row['month'];
             let year = row['year'];
 
             if (title != undefined) {
-                let songKey = [title, artist, lyricist, composer];
+                let songKey = [title, artist, lyricist, composer, publisher];
                 let songValue = [count, month, year]
                 songMap.set(songKey, songValue)
             }
         })
-        .on('end', () => {
-            console.log('CSV file successfully processed');
-            console.log(songMap);
-        });
+        .on('end', () => {});
 
 }
 
 function updateSongMap(songMapKey) {
-    console.log("updating songmap")
     let songMapValue = songMap.get(songMapKey);
     songMapValue[0] = songMapValue[0] + 1;
     songMap.delete(songMapKey);
     songMap.set(songMapKey, songMapValue);
-    console.log(songMap);
 }
 
 
 function addSongMapEntry(songMapKey) {
-    console.log("adding song to songmap")
     let month = monthNames[date.getMonth()];
     let year = date.getFullYear();
     let songMapValue = [1, month, year]
     songMap.set(songMapKey, songMapValue);
-    console.log(songMap);
 }
 
-function scanSongMap(title, artist, lyricist, composer) {
-    console.log("scanning")
+function scanSongMap(title, artist, lyricist, composer, publisher) {
     for (let [key, value] of songMap) {
         let existingTitle = key[0];
         let existingArtist = key[1];
         let existingLyricist = key[2];
         let existingComposer = key[3];
-        if (existingTitle == title && existingArtist == artist && existingLyricist == lyricist && existingComposer == composer) {
+        let existingPublisher = key[4];
+        if (existingTitle == title && existingArtist == artist && existingLyricist == lyricist && existingComposer == composer && existingPublisher == publisher) {
             return true;
         }
     }
@@ -317,12 +312,11 @@ function scanSongMap(title, artist, lyricist, composer) {
 }
 
 
-function checkSongOnCsv(title, artist, lyricist, composer) {
-    console.log("checking song on csv")
-    let newSongEntry = [title, artist, lyricist, composer]
+function checkSongOnCsv(title, artist, lyricist, composer, publisher) {
+    let newSongEntry = [title, artist, lyricist, composer, publisher]
     if (songMap.has(newSongEntry)) {
         updateSongMap(newSongEntry);
-    } else if (!(scanSongMap(title, artist, lyricist, composer))) {
+    } else if (!(scanSongMap(title, artist, lyricist, composer, publisher))) {
         addSongMapEntry(newSongEntry);
     }
 }
