@@ -107,6 +107,7 @@ socket.on('parseSongFile', (chordProInput) => {
     let artist = getArtist(chordProInput);
     let composer = getComposer(chordProInput);
     let lyricist = getLyricist(chordProInput);
+    let publisher = getPublisher(chorProInput);
     let copyright = getCopyright(chordProInput);
     let album = getAlbum(chordProInput);
     let year = getYear(chordProInput);
@@ -122,6 +123,7 @@ socket.on('parseSongFile', (chordProInput) => {
     song["artist"] = artist;
     song["composer"] = composer;
     song["lyricist"] = lyricist;
+    song["publisher"] = publisher;
     song["copyright"] = copyright;
     song["album"] = album;
     song["year"] = year;
@@ -145,6 +147,7 @@ function parseChordProFile() {
             let artist = getArtist(chordProInput);
             let composer = getComposer(chordProInput);
             let lyricist = getLyricist(chordProInput);
+            let publisher = getPublisher(chordProInput);
             let copyright = getCopyright(chordProInput);
             let album = getAlbum(chordProInput);
             let year = getYear(chordProInput);
@@ -160,6 +163,7 @@ function parseChordProFile() {
             song["artist"] = artist;
             song["composer"] = composer;
             song["lyricist"] = lyricist;
+            song["publisher"] = publisher;
             song["copyright"] = copyright;
             song["album"] = album;
             song["year"] = year;
@@ -465,6 +469,23 @@ function getLyricist(song) {
     }
     return "Undefined";
 }
+
+//Gets Publisher of Song
+function getPublisher(song) {
+    let split = song.split('\n');
+    let lyricist = "";
+    for (let i = 0; i < split.length; i++) {
+        if (split[i].includes('{meta: publisher') || split[i].includes('{ meta: publisher')) {
+
+            lyricist = split[i].replace('{meta: publisher', '');
+            lyricist = lyricist.replace('{ meta: publisher', '');
+            lyricist = lyricist.replace('}', '');
+            return lyricist.trim();
+        }
+    }
+    return "Undefined";
+}
+
 //Gets Copyright of Song
 function getCopyright(song) {
     let split = song.split('\n');

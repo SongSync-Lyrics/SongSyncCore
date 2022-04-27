@@ -38,7 +38,6 @@ let initialQuitButton = document.getElementById('initialQuitButton')
 let quitPopup = document.getElementById('quitPopup')
 let middleMenu = document.getElementById('middleMenu')
 
-
 postBackButton.addEventListener('click', function () {
     subChordProContainer.style.display = 'none';
     firstMenu.style.display = 'flex'
@@ -150,15 +149,19 @@ joinBackButton.addEventListener('click', function(){
 let darkModeIsClicked = true;
 let onLyricsPage=false;
 
+
 let darkModeButton = document.getElementById('darkModeButton');
-darkModeButton.addEventListener('click', function(){
+
+darkModeButton.addEventListener('click', function(){  
+ 
     darkMode.dispatchEvent(new Event('change'))
-    console.log(onLyricsPage)
     darkMode.checked;
 })
+
 darkMode.addEventListener('change', function(){
     if(darkModeIsClicked){
         darkModeButton.innerHTML='Light'
+        localStorage.setItem('darkModeTheme', 'true')
         if(!onLyricsPage){
             document.body.style.background = "url('css/pictures/darkGuitar.jpg')";
         }
@@ -181,6 +184,7 @@ darkMode.addEventListener('change', function(){
 
     }else if(!darkModeIsClicked){
         darkModeButton.innerHTML='Dark'
+        localStorage.setItem('darkModeTheme', 'false')
         if(!onLyricsPage){
             document.body.style.background = "linear-gradient(rgba(255, 255, 255, 0.2),rgba(255, 255, 255, 0.2),rgba(255, 255, 255, 0.2),rgba(255, 255, 255, 0.2)),url('css/pictures/Ukelele.jpg')";
         }
@@ -209,6 +213,8 @@ darkMode.addEventListener('change', function(){
         quitPopup.classList.remove('dark-color-mode')
         darkModeIsClicked=true;
 
+
+
     }
 });
 
@@ -230,4 +236,20 @@ let nextSongFile = document.getElementById('nextSongFile');
 nextSongFile.addEventListener('change', function(){
     nextSongFileText.innerHTML=nextSongFile.value.split(/(\\|\/)/g).pop();
     nextSongFileText.style.fontSize = '1.5vw'
-})
+});
+
+
+document.addEventListener('keydown', function(e){
+    if(e.key == 'Enter' && e.target == input){
+        e.preventDefault();
+        return false;
+    }
+});
+
+
+window.onload = function(){
+    if(localStorage.getItem('darkModeTheme') === 'true'){
+        console.log(localStorage)
+        darkMode.dispatchEvent(new Event('change'))
+    }
+}
