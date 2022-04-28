@@ -107,7 +107,7 @@ socket.on('parseSongFile', (chordProInput) => {
     let artist = getArtist(chordProInput);
     let composer = getComposer(chordProInput);
     let lyricist = getLyricist(chordProInput);
-    let publisher = getPublisher(chorProInput);
+    let publisher = getPublisher(chordProInput);
     let copyright = getCopyright(chordProInput);
     let album = getAlbum(chordProInput);
     let year = getYear(chordProInput);
@@ -352,7 +352,7 @@ function getLyrics(song) {
     finalSong = "";
     for (let i = 0; i < split.length; i++) {
         if (!(split[i] == '')) {
-            finalSong += split[i];
+            finalSong += split[i] + "\n";
         }
     }
     return finalSong;
